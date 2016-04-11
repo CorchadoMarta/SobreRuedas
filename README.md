@@ -1,6 +1,6 @@
 # SobreRuedas
 Proyecto final de DAW (Autoescuela 2.0)
-Nom del Projecte: AutoescuelaFast&Furious
+Nom del Projecte: SobreRuedas
 Alumnes: Marta Corchado, Juan Oliva
 Descripció bàsica:
 Una web d’una autoescola (per treure’s el carnet de coche “B”), mostrant el seguiment a la'autoescola d’un alumne i amb diferents rols.
