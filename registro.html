@@ -21,14 +21,22 @@
 	<!-- Typography -->
 	<link href='https://fonts.googleapis.com/css?family=Lato:400,300,900,300italic,400italic,900italic' rel='stylesheet' type='text/css'>
 
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script type="text/javascript">
-  document.ready(function(){
-      $( "#datepicker" ).datepicker();
-  });
-  </script>
+$(document).ready(function() {
+
+
+ $(function() {
+    var currentDate = new Date();
+    $( "#datepicker" ).datepicker( {
+        minDate: 0,
+        "setDate": currentDate,
+        dateFormat: 'dd/mm/yy'
+    });
+});
+
+};
+
+</script>
 
 </head>
 <body>
@@ -143,7 +151,7 @@
 	</div>
 </footer>
 <!-- Fin Footer -->
-<script src="js/jquery.js"></script>
+	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
