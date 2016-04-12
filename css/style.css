@@ -1,0 +1,59 @@
+/* CSS Document */
+
+body {
+    position: relative;
+    font-family: 'Lato', serif;
+    height: 100%;
+}
+
+/* Menú */
+.navbar {
+    margin-bottom: 0px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1em;
+    text-transform: uppercase;
+}
+
+#cabecera-responsive {
+  color: #000;
+  font-family: 'Lato', serif;
+  font-weight: 400;
+  font-style: italic;
+  text-transform: capitalize;;
+}
+
+#logo-cabecera{
+  width: 30px;
+  float: left;
+  margin-top: -5px;
+  margin-right: 10px;
+}
+
+
+/* Cabecera */
+#container-img{
+  background: url("../img/carousel/background1.jpg") no-repeat top center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 600px;
+}
+
+#panel-form{
+  background-color: rgba(255, 255, 255, .5);
+  padding: 20px;
+  margin-top: 150px;
+}
+
+#containerform{
+  width: 600px;
+}
+
+
+footer {
+  background: #fff;
+  color: #fff;
+}
