@@ -1,6 +1,10 @@
 //Fitxer controler.js
-var pelis = require('../model/peli.js');
+
 module.exports = function(app){
+	inicio = function(req, res) {
+		//Busquem les pelis
+		res.sendFile('index.html', { root: __dirname });
+	}
 	//Funcio per a llistar totes les pelis
 	llistaPelis = function(req, res) {
 		//Busquem les pelis
@@ -109,7 +113,7 @@ module.exports = function(app){
 			}
 		});
 	}
-
+	app.get('/', inicio);
 	//Aqui definim la collecció on insertarem coses: /videoclub
 	//Per mostrar la llista de totes les pelis
 	app.get('/list', llistaPelis);
