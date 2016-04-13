@@ -1,9 +1,25 @@
 //Fitxer controler.js
+var usuarios = require('../model/usuarios.js');
 
 module.exports = function(app){
-	inicio = function(req, res) {
-		//Busquem les pelis
-		res.sendFile('index.html', { root: __dirname });
+		//Per inserir la pelicula a la base de dades segons la seva clau
+	var registrar = function(req, res) {
+		
+		//Guardem en una variable el recollit al for
+		var contenido = req.body;
+		var usuario = new usuarios(contenido);
+		
+		console.log(contenido);
+		
+		usuario.save(function(err, usuario) {
+  			if (err) return console.log(err);
+  				console.log(usuario);
+		});
+
+
+
+
+
 	}
 	//Funcio per a llistar totes les pelis
 	llistaPelis = function(req, res) {
@@ -55,37 +71,7 @@ module.exports = function(app){
 		});
 	}
 
-	//Per inserir la pelicula a la base de dades segons la seva clau
-	var insertPeli = function(req, res) {
-		//Guardem en una variable el recollit al form
-		var claupeli = Number(req.body.codpeli);
-		var titolpeli = req.body.titol;
-		var sinopsipeli = req.body.sinopsi;
-		//Creem una instancia per poder inserir la pelicula
-		var peli = new pelis({
-			codPeli: claupeli,
-			titol: titolpeli,
-			sinopsi: sinopsipeli
-		});
-		pelis.find({codPeli:claupeli}, function (err, pelicula) {
-			if (!err && pelicula.length == 0){
-				peli.save(function (err, pelicula) {
-					if (!err){
-						res.render('missatgeUpdateInsert.jade', {accio: "Insert"});
-						//res.send(Pelicules);
-						console.log("Mostrant pelis");
-					} else {
-						//res.send('Error' + err);
-						console.log("No mostra pelis.");
-					}
-				});
-				console.log("No la pots inserir");
-			} else {
-				//res.send('Error' + err);
-				console.log("No insert pelis.");
-			}
-		});
-	}
+
 
 	//Per cambiar la pelicula a la base de dades segons la seva clau
 	var updatePeli = function(req, res) {
@@ -113,9 +99,18 @@ module.exports = function(app){
 			}
 		});
 	}
-	app.get('/', inicio);
-	//Aqui definim la collecció on insertarem coses: /videoclub
-	//Per mostrar la llista de totes les pelis
+
+
+
+	app.get('/', function(req, res) {
+		res.render('index.ejs');
+	});
+
+	app.get('/registro', function(req, res) {
+		res.render('registro.ejs');
+	});
+	app.post('/registrar', registrar);
+
 	app.get('/list', llistaPelis);
 	//Per mostrar una
 	app.get('/listOne', function(req, res) {
@@ -128,10 +123,6 @@ module.exports = function(app){
 	});
 	app.post('/deletePeli', deletePeli);
 	//Per inserir una
-	app.get('/insertOne', function(req, res) {
-		res.render('formInsertPeli.jade');
-	});
-	app.post('/insertPeli', insertPeli);
 	//Per cambiar una
 	app.get('/updateOne', function(req, res) {
 		res.render('formUpdatePeli.jade');

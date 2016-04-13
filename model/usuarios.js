@@ -9,21 +9,21 @@ var schemaUser = new schema ({
 	nombre: String,
 	apellido1: String,
 	apellido2: String,
-	dirección:{
+	dirección: [new schema({
 		calle: String,
-		numero: Number,
+		num: Number,
 		piso: Number,
 		cp: Number,
 		provincia: String,
 		pais: String,	
-		},
+		})],
 	fechNacimiento: Date,
-	test:{
+	test:[new schema({
 		idTema: Number,
 		fechTest: Date,
 		errores: Number
-		},
-	examen:{
+		})],
+	examen: [new schema({
 		fechTeorico: [Date],
 		fechPractico: [Date],
 		documentos:{
@@ -33,16 +33,16 @@ var schemaUser = new schema ({
 			},
 			copiaDni: Boolean,
 			certMedico: Boolean
-		},
-	},
-	contabilidad:{
+		}
+	})],
+	contabilidad:[new schema({
 		fechEntrada: Date,
 		fechFin: Date,
 		fechCancel: Date
-	},
-	telefono: Number,
+	})],
+	tel: Number,
 	email: String,
-	pass: String,
+	pwd: String,
 });
 //Registramos el schemaUser en esta estructura
 //Exportamos el modelo que se corresponde con la colección(tabla) 'Usuarios'

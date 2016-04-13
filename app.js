@@ -5,12 +5,14 @@ var express = require('express'),
 	mongoose = require('mongoose'),
 	//Instancia de l'objecte express
 	app = express();
+	app.use(express.static(__dirname + '/public'));
 
 	//Configurem per poder utilitzar forms i direccionar a la carpeta de views
     app.set('views', __dirname + '/views');
     app.set('view options', { layout: false });
     app.use(bodyParser.urlencoded({extended: false}));
     app.use(bodyParser.json());
+    app.set('view engine', 'ejs');
 	
 	//Missatge per donar la benbinguda ('/' és l'endpoint)
 	// app.get('/', function(req, res) {
