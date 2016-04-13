@@ -8,13 +8,19 @@ module.exports = function(app){
 		//Guardem en una variable el recollit al for
 		var contenido = req.body;
 		var usuario = new usuarios(contenido);
-		
+		usuario.direccion = {
+			calle: contenido.calle, 
+			num: contenido.num,
+			piso: contenido.piso,
+			cp: contenido.cp,
+			provincia: contenido.provincia,
+			pais: contenido.pais 
+		};
+		usuario.markModified('direccion');
+
+
 		console.log(contenido);
-		
-		usuario.save(function(err, usuario) {
-  			if (err) return console.log(err);
-  				console.log(usuario);
-		});
+		usuario.save();
 
 
 

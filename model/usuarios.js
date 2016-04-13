@@ -9,21 +9,21 @@ var schemaUser = new schema ({
 	nombre: String,
 	apellido1: String,
 	apellido2: String,
-	dirección: [new schema({
+	direccion:{
 		calle: String,
 		num: Number,
 		piso: Number,
 		cp: Number,
 		provincia: String,
 		pais: String,	
-		})],
+		},
 	fechNacimiento: Date,
-	test:[new schema({
+	test:{
 		idTema: Number,
 		fechTest: Date,
 		errores: Number
-		})],
-	examen: [new schema({
+		},
+	examen:{
 		fechTeorico: [Date],
 		fechPractico: [Date],
 		documentos:{
@@ -34,12 +34,12 @@ var schemaUser = new schema ({
 			copiaDni: Boolean,
 			certMedico: Boolean
 		}
-	})],
-	contabilidad:[new schema({
+	},
+	contabilidad:{
 		fechEntrada: Date,
 		fechFin: Date,
 		fechCancel: Date
-	})],
+	},
 	tel: Number,
 	email: String,
 	pwd: String,
