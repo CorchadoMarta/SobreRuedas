@@ -12,7 +12,7 @@ app.set('view engine', 'ejs');
 
 mongoose.connect('mongodb://localhost/autoescuela', function(err, res){
 	if (!err)
-		console.log("Connexión establecida");
+		console.log("Conexión establecida");
 	else 
 		console.log("SENSE connexió");
 });
