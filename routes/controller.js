@@ -1,31 +1,19 @@
-//Fitxer controler.js
+//Fichero controler.js
 var usuarios = require('../model/usuarios.js');
+var	session = require('express-session');
 
 module.exports = function(app){
-		//Per inserir la pelicula a la base de dades segons la seva clau
+
 	var registrar = function(req, res) {
 		
-		//Guardem en una variable el recollit al for
 		var contenido = req.body;
 		var usuario = new usuarios(contenido);
-		usuario.direccion = {
-			calle: contenido.calle, 
-			num: contenido.num,
-			piso: contenido.piso,
-			cp: contenido.cp,
-			provincia: contenido.provincia,
-			pais: contenido.pais 
-		};
+		usuario.direccion = contenido;
 		usuario.markModified('direccion');
 
 
 		console.log(contenido);
 		usuario.save();
-
-
-
-
-
 	}
 	//Funcio per a llistar totes les pelis
 	llistaPelis = function(req, res) {
@@ -107,6 +95,14 @@ module.exports = function(app){
 	}
 
 
+	app.get('/logout',function(req,res){
+	req.session.destroy(function(err) {
+	  if(err) {
+	    console.log(err);
+	  } else {
+	    res.redirect('/');
+	  }
+	});
 
 	app.get('/', function(req, res) {
 		res.render('index.ejs');

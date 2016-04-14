@@ -36,7 +36,7 @@ var schemaUser = new schema ({
 		}
 	},
 	contabilidad:{
-		fechEntrada: Date,
+		fechEntrada: {type: Date, default: Date.now},
 		fechFin: Date,
 		fechCancel: Date
 	},
