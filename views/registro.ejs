@@ -6,10 +6,10 @@
 	<!-- Bootstrap Core CSS -->
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<link rel="stylesheet" href="css/bootstrap.css">
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="css/style.css">
 
 	<!--FAVICON -->
-	<link href="img/?.png" rel="icon" type="image/png">
+	<link href="img/favicon.png" rel="icon" type="image/png">
 
 	<!--SEO Elements -->
 	<title>Autoescuela Sobre Ruedas | La mejor autoescuela del mundo mundial</title>
@@ -20,6 +20,8 @@
 	<link href="css/style.css" rel="stylesheet">
 	<!-- Typography -->
 	<link href='https://fonts.googleapis.com/css?family=Lato:400,300,900,300italic,400italic,900italic' rel='stylesheet' type='text/css'>
+
+
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -38,38 +40,41 @@ $(document).ready(function() {
 
 </script>
 
+
 </head>
-<body>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
 	<!-- Menú -->
-	<nav class="navbar navbar-inverse navbar-fixed-top">
+	<nav class="navbar navbar-inverse navbar-fixed-top" data-spy="affix" data-offset-top="197" role="navigation">
 	  <div class="container">
 	    <p class="container">
 		  <!-- Hamburguesa -->
 		  <div class="navbar-header">
-		    <button type="button" class="navbar-toggle " data-toggle="collapse"
+		    <button type="button" class="navbar-toggle" data-toggle="collapse"
 		            data-target=".navbar-ex1-collapse">
 		      <span class="sr-only">Desplegar navegación</span>
 		      <span class="icon-bar"></span>
 		      <span class="icon-bar"></span>
 		      <span class="icon-bar"></span>
 		    </button>
-		    <a class="navbar-brand visible-xs-block" href="#" id="cabecera-responsive"> <img src="img/logo.png" id="logo-cabecera" /> SOBRE RUEDAS</a>
+		    <a class="navbar-brand visible-xs-block" href="#" id="cabecera-responsive"> <img src="img/imagotip.png" id="logo-cabecera" /> SOBRE RUEDAS</a>
 		  </div>
 
 		  <!-- Menú -->
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
-		    <ul class="nav navbar-nav">
-			    <li><a href="#">Inicio</a></li>
+				<a class="navbar-brand hidden-xs" href="#" id="cabecera-responsive"> <img src="img/imagotip.png" id="logo-cabecera" /> SOBRE RUEDAS</a>
+		    <ul class="nav navbar-nav navbar-right">
+					<li><a href="/">Inicio</a></li>
 			    <li><a href="#">Teorica</a></li>
 			    <li><a href="#">Practica</a></li>
-				<li><a href="#">Sobre nosotros</a></li>
+					<li><a href="#">Contacto</a></li>
+					<button type="button"  onclick="window.location.href='/registro'" class="btn btn-default btn-success">REGISTRO <img src="img/key.png" id="hr" /></button>
 		    </ul>
-
 		  </div>
 			</p>
 	  </div>
 	</nav>
- 
+
+<div class="background">
  <!-- Cabecera --> 		
 		<div class="container">
 			<div id="panel-form">
@@ -135,6 +140,7 @@ $(document).ready(function() {
 			        <input type="text" class="form-control" id="pais" name="pais" placeholder="País de nacimiento">
 			      </div>
 			    </div>
+
 			    <div class="form-group">        
 			      <div class="col-sm-offset-2 col-sm-10">
 			        <button type="submit" class="btn btn-default">Submit</button>
@@ -143,6 +149,48 @@ $(document).ready(function() {
 			  </form>
 		  </div>
 		</div>
+
+<!-- Packs -->
+<div class="container">
+			<section>
+					<div class="precio precio-caja">
+							<div class="precio-caja-individual">
+									<h3 class="precio-titulo">BASIC</h3>
+									<p class="precio-descrip">Precio de pack básico, con el que podrás empezar a sacarte el carné de conducir.</p>
+									<div class="precio-euro">125<span class="precio-euro-actual">€</span><span class="precio-forma-pago">/ pago único</span></div>
+									<ul class="precio-listado">
+											<li><p class="glyphicon glyphicon-menu-right icono"></p>Matrícula</li>
+											<li><p class="glyphicon glyphicon-menu-right icono"></p>Material didáctico</li>
+											<li><p class="glyphicon glyphicon-menu-right icono"></p>Teorica</li>
+									</ul>
+							</div>
+							<div class="precio-caja-individual">
+									<h3 class="precio-titulo">STANDARD</h3>
+									<p class="precio-descrip">Pack BASIC + clases prácticas de conducir <br>+ examen práctico.</p>
+									<div class="precio-euro">85<span class="precio-euro-actual">€</span><span class="precio-forma-pago">/ month</span></div>
+									<ul class="precio-listado">
+										<li><p class="glyphicon glyphicon-menu-right icono"></p>Matrícula</li>
+										<li><p class="glyphicon glyphicon-menu-right icono"></p>Material didáctico</li>
+										<li><p class="glyphicon glyphicon-menu-right icono"></p>Teorica</li>
+										<li><p class="glyphicon glyphicon-menu-right icono"></p>15 clases prácticas</li>
+										<li><p class="glyphicon glyphicon-menu-right icono"></p>1er examen práctico</li>
+									</ul>
+							</div>
+							<div class="precio-caja-individual">
+									<h3 class="precio-titulo">UNIQUE</h3>
+									<p class="precio-descrip">Pack para personas que ya poseen la teorica, ya sea por libre o de otro carné.</p>
+									<div class="precio-euro">189<span class="precio-euro-actual">€</span><span class="precio-forma-pago">/ pago único</span></div>
+									<ul class="precio-listado">
+											<li> <p class="glyphicon glyphicon-menu-right icono"></p>Matrícula</li>
+											<li><p class="glyphicon glyphicon-menu-right icono"></p>Exámen práctico</li>
+									</ul>
+							</div>
+					</div>
+			</section>
+	</div>
+</div>
+	<!-- fin Packs -->
+
 
 	<!-- Footer -->
 <footer>
@@ -155,3 +203,4 @@ $(document).ready(function() {
 	<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
+
