@@ -17,6 +17,7 @@ mongoose.connect('mongodb://localhost/autoescuela', function(err, res){
 		console.log("SENSE connexió");
 });
 
+
 require('./routes/controller.js')(app);
 app.listen(2626, function() {
 	console.log("Server running in 2626");
