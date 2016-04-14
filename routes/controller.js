@@ -1,6 +1,7 @@
 //Fichero controler.js
 var usuarios = require('../model/usuarios.js');
 // var	session = require('express-session');
+var fileUpload = require('express-fileupload');
 
 module.exports = function(app){
 
@@ -12,6 +13,22 @@ module.exports = function(app){
 		usuario.markModified('direccion');
 		console.log(contenido);
 		usuario.save();
+			var foto;
+ 
+		if (!req.files) {
+			res.send('No se subió tu foto.');
+			return;
+		}
+	 
+		foto = req.files.foto;
+		foto.mv('/public/users', function(err) {
+			if (err) {
+				res.status(500).send(err);
+			}
+			else {
+				res.send('Foto subida!');
+			}
+		});
 	}
 	//Funcio per a llistar totes les pelis
 	llistaPelis = function(req, res) {
