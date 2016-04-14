@@ -1,6 +1,6 @@
 //Fichero controler.js
 var usuarios = require('../model/usuarios.js');
-var	session = require('express-session');
+// var	session = require('express-session');
 
 module.exports = function(app){
 
@@ -10,8 +10,6 @@ module.exports = function(app){
 		var usuario = new usuarios(contenido);
 		usuario.direccion = contenido;
 		usuario.markModified('direccion');
-
-
 		console.log(contenido);
 		usuario.save();
 	}
@@ -95,14 +93,14 @@ module.exports = function(app){
 	}
 
 
-	app.get('/logout',function(req,res){
-	req.session.destroy(function(err) {
-	  if(err) {
-	    console.log(err);
-	  } else {
-	    res.redirect('/');
-	  }
-	});
+	// app.get('/logout',function(req,res){
+	// req.session.destroy(function(err) {
+	//   if(err) {
+	//     console.log(err);
+	//   } else {
+	//     res.redirect('/');
+	//   }
+	// });
 
 	app.get('/', function(req, res) {
 		res.render('index.ejs');

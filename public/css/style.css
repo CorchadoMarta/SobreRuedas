@@ -16,25 +16,50 @@ body {
     text-transform: uppercase;
 }
 
+.affix {
+    top:0;
+    width: 100%;
+    z-index: 9999 !important;
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: background 0.3s;
+}
+
+.btn-success{
+  margin-top: 5px;
+  margin-left: 5px;
+  background-color:rgb(214, 72, 41);
+  border-color: rgb(209, 68, 37);
+}
+
+.btn-success:hover{
+  background-color:rgb(196, 61, 31);
+  border-color: rgb(209, 68, 37);
+}
+
+#hr {
+border-left: 1px solid #fff;
+margin-left: 5px;
+}
+
 #cabecera-responsive {
   color: #000;
   font-family: 'Lato', serif;
   font-weight: 400;
   font-style: italic;
-  text-transform: capitalize;;
+  text-transform: capitalize;
+  font-size: 1.5em;
 }
 
 #logo-cabecera{
-  width: 30px;
+  width: 40px;
   float: left;
-  margin-top: -5px;
+  margin-top: -10px;
   margin-right: 10px;
 }
 
-
 /* Cabecera */
 #container-img{
-  background: url("../img/carousel/background1.jpg") no-repeat top center fixed;
+  background: url("../img/carousel/background1.jpg") no-repeat top center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -46,12 +71,202 @@ body {
   background-color: rgba(255, 255, 255, .5);
   padding: 20px;
   margin-top: 150px;
+   border-radius: 10px;
 }
 
 #containerform{
   width: 600px;
 }
 
+/* Como somos */
+.identidad {
+  background-color: #fff;
+  text-align: center;
+  padding-right: 0;
+  padding-left: 0;
+  margin: 50px;
+  border: 0 none;
+}
+
+.identidad-block > span {
+  display: block;
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 20px;
+  font-size: 2.5em;
+  line-height: 2.5;
+  text-align: center;
+  border: 5px solid #f5f5f5;
+  border-radius: 50%;
+}
+
+.identidad-title {
+  margin-bottom: 5px;
+  font-size: 2.25rem;
+  font-weight: 600;
+  line-height: 1.1666;
+}
+
+.identidad-subtitle {
+  margin-bottom: .5rem;
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 2;
+  padding-bottom: 5px;
+}
+.identidad-subtitle:after {
+  display: block;
+  width: 80%;
+  height: 1px;
+  margin: 30px auto 0;
+  content: "";
+  background-color: #ededed;
+  }
+
+.identidad-text {
+  font-weight: 300;
+  margin-bottom: 60px;
+}
+ .coche {
+   height: 100px;
+   position: relative;
+   -webkit-animation-name: animacionCoche; /* Chrome, Safari, Opera */
+   -webkit-animation-duration: 4s; /* Chrome, Safari, Opera */
+   animation-name: animacionCoche;
+   animation-duration: 4s;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes animacionCoche {
+   0%   { left:-800px; top:0px;}
+   100%  { left:0px; top:0px;}
+}
+
+/* Standard syntax */
+@keyframes animacionCoche {
+   0%   {left:-800px; top:0px;}
+   100%  {left:0px; top:0px;}
+}
+
+/* Packs precios */
+.background {
+    background: linear-gradient(45deg, #e25b37, #a1ff8a);
+    padding: 3em;
+}
+.precio {
+
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	width: 100%;
+	margin: 0 auto 3em;
+}
+
+.precio-caja-individual {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	text-align: center;
+	flex: 0 1 330px;
+}
+
+.precio-boton {
+	color: inherit;
+	border: none;
+	background: none;
+}
+
+.precio-boton:focus {
+	outline: none;
+}
+
+.precio-caja .precio-caja-individual {
+	margin: 1em;
+	color: #fff;
+	cursor: default;
+	border: 1px solid rgba(255,255,255,0.4);
+	background: rgba(255,255,255,0.08);
+	border-radius: 10px;
+	transition: border-color 0.3s, background 0.3s;
+}
+
+.precio-caja .precio-caja-individual:hover {
+	border: 1px solid rgba(255,255,255,1);
+	background: rgba(255,255,255,0.18);
+}
+
+.precio-caja .precio-titulo {
+	font-size: 2em;
+	font-weight: 400;
+	margin: 0.5em 0;
+	padding: 1em;
+	position: relative;
+}
+
+.precio-caja .precio-titulo::after {
+	content: '';
+	position: absolute;
+	width: 20%;
+	height: 1px;
+	background: #fff;
+	left: 40%;
+	bottom: 0;
+}
+
+.precio-caja .precio-euro {
+	font-size: 3.5em;
+	padding: 0.5em 0 0 0;
+	font-weight: 400;
+	position: relative;
+	z-index: 100;
+}
+
+.precio-caja .precio-euro-actual {
+	font-size: 0.5em;
+	vertical-align: super;
+}
+
+.precio-caja .precio-forma-pago {
+	font-size: 0.25em;
+	display: block;
+	padding: 1em;
+}
+
+.precio-caja .precio-descrip {
+	padding: 1em 2em;
+	font-size: 1em;
+	margin: 0 auto 1em;
+}
+
+.precio-caja .precio-listado {
+	font-size: 1.15em;
+	margin: 0 2em;
+	letter-spacing: 0;
+	padding: 2em 1em;
+	list-style: none;
+  text-align:left;
+}
+.precio-caja .precio-listado .icono{
+  margin-right: 1em;
+
+}
+
+.precio-caja .precio-boton {
+	font-weight: bold;
+	flex: none;
+	margin: auto 1em 1em;
+	padding: 1.25em 2em;
+	color: #db3b00;
+	background: rgba(255,255,255,0.7);
+	border-radius: 5px;
+	transition: background 0.3s;
+}
+
+.precio-caja .precio-boton:hover,
+.precio-caja .precio-boton:focus {
+	background: #fff;
+}
 
 footer {
   background: #fff;
