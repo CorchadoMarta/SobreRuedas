@@ -8,8 +8,16 @@
     "ejs": "~2.4.1",
     "express": "~4.13.4",
     "express-fileupload": "0.0.4",
-    "jade": "~1.11.0",
-    "mongoose": "~4.4.6"
+    "express-session": "~1.0.0",
+    "mongoose": "~4.4.6",
+    "passport": "~0.1.17",
+    "passport-local": "~0.1.6",
+    "connect-flash": "~0.1.1",
+    "bcrypt-nodejs": "latest",
+    "morgan": "~1.0.0",
+    "cookie-parser": "~1.0.0",
+    "method-override": "~1.0.0",
+    "nodemon": "~1.9.1"
   },
   "devDependencies": {},
   "scripts": {

@@ -1,11 +1,11 @@
 //Fichero controler.js
 var usuarios = require('../model/usuarios.js');
 // var	session = require('express-session');
-var fileUpload = require('express-fileupload');
 
-module.exports = function(app){
 
-	var registrar = function(req, res) {
+module.exports = function(app, passport){
+
+/*	var registrar = function(req, res) {
 		
 		var contenido = req.body;
 		var usuario = new usuarios(contenido);
@@ -29,9 +29,9 @@ module.exports = function(app){
 				res.send('Foto subida!');
 			}
 		});
-	}
+	}*/
 	//Funcio per a llistar totes les pelis
-	llistaPelis = function(req, res) {
+/*	llistaPelis = function(req, res) {
 		//Busquem les pelis
 		pelis.find(function (err, pelicules) {
 			if (!err){
@@ -109,7 +109,7 @@ module.exports = function(app){
 		});
 	}
 
-
+*/
 	// app.get('/logout',function(req,res){
 	// req.session.destroy(function(err) {
 	//   if(err) {
@@ -120,15 +120,30 @@ module.exports = function(app){
 	// });
 
 	app.get('/', function(req, res) {
-		res.render('index.ejs');
+		res.render('index.ejs', { message: req.flash('loginMessage') });
 	});
 
 	app.get('/registro', function(req, res) {
-		res.render('registro.ejs');
+		res.render('registro.ejs', { message: req.flash('signupMessage') });
 	});
-	app.post('/registrar', registrar);
+	app.get('/profile', function(req, res) {
+		res.render('profile.ejs');
+	});
+/*	app.post('/registrar', registrar);*/
+	// process the login form
+    app.post('/registrar', passport.authenticate('local-signup', {
+        successRedirect : '/profile', // redirect to the secure profile section
+        failureRedirect : '/registro', // redirect back to the signup page if there is an error
+        failureFlash : true // allow flash messages
+    }));
 
-	app.get('/list', llistaPelis);
+    app.post('/login', passport.authenticate('local-login', {
+        successRedirect : '/profile', // redirect to the secure profile section
+        failureRedirect : '/', // redirect back to the signup page if there is an error
+        failureFlash : true // allow flash messages
+    }));
+
+/*	app.get('/list', llistaPelis);
 	//Per mostrar una
 	app.get('/listOne', function(req, res) {
 		res.render('formMostrarPeli.jade');
@@ -145,5 +160,22 @@ module.exports = function(app){
 		res.render('formUpdatePeli.jade');
 	});
 	app.post('/updatePeli', updatePeli);
+	    // process the signup form*/
+    app.post('/registrar', passport.authenticate('local-signup', {
+        successRedirect : '/profile', // redirect to the secure profile section
+        failureRedirect : '/signup', // redirect back to the signup page if there is an error
+        failureFlash : true // allow flash messages
+    }));
 
+};
+
+// route middleware to make sure a user is logged in
+function isLoggedIn(req, res, next) {
+
+    // if user is authenticated in the session, carry on 
+    if (req.isAuthenticated())
+        return next();
+
+    // if they aren't redirect them to the home page
+    res.redirect('/');
 }
