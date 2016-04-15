@@ -80,9 +80,9 @@ $(document).ready(function() {
 	  </div>
 	</nav>
 
-<div class="background">
- <!-- Cabecera --> 		
-		<div class="container">
+	<div id="container-img-registro">
+		<!-- Formulario -->
+			 <div class="container">
 			<div id="panel-form">
 			  <h2>Registro de nuevo usuario:</h2>
 			  <form class="form-horizontal" role="form" action="/registrar" method="post">
@@ -165,6 +165,12 @@ $(document).ready(function() {
 		  </div>
 		</div>
 
+</div>
+
+
+<div class="background">
+
+
 <!-- Packs -->
 <div class="container">
 			<section>
@@ -206,15 +212,40 @@ $(document).ready(function() {
 </div>
 	<!-- fin Packs -->
 
-
 	<!-- Footer -->
-<footer>
-	<div class="container-fluid">
-		<h3> SOBRE RUEDAS </h3>
+	<footer>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-3">
+				<p><a class="navbar-brand hidden-xs" href="#" id="cabecera-responsive"> <img src="img/imagotip.png" id="logo-cabecera" /> SOBRE RUEDAS</a></p>
+				<br><br>
+				<p id="location-footer">C/ La Vila Del Pingüí, 26
+				<br> Bajos, Barcelona 000000<br> España</p>
+			</div>
+			<div class="col-sm-3">
+			</div>
+			<div class="col-sm-3">
+					<p class="titulo-footer">Encuentra lo que buscas</p>
+					<p><a class="listado-footer" href="/">Inicio</a></p>
+					<p><a class="listado-footer" href="#">Teorica</a></p>
+					<p><a class="listado-footer" href="#">Practica</a></p>
+					<p><a class="listado-footer" href="#">Contacto</a></p>
+			</div>
+			<div class="col-sm-3">
+					<p class="titulo-footer">Síguenos</p>
+					<p><a class="listado-footer" href="#"><i class="fa fa-facebook-square fa-2x"></i>&nbsp; &nbsp; facebook/SobreRuedas.com</a></p>
+					<p><a class="listado-footer" href="#"><i class="fa fa-twitter-square fa-2x"></i>&nbsp; &nbsp; @SobreRuedas</a></p>
+					<p><a class="listado-footer" href="#"><i class="fa fa-instagram fa-2x"></i>&nbsp; &nbsp; @SobreRuedas</a></p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="align-center">
+				<p><a class="listado-footer" href="#"><i class="fa fa-creative-commons  fa-1x"></i>&nbsp; &nbsp; by Marta Corchado y Juan Oliva</a></p>
+			</div>
+		</div>
 	</div>
-</footer>
-<!-- Fin Footer -->
+	</footer>
+	<!-- Fin Footer -->
 	<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
-
