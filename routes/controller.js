@@ -110,14 +110,15 @@ module.exports = function(app, passport){
 	}
 
 */
-	// app.get('/logout',function(req,res){
-	// req.session.destroy(function(err) {
-	//   if(err) {
-	//     console.log(err);
-	//   } else {
-	//     res.redirect('/');
-	//   }
-	// });
+	 app.get('/logout',function(req,res){
+	 req.session.destroy(function(err) {
+	   if(err) {
+	     console.log(err);
+	   } else {
+	     res.redirect('/');
+	   }
+	 });
+	});
 
 	app.get('/', function(req, res) {
 		res.render('index.ejs', { message: req.flash('loginMessage') });
@@ -126,19 +127,19 @@ module.exports = function(app, passport){
 	app.get('/registro', function(req, res) {
 		res.render('registro.ejs', { message: req.flash('signupMessage') });
 	});
-	app.get('/profile', function(req, res) {
-		res.render('profile.ejs');
+	app.get('/bienvenido', isLoggedIn , function(req, res) {
+		res.render('bienvenido.ejs');
 	});
 /*	app.post('/registrar', registrar);*/
 	// process the login form
     app.post('/registrar', passport.authenticate('local-signup', {
-        successRedirect : '/profile', // redirect to the secure profile section
+        successRedirect : '/bienvenido', // redirect to the secure bienvenido section
         failureRedirect : '/registro', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
 
     app.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/profile', // redirect to the secure profile section
+        successRedirect : '/bienvenido', // redirect to the secure bienvenido section
         failureRedirect : '/', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
@@ -162,7 +163,7 @@ module.exports = function(app, passport){
 	app.post('/updatePeli', updatePeli);
 	    // process the signup form*/
     app.post('/registrar', passport.authenticate('local-signup', {
-        successRedirect : '/profile', // redirect to the secure profile section
+        successRedirect : '/bienvenido', // redirect to the secure bienvenido section
         failureRedirect : '/signup', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
