@@ -73,6 +73,7 @@ module.exports = function(passport) {
                 usuario.save(function(err) {
                     if (err)
                         throw err;
+                    
                     return done(null, usuario);
                 });
             }
@@ -100,7 +101,6 @@ module.exports = function(passport) {
         // we are checking to see if the user trying to login already exists
 
         User.findOne({ 'email' :  email }, function(err, user) {
-            console.log('mal password');
             // if there are any errors, return the error before anything else
             if (err)
                 return done(err);
