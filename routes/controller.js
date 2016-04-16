@@ -122,14 +122,15 @@ module.exports = function(app, passport){
 
 	app.get('/', function(req, res) {
 		res.render('index.ejs',
-		 {botonRegistro: 'registro'});
+		 {botonRegistro: 'partials/registro'});
 	});
 
 	app.get('/registro', function(req, res) {
-		res.render('registro.ejs', { message: req.flash('signupMessage') });
+		res.render('registro.ejs',  { botonRegistro: 'partials/registro'});
 	});
 	app.get('/bienvenido', isLoggedIn , function(req, res) {
-		res.render('bienvenido.ejs', {botonRegistro: 'registro'});
+		res.render('bienvenido.ejs', { botonRegistro: 'partials/piolin'});
+
 	});
 /*	app.post('/registrar', registrar);*/
 	// process the login form
