@@ -75,6 +75,15 @@ margin-left: 5px;
   background-size: cover;
 }
 
+#container-img-calendar{
+  background: url("../img/carousel/practicas.jpg") no-repeat top center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 400px;
+}
+
 #panel-form{
   background-color: rgba(255, 255, 255, .7);
   border: 1px solid #f5f5f5;
@@ -305,3 +314,5 @@ footer {
 .align-center{
   text-align: center;
 }
+
+

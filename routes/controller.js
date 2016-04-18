@@ -22,6 +22,11 @@ module.exports = function(app, passport){
 		{botonRegistro: 'partials/registro'});
 	});
 
+	app.get('/calendar', function(req, res) {
+		res.render('calendar.ejs',
+		{botonRegistro: 'partials/registro'});
+	});
+
 	app.get('/registro', function(req, res) {
 		res.render('registro.ejs',  { botonRegistro: 'partials/registro'});
 	});
