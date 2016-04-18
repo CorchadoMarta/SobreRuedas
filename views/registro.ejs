@@ -3,7 +3,7 @@
 <head>
 	<% include ./partials/head %>
 
-<script type="text/javascript">
+		<script type="text/javascript">
 
 
  $(function() {
@@ -97,15 +97,19 @@
 			    <div class="form-group">
 			      <label class="control-label col-sm-2">Imagen de usuario:</label>
 			      <div class="col-sm-4">          
-			        <!--   <input class="input-xlarge" name="foto" type="text" /> -->
-			          <input id="pdffile" style="visibility: hidden;" name="file" type="file" />
-			          <!-- <a class="btn" onclick="$('#pdffile').click();"> Browse</a> -->
+			          <input id="pdffile"  accept="image/*" style="visibility: hidden; height: 0px" name="file" type="file" />
+			          <div class="input-group">
+			           <span class="input-group-addon btn btn-default" onclick="$('#pdffile').click();">Archivo</span>
+				          <input class="input-xlarge form-control" id="subfile" type="text"/>
+				         
+			          </div>
+
 			      </div>
 			    </div>
 
 			    <div class="form-group">        
 			      <div class="col-sm-offset-2 col-sm-10">
-			        <button type="submit" class="btn btn-default">Submit</button>
+			        <button type="submit" class="btn btn-default">Enviar</button>
 			      </div>
 			    </div>
 			  </form>
@@ -162,5 +166,7 @@
 	<% include ./partials/footer %>
 
 	<script src="js/bootstrap.min.js"></script>
+
+
 </body>
 </html>

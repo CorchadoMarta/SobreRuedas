@@ -1,31 +1,30 @@
-var express = require('express'),
-	fs = require('fs'),
-	tls = require('tls'),
-	https = require('https'),
-	helmet = require('helmet'),
-	compress = require('compression'),
-	bodyParser = require('body-parser'),
-	mongoose = require('mongoose'),
-	fileUpload = require('express-fileupload'),
-	mongoose = require('mongoose'),
-	passport = require('passport'),
-	flash    = require('connect-flash'),
+var express 	 = require('express'),
+	fs 		 	 = require('fs'),
+	tls 		 = require('tls'),
+	https 		 = require('https'),
+	helmet 	 	 = require('helmet'),
+	compress 	 = require('compression'),
+	bodyParser 	 = require('body-parser'),
+	mongoose 	 = require('mongoose'),
+	fileUpload   = require('express-fileupload'),
+	mongoose 	 = require('mongoose'),
+	passport 	 = require('passport'),
+	flash    	 = require('connect-flash'),
 	morgan       = require('morgan'),
 	cookieParser = require('cookie-parser'),
 	session      = require('express-session'),
-	app = express();
+	app 		 = express();
 	
-
-
-var key = fs.readFileSync('fixtures/keys/key.pem');
-var cert = fs.readFileSync('fixtures/keys/cert.pem');
+var key = fs.readFileSync('fixtures/keys/localhost.key');
+var cert = fs.readFileSync('fixtures/keys/localhost.crt');
 var options = {
     key: key,
     cert: cert
 };
 
-// set up our express application 
+// comprime los datos que envíamos
 app.use(compress()); 
+// añade módulos de seguridad
 app.use(helmet());
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
@@ -51,12 +50,17 @@ mongoose.connect('mongodb://localhost/autoescuela', function(err, res){
 		console.log("SENSE connexió");
 });
 
+
 require('./config/passport')(passport);
 require('./routes/controller.js')(app, passport);
 
-/*
+
 app.listen(2626, function() {
 	console.log("Server running in 2626");
-});*/
-https.createServer(options, app).listen(2626);
+});
+
+
+https.createServer( options, app).listen(4444);
+
+
 
