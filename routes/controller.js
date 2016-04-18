@@ -33,9 +33,11 @@ module.exports = function(app, passport){
 	});
 
 	// process the login form
-    app.post('/registrar', function(req, res){
-    	console.log(req);
-    });
+    app.post('/registrar', passport.authenticate('local-signup', {
+        successRedirect : '/bienvenido', // redirect to the secure bienvenido section
+        failureRedirect : '/registro', // redirect back to the signup page if there is an error
+        failureFlash : true // allow flash messages
+    }));
 
     app.get('*',notExists);
 
