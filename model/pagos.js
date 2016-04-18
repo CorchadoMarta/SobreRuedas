@@ -48,4 +48,4 @@ var schemaPagos = new schema ({
 });
 //Registramos el schemaUser en esta estructura
 //Exportamos el modelo que se corresponde con la colección(tabla) 'Usuarios'
-module.exports = mongoose.model('admin', schemaAdmin); 
+module.exports = mongoose.model('admin', schemaPagos); 

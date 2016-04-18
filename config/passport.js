@@ -5,6 +5,7 @@ var LocalStrategy   = require('passport-local').Strategy;
 
 // load up the user model
 var User            = require('../model/usuarios');
+var Pago            = require('../model/pagos');
 
 // expose this function to our app using module.exports
 module.exports = function(passport) {
@@ -71,6 +72,8 @@ module.exports = function(passport) {
 
                 // save the user
                 usuario.save(function(err) {
+                    pagoUser = new Pago({userId:usuario.id});
+                    pagoUser.save();
                     if (err)
                         throw err;
                     
