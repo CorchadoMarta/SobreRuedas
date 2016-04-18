@@ -38,6 +38,7 @@ var schemaUser = new schema ({
 		}
 	},
 	contabilidad:{
+		tipoContrato: String,
 		fechEntrada: {type: Date, default: Date.now},
 		fechFin: Date,
 		fechCancel: Date
@@ -45,6 +46,7 @@ var schemaUser = new schema ({
 	tel: Number,
 	email: String,
 	pwd: String,
+	user: {type: Number, default: 0}
 });
 
 // methods ======================

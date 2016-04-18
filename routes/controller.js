@@ -3,6 +3,7 @@ var usuarios = require('../model/usuarios.js');
 // var	session = require('express-session');
 
 
+
 module.exports = function(app, passport){
 
 	app.get('/logout',function(req,res){
