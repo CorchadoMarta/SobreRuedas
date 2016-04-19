@@ -2,6 +2,18 @@
 <html lang="es">
 <head>
 	<% include ./partials/head %>
+
+	<script>
+	function asignarClase() {
+		var person = prompt("Pon tu nombre:", "");
+    if (person != null) {
+	    document.getElementById("newClass").innerHTML = person;
+	}
+	$('#confirmar-clase').on('click', function() {
+		document.getElementById("newClass").innerHTML = document.getElementById("nombre");
+	});
+}
+	</script>
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
 	<% include ./partials/navbar %>
@@ -10,175 +22,80 @@
  	<div id="container-img-calendar">
 	</div>
 
- <!-- Packs -->
-<div class="background table-responsive">
-	<div id="panel-form">
-	<table class="table table-hover">
-		<thead>
-			<tr>
-				<th></th>
-				<th>Lunes</th>
-				<th>Martes</th>
-				<th>Miercoles</th>
-				<th>Jueves</th>
-				<th>Viernes</th>
-				<th>Sábado</th>
-			</tr>
-		</thead>
-		<tbody>
-
-			<tr>
-				<td scope="row">8:00</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td scope="row">8:45</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td scope="row">9:30</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td scope="row">10:15</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td scope="row">11:00</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td scope="row">11:45</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			
-			</tr>
-			<tr>
-				<td scope="row">12:30</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td scope="row">13:15</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td scope="row"></td>
-				<td>C</td>
-				<td>O</td>
-				<td>M</td>
-				<td>I</td>
-				<td>D</td>
-				<td>A</td>
-			</tr>
-			<tr>
-				<td scope="row">15:15</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td scope="row">16:00</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td scope="row">16:45</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td scope="row">17:30</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td scope="row">18:15</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td scope="row">19:00</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td scope="row">19:45</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-		</tbody>
-	</table>
-</div>
+ <!-- Calendar -->
+<div class="background">
 <div class="container">
-			
+
+		<div class="table-responsive">
+			<table class="table table-striped table-hover">
+				<thead>
+	      <tr>
+	        <th></th>
+	        <th class="align-center">Lunes</th>
+	        <th class="align-center">Martes</th>
+					<th class="align-center">Miercoles</th>
+					<th class="align-center">Jueves</th>
+					<th class="align-center">Viernes</th>
+					<th class="align-center">Sábado</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <tr>
+	        <td>8:00</td>
+					<td class="align-center" id="newClass" onclick="asignarClase()"></td>
+					<td class="align-center" id="newClass" onclick="asignarClase()"></td>
+					<td class="align-center" id="newClass" onclick="asignarClase()"></td>
+					<td class="align-center" id="newClass" onclick="asignarClase()"></td>
+					<td class="align-center" id="newClass" onclick="asignarClase()"></td>
+					<td class="align-center" id="newClass" onclick="asignarClase()"></td>
+	      </tr>
+	      <tr>
+	        <td>8:45</td>
+	        <td class="align-center" id="newClass" onclick="asignarClase()"></td>
+					<td class="align-center" id="newClass" onclick="asignarClase()"></td>
+					<td class="align-center" id="newClass" onclick="asignarClase()"></td>
+					<td class="align-center" id="newClass" onclick="asignarClase()"></td>
+					<td class="align-center" id="newClass" onclick="asignarClase()"></td>
+					<td class="align-center" id="newClass" onclick="asignarClase()"></td>
+	      </tr>
+	      <tr>
+	        <td>9:30</td>
+					<td class="align-center" id="newClass" onclick="asignarClase()"></td>
+					<td class="align-center" id="newClass" onclick="asignarClase()"></td>
+					<td class="align-center" id="newClass" onclick="asignarClase()"></td>
+					<td class="align-center" id="newClass" onclick="asignarClase()"></td>
+					<td class="align-center" id="newClass" onclick="asignarClase()"></td>
+					<td class="align-center" id="newClass" data-toggle="modal" data-target="#myModal"></td>
+	      </tr>
+	    </tbody>
+			</table>
+		</div>
 	</div>
 </div>
+	<!-- fin Calendar -->
+
+	  <!-- Modal -->
+	  <div class="modal fade" id="myModal" role="dialog">
+	    <div class="modal-dialog modal-lg">
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <h4 class="modal-title">Asigna una práctina nueva</h4>
+	        </div>
+	        <div class="modal-body">
+						<form>
+						 <div class="form-group">
+							 <label for="recipient-name" class="control-label">Pon tu nombre:</label>
+							 <input type="text" class="form-control" id="nombre">
+						 </div>
+					 </form>
+	        </div>
+	        <div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        		<button type="button" class="btn btn-primary" id="confirmar-clase">Confirmar práctica</button>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
 	<!-- fin Packs -->
 
 	<% include ./partials/footer %>
