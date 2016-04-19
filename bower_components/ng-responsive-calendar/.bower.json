@@ -1,0 +1,43 @@
+{
+  "name": "ng-responsive-calendar",
+  "version": "0.1.14",
+  "homepage": "https://github.com/twinssbc/AngularJS-ResponsiveCalendar",
+  "authors": [
+    "twinssbc <bocong@hotmail.com>"
+  ],
+  "description": "A pure AngularJS responsive calendar directive",
+  "main": [
+    "dist/css/calendar.css",
+    "dist/js/calendar-tpls.js"
+  ],
+  "keywords": [
+    "angular",
+    "angularjs",
+    "calendar",
+    "responsive"
+  ],
+  "dependencies": {
+    "angular": "~1.2",
+    "bootstrap": "~3.0.3"
+  },
+  "license": "MIT",
+  "ignore": [
+    "lib/",
+    "css/",
+    "src/",
+    "template/",
+    ".jshintrc",
+    "gruntfile.js",
+    "package.json"
+  ],
+  "_release": "0.1.14",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.1.14",
+    "commit": "13b1d13b2f15dc8b604e110d53057165eb231ee5"
+  },
+  "_source": "https://github.com/twinssbc/AngularJS-ResponsiveCalendar.git",
+  "_target": "^0.1.14",
+  "_originalSource": "ng-responsive-calendar",
+  "_direct": true
+}
