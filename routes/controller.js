@@ -22,9 +22,9 @@ module.exports = function(app, passport){
 		{botonRegistro: 'partials/registro'});
 	});
 
-	app.get('/calendar', function(req, res) {
+	app.get('/calendar',  isLoggedIn, function(req, res) {
 		res.render('calendar.ejs',
-		{botonRegistro: 'partials/registro'});
+		{botonRegistro: 'partials/piolin'});
 	});
 
 	app.get('/registro', function(req, res) {
