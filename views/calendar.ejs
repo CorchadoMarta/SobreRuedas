@@ -22,81 +22,62 @@
  	<div id="container-img-calendar">
 	</div>
 
- <!-- Calendar -->
+<!-- Calendar -->
 <div class="background">
-<div class="container">
-
+    <div class="container">
+        <h3 class="align-center">Horario de prácticas de esta semana</h3>
 		<div class="table-responsive">
-			<table class="table table-striped table-hover">
-				<thead>
-	      <tr>
-	        <th></th>
-	        <th class="align-center">Lunes</th>
-	        <th class="align-center">Martes</th>
-					<th class="align-center">Miercoles</th>
-					<th class="align-center">Jueves</th>
-					<th class="align-center">Viernes</th>
-					<th class="align-center">Sábado</th>
-	      </tr>
-	    </thead>
-	    <tbody>
-	      <tr>
-	        <td>8:00</td>
-					<td class="align-center" id="newClass" onclick="asignarClase()"></td>
-					<td class="align-center" id="newClass" onclick="asignarClase()"></td>
-					<td class="align-center" id="newClass" onclick="asignarClase()"></td>
-					<td class="align-center" id="newClass" onclick="asignarClase()"></td>
-					<td class="align-center" id="newClass" onclick="asignarClase()"></td>
-					<td class="align-center" id="newClass" onclick="asignarClase()"></td>
-	      </tr>
-	      <tr>
-	        <td>8:45</td>
-	        <td class="align-center" id="newClass" onclick="asignarClase()"></td>
-					<td class="align-center" id="newClass" onclick="asignarClase()"></td>
-					<td class="align-center" id="newClass" onclick="asignarClase()"></td>
-					<td class="align-center" id="newClass" onclick="asignarClase()"></td>
-					<td class="align-center" id="newClass" onclick="asignarClase()"></td>
-					<td class="align-center" id="newClass" onclick="asignarClase()"></td>
-	      </tr>
-	      <tr>
-	        <td>9:30</td>
-					<td class="align-center" id="newClass" onclick="asignarClase()"></td>
-					<td class="align-center" id="newClass" onclick="asignarClase()"></td>
-					<td class="align-center" id="newClass" onclick="asignarClase()"></td>
-					<td class="align-center" id="newClass" onclick="asignarClase()"></td>
-					<td class="align-center" id="newClass" onclick="asignarClase()"></td>
-					<td class="align-center" id="newClass" data-toggle="modal" data-target="#myModal"></td>
-	      </tr>
-	    </tbody>
-			</table>
+			<table class="table table-striped table-hover" id="miTabla"></table>
 		</div>
 	</div>
 </div>
 	<!-- fin Calendar -->
 
-	  <!-- Modal -->
-	  <div class="modal fade" id="myModal" role="dialog">
-	    <div class="modal-dialog modal-lg">
-	      <div class="modal-content">
-	        <div class="modal-header">
-	          <h4 class="modal-title">Asigna una práctina nueva</h4>
-	        </div>
-	        <div class="modal-body">
-						<form>
-						 <div class="form-group">
-							 <label for="recipient-name" class="control-label">Pon tu nombre:</label>
-							 <input type="text" class="form-control" id="nombre">
-						 </div>
-					 </form>
-	        </div>
-	        <div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        		<button type="button" class="btn btn-primary" id="confirmar-clase">Confirmar práctica</button>
-	        </div>
-	      </div>
-	    </div>
-	  </div>
-	<!-- fin Packs -->
+	<script>
+	function myFunction() {
+	    var d = new Date();
+	    d.setHours(8);
+	    document.getElementById("demo").innerHTML = d;
+	}
+
+	//Dónde colocaremos la tabla
+	var table = document.getElementById("miTabla");
+
+	function crearTablero(){
+	  var d = new Date();
+	  d.setHours(7);
+        d.setMinutes(15);
+	  var row = table.insertRow(0);
+	  row.insertCell(0).innerHTML = "Sábado";
+	  row.insertCell(0).innerHTML = "Viernes";
+	  row.insertCell(0).innerHTML = "Jueves";
+	  row.insertCell(0).innerHTML = "Miercoles";
+	  row.insertCell(0).innerHTML = "Martes";
+	  row.insertCell(0).innerHTML ="Día " + d.getDate();
+	  row.insertCell(0).innerHTML = "Horas";
+	  for ( var i = 1; i <= 17 ; i++){
+	    var row2 = table.insertRow(i);
+	      for ( var j = 0; j < 6 ; j++){
+	        row2.insertCell(0).innerHTML = "";
+	      }
+          d.setMinutes(d.getMinutes() + 45);
+	      row2.insertCell(0).innerHTML = d.getHours() + ":" + d.getMinutes();
+	    }
+	}
+	crearTablero();
+
+	table.addEventListener("click", function(e){
+	  if(e.target == "[object HTMLTableCellElement]"){
+	    if(e.target.style.backgroundColor == "white"){
+	      e.target.style.backgroundColor = "red";
+	    }else{
+	      e.target.style.backgroundColor = "white";
+	    }
+	  }
+	});
+	</script>
+	<!-- fin Calendar -->
+
 
 	<% include ./partials/footer %>
 	
