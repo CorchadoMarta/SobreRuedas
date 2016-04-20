@@ -1,13 +1,19 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" ng-app="scotchTodo">
 <head>
 	<% include ./partials/head %>
+	      <!-- SPELLS -->
+      <!-- load angular and angular route via CDN -->
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+          <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+      <script src="/js/script.js"></script>
 </head>
-<body data-spy="scroll" data-target=".navbar" data-offset="50">
+<body data-spy="scroll" data-target=".navbar" data-offset="50"  ng-controller="mainController">
 	<% include ./partials/navbar %>
 
  <!-- Cabecera -->
  	<div id="container-img">
+ 	{{ todos }}
 	</div>
 
 <section class="text-center hidden-overflow">

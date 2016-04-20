@@ -16,12 +16,24 @@ module.exports = function(app, passport){
 		});
 	});
 
+	app.get('/pepe', function(req, res) {
+		usuarios.find({},{"email":1,"_id":0},function(err, todos) {
+
+            // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+            if (err)
+                res.send(err)
+            console.log(todos);
+            res.json(todos);
+        });
+	});
+
 
 	app.get('/', function(req, res) {
 		res.render('index.ejs',
 		{botonRegistro: 'partials/registro'});
 	});
 	app.get('/test', function(req, res) {
+		
 		res.render('test.ejs',
 		{botonRegistro: 'partials/piolin'});
 	});
