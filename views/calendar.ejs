@@ -53,12 +53,16 @@
 	  row.insertCell(0).innerHTML = "Jueves";
 	  row.insertCell(0).innerHTML = "Miercoles";
 	  row.insertCell(0).innerHTML = "Martes";
-	  row.insertCell(0).innerHTML ="Día " + d.getDate();
+	  row.insertCell(0).innerHTML ="Lunes";
 	  row.insertCell(0).innerHTML = "Horas";
 	  for ( var i = 1; i <= 17 ; i++){
 	    var row2 = table.insertRow(i);
-	      for ( var j = 0; j < 6 ; j++){
-	        row2.insertCell(0).innerHTML = "";
+	      for ( var j = 6; j > 0 ; j--){
+	        var cell = row2.insertCell(0);
+              cell.id=j;
+              if(d.getDay() == j){
+                  cell.style.backgroundColor = "rgba(0, 0, 0, 0.3)";
+              }
 	      }
           d.setMinutes(d.getMinutes() + 45);
 	      row2.insertCell(0).innerHTML = d.getHours() + ":" + d.getMinutes();
@@ -67,13 +71,16 @@
 	crearTablero();
 
 	table.addEventListener("click", function(e){
-	  if(e.target == "[object HTMLTableCellElement]"){
-	    if(e.target.style.backgroundColor == "white"){
-	      e.target.style.backgroundColor = "red";
-	    }else{
-	      e.target.style.backgroundColor = "white";
-	    }
-	  }
+        
+	 var event = e.target;
+        var date = new Date();
+        // Para saber el día de la semana
+        var dia = date.getDay();
+        dia = dia - event.id;
+        date.setDate(date.getDate() - dia);
+        //Para saber la hora que se quiere concertar
+        var hora = document.getElementById("2").rows[0].cells.item(1).innerHTML
+        alert(date.getDate() + " a la hora " + hora);
 	});
 	</script>
 	<!-- fin Calendar -->
