@@ -1,7 +1,8 @@
 //Fichero controler.js
 var usuarios = require('../model/usuarios.js');
 // var	session = require('express-session');
-
+var tests = require('../model/test.js');
+// var	session = require('express-session');
 
 
 module.exports = function(app, passport){
@@ -17,7 +18,7 @@ module.exports = function(app, passport){
 	});
 
 	app.get('/pepe', function(req, res) {
-		usuarios.find({},{"email":1,"_id":0},function(err, todos) {
+		tests.find({},{pregunta : 1, _id:0},function(err, todos) {
 
             // if there is an error retrieving, send the error. nothing after res.send(err) will execute
             if (err)

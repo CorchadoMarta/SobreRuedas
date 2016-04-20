@@ -5,7 +5,8 @@
 		respuesta: ["No porque se trata de un camión.", "Sí, porque es un automóvil", "No, porque sólo pueden circular turismos y motocicletas."],
 		solucion: 1
 	},
-	imagen: ""
+	imagen: "",
+	"__v" : 0
 },
 {
 	idTema: 1,
@@ -14,7 +15,8 @@
 		respuesta: ["Tanto carriles como filas de automóviles, que no sean motocicletas, puedan circular en paralelo.", "Dependerá de la anchura de la calzada, sabiendo que cada carril debe de tener una anchura mínima de 6m.", "Un solo carril."],
 		solucion: 0
 	},
-	imagen: "" 
+	imagen: "",
+	"__v" : 0 
 },
 {
 	idTema: 1,
@@ -23,7 +25,8 @@
 		respuesta: ["Los ciclos y ciclomotores.", "Los ciclos, solamente.", "Únicamente los ciclomotores."],
 		solucion: 0
 	},
-	imagen: "" 
+	imagen: "",
+	"__v" : 0 
 },
 {
 	idTema: 1,
@@ -32,7 +35,8 @@
 		respuesta: ["Los ciclos, ciclomotores y vehículos de personas de movilidad reducida.", "Los vehículos especiales de menos de 3.500 kg que circulen a velocidad anormalmente reducida.", "Los vehículos de más de 3.500 kg."],
 		solucion: 0
 	},
-	imagen: "" 
+	imagen: "",
+	"__v" : 0 
 },
 {
 	idTema: 1,
@@ -41,7 +45,8 @@
 		respuesta: ["No, porque está prohibido circular por el arcén", "Sí.", "No, porque debe circular por la calzada."],
 		solucion: 1
 	},
-	imagen: "" 
+	imagen: "",
+	"__v" : 0 
 },
 {
 	idTema: 1,
@@ -50,7 +55,8 @@
 		respuesta: ["Sí, siempre que el recorrido en paralelo no supere los 200 metros o los 15 segundos.", "Sí, excepto que el tractor circule a su velocidad máxima.", "No, los vehículos que circulan por el arcén no se oueden adelantar."],
 		solucion: 0
 	},
-	imagen: "" 
+	imagen: "",
+	"__v" : 0 
 },
 {
 	idTema: 1,
@@ -59,7 +65,8 @@
 		respuesta: ["Por el arcén para no ser un obstáculo.", "Por el carril derecho siempre.", "Por el carril derecho, y si perturba gravemente la circulación debe circular por el arcén."],
 		solucion: 2
 	},
-	imagen: "" 
+	imagen: "",
+	"__v" : 0 
 },
 {
 	idTema: 1,
@@ -68,7 +75,8 @@
 		respuesta: ["Dos correas de transmisión para el motor.", "Un dispositivo silenciador de explosiones.", "Un extintor."],
 		solucion: 1
 	},
-	imagen: "" 
+	imagen: "",
+	"__v" : 0 
 },
 {
 	idTema: 1,
@@ -77,7 +85,8 @@
 		respuesta: ["Sí, si se utiliza algún sistema de manos libres.", "Sí, si es para recibir llamadas.", "No."],
 		solucion: 2
 	},
-	imagen: "" 
+	imagen: "",
+	"__v" : 0 
 },
 {
 	idTema: 1,
@@ -86,7 +95,8 @@
 		respuesta: ["No, debe circular lo más cerca posible del borde derecho de la calzada.", "Sí, ya que no existen marcas viales.", "Sí, porque la calzada es muy estrecha."],
 		solucion: 0
 	},
-	imagen: "" 
+	imagen: "",
+	"__v" : 0 
 },
 {
 	idTema: 1,
@@ -95,7 +105,8 @@
 		respuesta: ["2 metros como mínimo, fuera de poblado.", "1,5 metros como mínimo, fuera de poblado.", "La suficiente para realizar el cruce con seguridad."],
 		solucion: 2
 	},
-	imagen: "" 
+	imagen: "",
+	"__v" : 0 
 },
 {
 	idTema: 1,
@@ -104,7 +115,8 @@
 		respuesta: ["Por el carril central o izquierdo.", "Por el carril de la derecha.", "Por el carril izquierdo."],
 		solucion: 1
 	},
-	imagen: "" 
+	imagen: "",
+	"__v" : 0 
 },
 {
 	idTema: 1,
@@ -113,7 +125,8 @@
 		respuesta: ["El carril que mejor convenga a su destino", "Siempre el de la derecha.", "El carril de la derecha, pudiendo utilizar el que necesite cuando se aproxime a una intersección."],
 		solucion: 0
 	},
-	imagen: "" 
+	imagen: "",
+	"__v" : 0 
 },
 {
 	idTema: 1,
@@ -122,7 +135,8 @@
 		respuesta: ["Por el derecho, pudiendo utilizar el resto si las condiciones del tráfico o la vía lo aconsejan.", "Por el derecho, pudiendo utilizar únicamente el siguiente cuando las condiciones del tráfico o la vía lo aconsejen.", "Por el que más convenga a su destino."],
 		solucion: 1
 	},
-	imagen: "" 
+	imagen: "",
+	"__v" : 0 
 },
 {
 	idTema: 1,
@@ -131,7 +145,8 @@
 		respuesta: ["Sí en cualquier caso.", "No, nunca.", "Sí, si son mayores de 14 años."],
 		solucion: 1
 	},
-	imagen: "" 
+	imagen: "",
+	"__v" : 0 
 },
 {
 	idTema: 1,
@@ -140,7 +155,8 @@
 		respuesta: ["Que sólo están de servicio los controles con luz verde", "los sentidos de circulación de los carriles.", "Que en los controles con luz roja debe detenerse y esperar a que se encienda la luz verde."],
 		solucion: 0
 	},
-	imagen: "" 
+	imagen: "",
+	"__v" : 0 
 },
 {
 	idTema: 1,
@@ -149,7 +165,8 @@
 		respuesta: ["Abandonar la vía por la primera salida si perturba gravemente la circulación.", "Circular por el carril derecho, y si perturba gravemente la circulación, circular por el arcén, para abandonar la vía por la primera salida.", "Detenerse hasta que llegue la asistencia."],
 		solucion: 1
 	},
-	imagen: "" 
+	imagen: "",
+	"__v" : 0 
 },
 {
 	idTema: 1,
@@ -158,7 +175,8 @@
 		respuesta: ["Los autobuses.", "Las motocicletas y los turismos.", "Los turismos y los turismos con remolque hasta 750 kg de MMA."],
 		solucion: 1
 	},
-	imagen: "" 
+	imagen: "",
+	"__v" : 0 
 },
 {
 	idTema: 1,
@@ -167,7 +185,8 @@
 		respuesta: ["La luz de cruce sólo puede encenderse de noche.", "Al cruzar un paso a nivel.", "Al circular por un carril reversible."],
 		solucion: 2
 	},
-	imagen: "" 
+	imagen: "",
+	"__v" : 0 
 },
 {
 	idTema: 1,
@@ -176,7 +195,8 @@
 		respuesta: ["A los turismos.", "A los autobuses.", "A las motocicletas."],
 		solucion: 1
 	},
-	imagen: "" 
+	imagen: "",
+	"__v" : 0 
 },
 {
 	idTema: 1,
@@ -185,7 +205,8 @@
 		respuesta: ["Llevar encendida la luz de corto alcance y respetar el límite genérico de la vía.", "Llevar encendida la luz de corto alcance y circular a una velocidad máxima de 80 km/h.", "Utilizar el alumbrado según las condiciones meteorológicas y circular a una velocidad máxima de 80 km/h."],
 		solucion: 0
 	},
-	imagen: "" 
+	imagen: "",
+	"__v" : 0 
 },
 {
 	idTema: 1,
@@ -194,7 +215,8 @@
 		respuesta: ["a una velocidad mínima de 30 km/h.", "utilizando, al menos, el alumbrado de cruce.", "a una velocidad máxima de 60 km/h."],
 		solucion: 1
 	},
-	imagen: "" 
+	imagen: "",
+	"__v" : 0 
 },
 {
 	idTema: 1,
@@ -203,7 +225,8 @@
 		respuesta: ["No.", "Sí", "Sí, pero a menor velocidad de la indicada en la señal."],
 		solucion: 1
 	},
-	imagen: "" 
+	imagen: "",
+	"__v" : 0 
 },
 {
 	idTema: 1,
@@ -212,7 +235,8 @@
 		respuesta: ["El cambio de dirección.", "La parada.", "El adelantamiento."],
 		solucion: 0
 	},
-	imagen: "" 
+	imagen: "",
+	"__v" : 0 
 },
 {
 	idTema: 1,
@@ -221,7 +245,8 @@
 		respuesta: ["No, porque deben ceder el paso.", "Sí, en la medida de lo posible.", "Sólo cuando se incorporen por la derecha."],
 		solucion: 1
 	},
-	imagen: "" 
+	imagen: "",
+	"__v" : 0 
 },
 {
 	idTema: 1,
@@ -230,7 +255,8 @@
 		respuesta: ["Después de reducir la velocidad a la que se adapte el carril de deceleración.", "Lo más tarde posible, mientras la línea dque lo separa sea discontinua.", "Lo antes posible."],
 		solucion: 2
 	},
-	imagen: "" 
+	imagen: "",
+	"__v" : 0 
 },
 {
 	idTema: 1,
@@ -239,7 +265,8 @@
 		respuesta: ["Sí, esta prohibido sólo para los remolques pesados.", "No, está permitido.", "Sí, pueden circular todo tipo de vehículos, excepto los camiones cuya MMA exceda de 3.500 kg."],
 		solucion: 1
 	},
-	imagen: "" 
+	imagen: "",
+	"__v" : 0 
 },
 {
 	idTema: 1,
@@ -248,7 +275,8 @@
 		respuesta: ["No.", "Sí.", "Sí, cuando el vehículo viaje un número de personas fijado."],
 		solucion: 1
 	},
-	imagen: "" 
+	imagen: "",
+	"__v" : 0 
 },
 {
 	idTema: 1,
@@ -257,7 +285,8 @@
 		respuesta: ["No.", "Sí, cuando esté ocupada por dos personas.", "Sí, cuando esté ocupada por el número de personas fijado para cada tramo de vía."],
 		solucion: 2
 	},
-	imagen: "" 
+	imagen: "",
+	"__v" : 0 
 },
 {
 	idTema: 1,
@@ -266,6 +295,7 @@
 		respuesta: ["Sí, cuando todos los asientos estén ocupados.", "Sí, siempre que circule en servicio de urgencia.", "No, en ningún caso."],
 		solucion: 1
 	},
-	imagen: "" 
+	imagen: "",
+	"__v" : 0 
 }
 ]
