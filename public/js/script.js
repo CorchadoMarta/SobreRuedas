@@ -1,6 +1,8 @@
 
 var scotchTodo = angular.module('scotchTodo', []);
 
+var myAppModule = angular.module('MyApp', ['ui.rCalendar']);
+
 function mainController($scope, $http) {
     $scope.formData = {};
 

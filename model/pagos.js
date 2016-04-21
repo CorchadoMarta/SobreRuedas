@@ -6,7 +6,7 @@ var schema = mongoose.Schema;
 var schemaPagos = new schema ({
     userId: schema.ObjectId,
     matricula: {
-        fechMatricula: Date,
+        fechMatricula:  {type: Date, default: Date.now},
         impMatri: Number,
         matriculaPagada: Boolean
     },
@@ -48,4 +48,4 @@ var schemaPagos = new schema ({
 });
 //Registramos el schemaUser en esta estructura
 //Exportamos el modelo que se corresponde con la colección(tabla) 'Usuarios'
-module.exports = mongoose.model('admin', schemaPagos); 
+module.exports = mongoose.model('pagos', schemaPagos); 

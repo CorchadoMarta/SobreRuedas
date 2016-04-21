@@ -50,7 +50,7 @@ module.exports = function(app, passport){
 	
 	app.get('/bienvenido', isLoggedIn , function(req, res) {
 		res.render('bienvenido.ejs', { botonRegistro: 'partials/piolin'});
-		console.log(req.session.passport.user.privi);
+		console.log(req.session.passport.user._id);
 
 	});
 
