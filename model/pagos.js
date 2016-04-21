@@ -4,46 +4,46 @@ var mongoose = require('mongoose');
 var schema = mongoose.Schema;
 //Creamos una instancia del objeto
 var schemaPagos = new schema ({
-	userId: schema.ObjectId,
-	matricula: {
-		fechMatricula: Date,
-		impMatri: Number,
-		matriculaPagada: Boolean
-	},
-	practicas: [{
-		fechMatricula: Date,
-		fechMatricula: Date,
-		impMatri: Number,
-		practiPagada: Boolean
-	}],
-	tasas: {
-		expediente: {
-			fechExpd: Date,
-			impExpediente: Number,
-			expPagado: Boolean 
-		},
-		renovación: {
-			fechReno: Date,
-			impReno: Number,
-			renoPagada: Boolean
-		},
-		cambio: {
-			fechCambio: Date,
-			impCambio: Number,
-			cambioPagada: Boolean
-		}
-		
-	},
-	examenPractico:{
-		fechEx: Date,
-		fechExPago: Date,
-		impExamen: Number,
-		examenPagado: Boolean
-	},
-	matDidactico: {
-		impMaterial: Number,
-		materialPAgado: Boolean
-	}
+    userId: schema.ObjectId,
+    matricula: {
+        fechMatricula: Date,
+        impMatri: Number,
+        matriculaPagada: Boolean
+    },
+    practicas: {numPracticas: Number,
+                idPract: [{
+                    fechPagoPract: Date,
+                    fechPractica: Date,
+                    impPractica: Number
+                }]},
+    tasas: {
+        expediente: {
+            fechExpd: Date,
+            impExpediente: Number,
+            expPagado: Boolean 
+        },
+        renovación: {
+            fechReno: Date,
+            impReno: Number,
+            renoPagada: Boolean
+        },
+        cambio: {
+            fechCambio: Date,
+            impCambio: Number,
+            cambioPagada: Boolean
+        }
+
+    },
+    examenPractico:{
+        fechEx: Date,
+        fechExPago: Date,
+        impExamen: Number,
+        examenPagado: Boolean
+    },
+    matDidactico: {
+        impMaterial: Number,
+        materialPAgado: Boolean
+    }
 
 });
 //Registramos el schemaUser en esta estructura
