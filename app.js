@@ -30,12 +30,6 @@ app.use(cookieParser()); // read cookies (needed for auth)
 
 app.set('view engine', 'ejs'); // set up ejs for templating
 
-// required for passport
-app.use(session({ secret: 'batmanesbrucewayne' })); // session secret
-app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
-app.use(flash()); // use connect-flash for flash messages stored in session
-
 app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views');
 app.set('view options', { layout: false });
@@ -49,15 +43,18 @@ mongoose.connect('mongodb://localhost/autoescuela', function(err, res){
 		console.log("SENSE connexió");
 });
 
+// required for passport
+app.use(session({ secret: 'batmanesbrucewayne' })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
 
 require('./config/passport')(passport);
 require('./routes/controller.js')(app, passport);
 
-
 app.listen(2626, function() {
 	console.log("Server running in 2626");
 });
-
 
 https.createServer( options, app).listen(4444);
 

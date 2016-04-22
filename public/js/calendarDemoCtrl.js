@@ -1,6 +1,6 @@
 angular.module('calendarDemoApp', ['ui.rCalendar']);
 
-angular.module('calendarDemoApp').controller('CalendarDemoCtrl', ['$scope', function ($scope) {
+angular.module('calendarDemoApp').controller('CalendarDemoCtrl', ['$scope', '$http' , function ($scope, $http) {
     'use strict';
     $scope.changeMode = function (mode) {
         $scope.mode = mode;
@@ -20,7 +20,8 @@ angular.module('calendarDemoApp').controller('CalendarDemoCtrl', ['$scope', func
     };
 
     $scope.loadEvents = function () {
-       $scope.eventSource = createRandomEvents();
+
+       $scope.eventSource = pepon();
     };
 
     $scope.onEventSelected = function (event) {
@@ -28,10 +29,39 @@ angular.module('calendarDemoApp').controller('CalendarDemoCtrl', ['$scope', func
     };
 
     $scope.onTimeSelected = function (selectedTime) {
+         guardar(selectedTime);
         console.log('Selected time: ' + selectedTime);
-    };
 
-    function createRandomEvents() {
+          
+    };
+    // when landing on the page, get all todos and show them
+
+    function guardar(selectedTime) {
+    $http.get('/guardar')
+
+        $http.post('/guardar', {time: selectedTime})
+            .success(function(data) {
+
+                console.log(data);
+            })
+            .error(function(data) {
+                console.log('Error: ' + data);
+            });
+    }
+    function pepon() {
+    $http.get('/practis')
+
+        .success(function(data) {
+            console.log(data);
+            return data;
+        })
+        .error(function(data) {
+            console.log('Error: ' + data);
+        });
+    }
+
+
+    function createRandomEvents($http) {
         var events = [];
         for (var i = 0; i < 50; i += 1) {
             var date = new Date();
@@ -40,21 +70,8 @@ angular.module('calendarDemoApp').controller('CalendarDemoCtrl', ['$scope', func
             var endDay = Math.floor(Math.random() * 2) + startDay;
             var startTime;
             var endTime;
-            if (eventType === 0) {
-                startTime = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate() + startDay));
-                if (endDay === startDay) {
-                    endDay += 1;
-                }
-                endTime = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate() + endDay));
-                events.push({
-                    title: 'All Day - ' + i,
-                    startTime: startTime,
-                    endTime: endTime,
-                    allDay: true
-                });
-            } else {
-                var startMinute = Math.floor(Math.random() * 24 * 60);
-                var endMinute = Math.floor(Math.random() * 180) + startMinute;
+                var startMinute = 0;
+                var endMinute = 45;
                 startTime = new Date(date.getFullYear(), date.getMonth(), date.getDate() + startDay, 0, date.getMinutes() + startMinute);
                 endTime = new Date(date.getFullYear(), date.getMonth(), date.getDate() + endDay, 0, date.getMinutes() + endMinute);
                 events.push({
@@ -63,8 +80,20 @@ angular.module('calendarDemoApp').controller('CalendarDemoCtrl', ['$scope', func
                     endTime: endTime,
                     allDay: false
                 });
-            }
+            
         }
         return events;
     }
+/*    function mainController($scope, $http) {
+
+    // when landing on the page, get all todos and show them
+    $http.get('/pepe')
+
+        .success(function(data) {
+            $scope.todos = data;
+            console.log(data);
+        })
+        .error(function(data) {
+            console.log('Error: ' + data);
+        });*/
 }]);

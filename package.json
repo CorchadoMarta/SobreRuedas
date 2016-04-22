@@ -22,7 +22,8 @@
     "morgan": "~1.0.0",
     "nodemon": "~1.9.1",
     "passport": "~0.1.17",
-    "passport-local": "~0.1.6"
+    "passport-local": "~0.1.6",
+    "path": "~0.12.7"
   },
   "devDependencies": {},
   "scripts": {

@@ -6,12 +6,12 @@ var schema = mongoose.Schema;
 var schemaPagos = new schema ({
     userId: schema.ObjectId,
     matricula: {
-        fechMatricula:  {type: Date, default: Date.now},
+        fechMatricula: {type: Date, default: Date.now},
         impMatri: Number,
         matriculaPagada: Boolean
     },
     practicas: {numPracticas: Number,
-                idPract: [{
+                practisData: [{
                     fechPagoPract: Date,
                     fechPractica: Date,
                     impPractica: Number

@@ -7,7 +7,7 @@ angular.module('ui.rCalendar', ['ui.rCalendar.tpls'])
         formatWeekTitle: 'MMMM yyyy, Week w',
         formatMonthTitle: 'MMMM yyyy',
         formatWeekViewDayHeader: 'EEE d',
-        formatHourColumn: 'ha',
+        formatHourColumn: 'HH:mm',
         calendarMode: 'month',
         showWeeks: false,
         showEventDetail: true,
@@ -585,19 +585,27 @@ angular.module('ui.rCalendar', ['ui.rCalendar.tpls'])
                     var times = [],
                         row,
                         time,
+                        currentMinutes = startTime.getMinutes(),
                         currentHour = startTime.getHours(),
                         currentDate = startTime.getDate();
+                    var time2 = new Date(startTime.getTime());
+                        time2.setHours(8);
 
-                    for (var hour = 8; hour < 20; hour += 1) {
+
+                    for (var hour = 8; hour < 20; hour += 0.75) {
                         row = [];
+                        
+                        var minutes = time2.getMinutes();
                         for (var day = 0; day < 7; day += 1) {
                             time = new Date(startTime.getTime());
+                            time.setMinutes(currentMinutes + minutes);
                             time.setHours(currentHour + hour);
                             time.setDate(currentDate + day);
                             row.push({
                                 time: time
                             });
                         }
+                        time2.setTime(time2.getTime() + 45 * 60000);
                         times.push(row);
                     }
                     return times;
@@ -866,7 +874,7 @@ angular.module('ui.rCalendar', ['ui.rCalendar.tpls'])
                         currentHour = startTime.getHours(),
                         currentDate = startTime.getDate();
 
-                    for (var hour = 8; hour < 20; hour += 1) {
+                    for (var hour = 8; hour < 20; hour += 0.75) {
                         time = new Date(startTime.getTime());
                         time.setHours(currentHour + hour);
                         time.setDate(currentDate);

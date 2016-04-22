@@ -3,7 +3,8 @@ var usuarios = require('../model/usuarios.js');
 // var	session = require('express-session');
 var tests = require('../model/test.js');
 // var	session = require('express-session');
-
+var pagos = require('../model/pagos.js');
+// var	session = require('express-session');
 
 module.exports = function(app, passport){
 
@@ -19,6 +20,16 @@ module.exports = function(app, passport){
 
 	app.get('/pepe', function(req, res) {
 		tests.find({},{pregunta : 1, _id:0},function(err, todos) {
+
+            // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+            if (err)
+                res.send(err)
+            console.log(todos);
+            res.json(todos);
+        });
+	});
+	app.get('/practis', function(req, res) {
+		pagos.find({userId: req.session.passport.user.id},{'practicas.practisData.fechPagoPract' : 1, _id:0},function(err, todos) {
 
             // if there is an error retrieving, send the error. nothing after res.send(err) will execute
             if (err)
@@ -60,6 +71,12 @@ module.exports = function(app, passport){
         failureRedirect : '/registro', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
+
+    app.post('/guardar', function(req, res){
+    	console.log(req.time);
+    	//pagos.update({userId: req.session.passport.user._id},{$set:{'practicas.practisData.fechPagoPract' : ""}});
+    });
+    
 
     app.get('*',notExists);
 
