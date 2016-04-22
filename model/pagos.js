@@ -12,6 +12,7 @@ var schemaPagos = new schema ({
     },
     practicas: {numPracticas: Number,
                 practisData: [{
+                    idPractica: Number,
                     fechPagoPract: Date,
                     fechPractica: Date,
                     impPractica: Number

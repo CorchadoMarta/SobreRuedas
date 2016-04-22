@@ -73,8 +73,13 @@ module.exports = function(app, passport){
     }));
 
     app.post('/guardar', function(req, res){
-    	console.log(req.time);
-    	//pagos.update({userId: req.session.passport.user._id},{$set:{'practicas.practisData.fechPagoPract' : ""}});
+    	console.log(req.body.time);
+    	console.log(req.session.passport.user._id);
+    	var pago1 = new pagos();
+    	pago1.update({'userId': req.user._id},{ $set:{'practicas.practisData.$.fechPractica' : req.body.time}}, function (err) {
+    		console.log("hola");
+    	});
+    	res.end();
     });
     
 

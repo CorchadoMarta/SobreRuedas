@@ -29,25 +29,22 @@ angular.module('calendarDemoApp').controller('CalendarDemoCtrl', ['$scope', '$ht
     };
 
     $scope.onTimeSelected = function (selectedTime) {
-         guardar(selectedTime);
-        console.log('Selected time: ' + selectedTime);
+        
+        var auxili = {time: selectedTime};
+        console.log(auxili);
+        $http.post('/guardar', auxili)
+            .success(function(data) {
+
+                console.log('practica guardada');
+            })
+            .error(function(data) {
+                console.log('Error: ' + data);
+            });
 
           
     };
     // when landing on the page, get all todos and show them
 
-    function guardar(selectedTime) {
-    $http.get('/guardar')
-
-        $http.post('/guardar', {time: selectedTime})
-            .success(function(data) {
-
-                console.log(data);
-            })
-            .error(function(data) {
-                console.log('Error: ' + data);
-            });
-    }
     function pepon() {
     $http.get('/practis')
 
