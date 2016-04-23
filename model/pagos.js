@@ -10,13 +10,9 @@ var schemaPagos = new schema ({
         impMatri: Number,
         matriculaPagada: Boolean
     },
-    practicas: {numPracticas: Number,
-                practisData: [{
-                    idPractica: Number,
-                    fechPagoPract: Date,
-                    fechPractica: Date,
-                    impPractica: Number
-                }]},
+    numPracticas: Number,
+    impPractica: Number,
+    practicas: [{idPractis: schema.ObjectId}],
     tasas: {
         expediente: {
             fechExpd: Date,
