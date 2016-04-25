@@ -3,8 +3,9 @@ var usuarios = require('../model/usuarios.js');
 // var	session = require('express-session');
 var tests = require('../model/test.js');
 // var	session = require('express-session');
-var pagos = require('../model/pagos.js');
+var practicas = require('../model/practicas.js');
 // var	session = require('express-session');
+var pagos = require('../model/pagos.js');
 
 module.exports = function (app, passport){
 
@@ -29,7 +30,7 @@ module.exports = function (app, passport){
         });
     });
     app.get('/practis', function(req, res) {
-        pagos.find({userId: req.session.passport.user.id},{'practicas.practisData.fechPagoPract' : 1, _id:0},function(err, todos) {
+        practicas.find({userId: req.user._id},{'fechPractica' : 1, _id : 0},function(err, todos) {
 
             // if there is an error retrieving, send the error. nothing after res.send(err) will execute
             if (err)
@@ -75,8 +76,8 @@ module.exports = function (app, passport){
     app.post('/guardar', function(req, res){
         console.log(req.body.time);
         console.log(req.session.passport.user._id);
-        var pago1 = new pagos();
-        pago1.update({'userId': req.user._id},{ $set:{'practicas.practisData.$.fechPractica' : req.body.time}}, function (err) {
+        var practica = new practicas({'userId': req.user._id, 'fechPractica' : req.body.time});
+        practica.save( function (err) {
             console.log("hola");
         });
         res.end();

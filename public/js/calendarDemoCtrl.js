@@ -21,7 +21,7 @@ angular.module('calendarDemoApp').controller('CalendarDemoCtrl', ['$scope', '$ht
 
     $scope.loadEvents = function () {
 
-       $scope.eventSource = pepon();
+        $scope.eventSource = pepon();
     };
 
     $scope.onEventSelected = function (event) {
@@ -29,30 +29,30 @@ angular.module('calendarDemoApp').controller('CalendarDemoCtrl', ['$scope', '$ht
     };
 
     $scope.onTimeSelected = function (selectedTime) {
-        
+
         var auxili = {time: selectedTime};
         console.log(auxili);
         $http.post('/guardar', auxili)
             .success(function(data) {
 
-                console.log('practica guardada');
-            })
+            console.log('practica guardada');
+        })
             .error(function(data) {
-                console.log('Error: ' + data);
-            });
+            console.log('Error: ' + data);
+        });
 
-          
+
     };
     // when landing on the page, get all todos and show them
 
     function pepon() {
-    $http.get('/practis')
+        $http.get('/practis')
 
-        .success(function(data) {
+            .success(function(data) {
             console.log(data);
             return data;
         })
-        .error(function(data) {
+            .error(function(data) {
             console.log('Error: ' + data);
         });
     }
@@ -67,21 +67,21 @@ angular.module('calendarDemoApp').controller('CalendarDemoCtrl', ['$scope', '$ht
             var endDay = Math.floor(Math.random() * 2) + startDay;
             var startTime;
             var endTime;
-                var startMinute = 0;
-                var endMinute = 45;
-                startTime = new Date(date.getFullYear(), date.getMonth(), date.getDate() + startDay, 0, date.getMinutes() + startMinute);
-                endTime = new Date(date.getFullYear(), date.getMonth(), date.getDate() + endDay, 0, date.getMinutes() + endMinute);
-                events.push({
-                    title: 'Event - ' + i,
-                    startTime: startTime,
-                    endTime: endTime,
-                    allDay: false
-                });
-            
+            var startMinute = 0;
+            var endMinute = 45;
+            startTime = new Date(date.getFullYear(), date.getMonth(), date.getDate() + startDay, 0, date.getMinutes() + startMinute);
+            endTime = new Date(date.getFullYear(), date.getMonth(), date.getDate() + endDay, 0, date.getMinutes() + endMinute);
+            events.push({
+                title: 'Event - ' + i,
+                startTime: startTime,
+                endTime: endTime,
+                allDay: false
+            });
+
         }
         return events;
     }
-/*    function mainController($scope, $http) {
+    /*    function mainController($scope, $http) {
 
     // when landing on the page, get all todos and show them
     $http.get('/pepe')

@@ -23,9 +23,10 @@ var options = {
 
 // comprime los datos que envíamos
 app.use(compress()); 
+app.use(morgan('dev')); // log every request to the console
 // añade módulos de seguridad
 app.use(helmet());
-app.use(morgan('dev')); // log every request to the console
+
 app.use(cookieParser()); // read cookies (needed for auth)
 
 app.set('view engine', 'ejs'); // set up ejs for templating
