@@ -1,16 +1,16 @@
 var express 	 = require('express'),
-	fs 		 	 = require('fs'),
-	https 		 = require('https'),
-	helmet 	 	 = require('helmet'),
-	compress 	 = require('compression'),
-	bodyParser 	 = require('body-parser'),
-	mongoose 	 = require('mongoose'),
-	passport 	 = require('passport'),
-	flash    	 = require('connect-flash'),
-	morgan       = require('morgan'),
-	cookieParser = require('cookie-parser'),
-	session      = require('express-session'),
-	app 		 = express();
+    fs 		 	 = require('fs'),
+    https 		 = require('https'),
+    helmet 	 	 = require('helmet'),
+    compress 	 = require('compression'),
+    bodyParser 	 = require('body-parser'),
+    mongoose 	 = require('mongoose'),
+    passport 	 = require('passport'),
+    flash    	 = require('connect-flash'),
+    morgan       = require('morgan'),
+    cookieParser = require('cookie-parser'),
+    session      = require('express-session'),
+    app 		 = express();
 
 
 
@@ -37,10 +37,10 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 mongoose.connect('mongodb://localhost/autoescuela', function(err, res){
-	if (!err)
-		console.log("Conexión establecida");
-	else 
-		console.log("SENSE connexió");
+    if (!err)
+        console.log("Conexión establecida");
+    else
+        console.log("SENSE connexió");
 });
 
 // required for passport
@@ -53,7 +53,7 @@ require('./config/passport')(passport);
 require('./routes/controller.js')(app, passport);
 
 app.listen(2626, function() {
-	console.log("Server running in 2626");
+    console.log("Server running in 2626");
 });
 
 https.createServer( options, app).listen(4444);

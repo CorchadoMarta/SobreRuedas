@@ -4,12 +4,12 @@ var mongoose = require('mongoose');
 var schema = mongoose.Schema;
 //Creamos una instancia del objeto
 var schemaReserva = new schema ({
-	userId: schema.ObjectId,
-	profesorId:schema.ObjectId,
-	fechInicio: Date,
-	fechFinal: Date,
-	Lugar: String
+    userId: schema.ObjectId,
+    profesorId:schema.ObjectId,
+    fechInicio: Date,
+    fechFinal: Date,
+    Lugar: String
 });
 //Registramos el schemaUser en esta estructura
 //Exportamos el modelo que se corresponde con la colección(tabla) 'Usuarios'
-module.exports = mongoose.model('reservas', schemaReserva); 
+module.exports = mongoose.model('reservas', schemaReserva);

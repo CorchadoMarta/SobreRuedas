@@ -1,185 +1,183 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-	<% include ./partials/head %>
+    <head>
+
+        <% include ./partials/head %>
+
+    </head>
+    <body data-spy="scroll" data-target=".navbar" data-offset="50">
+
+        <% include ./partials/navbar %>
+
+        <div id="container-img-registro">
+            <!-- Formulario -->
+            <div class="container">
+                <div id="panel-form">
+                    <h2>Registro de nuevo usuario:</h2>
+                    <form class="form-horizontal" role="form" action="/registrar" method="post">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="email">Email:</label>
+                            <div class="col-sm-10">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="pwd">Contraseña:</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Enter password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">Nombre:</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
+                            </div>
+                            <label class="control-label col-sm-1">Apellidos:</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" id="apellidos" name="apellidos" placeholder="Apellidos">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">Teléfono:</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="tel" name="tel" placeholder="666666666">
+                            </div>
+                            <label class="control-label col-sm-2">Fecha de nacimiento:</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="datepicker" name="fechNacimiento">
+                            </div>
+                            <label class="control-label col-sm-1">DNI-NIE:</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" id="dni" name="dni" placeholder="00000">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">Dirección:</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="direccion" name="calle" placeholder="C/XXXXX">
+                            </div>
+                            <label class="control-label col-sm-1">Número:</label>
+                            <div class="col-sm-1">
+                                <input type="text" class="form-control" id="num" name="num" placeholder="00">
+                            </div>
+                            <label class="control-label col-sm-2">Codigo Postal:</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="cp" name="cp" placeholder="00000">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">Provincia:</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="provincia" name="provincia" placeholder="Provincia">
+                            </div>
+                            <label class="control-label col-sm-2">País de nacimiento:</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="pais" name="pais" placeholder="País de nacimiento">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">Imagen de usuario:</label>
+                            <div class="col-sm-4">
+                                <input id="pdffile"  accept="image/*" style="visibility: hidden; height: 0px" name="file" type="file" />
+                                <div class="input-group">
+                                    <input class="input-xlarge form-control" id="subfile" type="text"/>
+                                    <span class="input-group-addon btn btn-default" onclick="$('#pdffile').click();">Archivo</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">Tipo de contrato:</label>
+                            <div class="col-sm-4">
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1"> Basic
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2"> Standard
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="3"> Unique
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-default">Enviar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
 
 
-
-</head>
-<body data-spy="scroll" data-target=".navbar" data-offset="50">
-	<% include ./partials/navbar %>
-
-	<div id="container-img-registro">
-		<!-- Formulario -->
-			 <div class="container">
-			<div id="panel-form">
-			  <h2>Registro de nuevo usuario:</h2>
-			  <form class="form-horizontal" role="form" action="/registrar" method="post">
-			    <div class="form-group">
-			      <label class="control-label col-sm-2" for="email">Email:</label>
-			      <div class="col-sm-10">
-			        <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
-			      </div>
-			    </div>
-			    <div class="form-group">
-			      <label class="control-label col-sm-2" for="pwd">Contraseña:</label>
-			      <div class="col-sm-10">          
-			        <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Enter password">
-			      </div>
-			    </div>
-			    <div class="form-group">
-			      <label class="control-label col-sm-2">Nombre:</label>
-			      <div class="col-sm-4">          
-			        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
-			      </div>
-			      <label class="control-label col-sm-1">Apellidos:</label>
-			      <div class="col-sm-5">          
-			        <input type="text" class="form-control" id="apellidos" name="apellidos" placeholder="Apellidos">
-			      </div>
-			    </div>
-			    <div class="form-group">
-			      <label class="control-label col-sm-2">Teléfono:</label>
-			      <div class="col-sm-2">          
-			        <input type="text" class="form-control" id="tel" name="tel" placeholder="666666666">
-			      </div>
-			      <label class="control-label col-sm-2">Fecha de nacimiento:</label>
-			      <div class="col-sm-2">          
-			        <input type="text" class="form-control" id="datepicker" name="fechNacimiento">
-			      </div>
-			      <label class="control-label col-sm-1">DNI-NIE:</label>
-			      <div class="col-sm-3">          
-			        <input type="text" class="form-control" id="dni" name="dni" placeholder="00000">
-			      </div>
-			    </div>
-			    <div class="form-group">
-			      <label class="control-label col-sm-2">Dirección:</label>
-			      <div class="col-sm-4">          
-			        <input type="text" class="form-control" id="direccion" name="calle" placeholder="C/XXXXX">
-			      </div>
-			      <label class="control-label col-sm-1">Número:</label>
-			      <div class="col-sm-1">          
-			        <input type="text" class="form-control" id="num" name="num" placeholder="00">
-			      </div>
-			      <label class="control-label col-sm-2">Codigo Postal:</label>
-			      <div class="col-sm-2">          
-			        <input type="text" class="form-control" id="cp" name="cp" placeholder="00000">
-			      </div>
-			    </div>
-			    <div class="form-group">
-			      <label class="control-label col-sm-2">Provincia:</label>
-			      <div class="col-sm-4">          
-			        <input type="text" class="form-control" id="provincia" name="provincia" placeholder="Provincia">
-			      </div>
-			      <label class="control-label col-sm-2">País de nacimiento:</label>
-			      <div class="col-sm-4">          
-			        <input type="text" class="form-control" id="pais" name="pais" placeholder="País de nacimiento">
-			      </div>
-			    </div>
-
-			    <div class="form-group">
-			      <label class="control-label col-sm-2">Imagen de usuario:</label>
-			      <div class="col-sm-4">          
-			          <input id="pdffile"  accept="image/*" style="visibility: hidden; height: 0px" name="file" type="file" />
-			          <div class="input-group">
-				          <input class="input-xlarge form-control" id="subfile" type="text"/>
-				           <span class="input-group-addon btn btn-default" onclick="$('#pdffile').click();">Archivo</span>
-			          </div>
-			      </div>
-			    </div>
-			    <div class="form-group">
-			      <label class="control-label col-sm-2">Tipo de contrato:</label>
-			      <div class="col-sm-4">     
-			      <label class="radio-inline">
-					  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1"> Basic
-					</label>
-					<label class="radio-inline">
-					  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2"> Standard
-					</label>
-					<label class="radio-inline">
-					  <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="3"> Unique
-					</label>   
-			      </div>
-			    </div>
-
-			    <div class="form-group">        
-			      <div class="col-sm-offset-2 col-sm-10">
-			        <button type="submit" class="btn btn-default">Enviar</button>
-			      </div>
-			    </div>
-			  </form>
-		  </div>
-		</div>
-
-</div>
+        <div class="background">
 
 
-<div class="background">
+            <!-- Packs -->
+            <div class="container">
+                <section>
+                    <div class="precio precio-caja">
+                        <div class="precio-caja-individual">
+                            <h3 class="precio-titulo">BASIC</h3>
+                            <p class="precio-descrip">Precio de pack básico, con el que podrás empezar a sacarte el carné de conducir.</p>
+                            <div class="precio-euro">125<span class="precio-euro-actual">€</span><span class="precio-forma-pago">/ pago único</span></div>
+                            <ul class="precio-listado">
+                                <li><p class="glyphicon glyphicon-menu-right icono"></p>Matrícula</li>
+                                <li><p class="glyphicon glyphicon-menu-right icono"></p>Material didáctico</li>
+                                <li><p class="glyphicon glyphicon-menu-right icono"></p>Teorica</li>
+                            </ul>
+                        </div>
+                        <div class="precio-caja-individual">
+                            <h3 class="precio-titulo">STANDARD</h3>
+                            <p class="precio-descrip">Pack BASIC + clases prácticas de conducir <br>+ examen práctico.</p>
+                            <div class="precio-euro">85<span class="precio-euro-actual">€</span><span class="precio-forma-pago">/ month</span></div>
+                            <ul class="precio-listado">
+                                <li><p class="glyphicon glyphicon-menu-right icono"></p>Matrícula</li>
+                                <li><p class="glyphicon glyphicon-menu-right icono"></p>Material didáctico</li>
+                                <li><p class="glyphicon glyphicon-menu-right icono"></p>Teorica</li>
+                                <li><p class="glyphicon glyphicon-menu-right icono"></p>15 clases prácticas</li>
+                                <li><p class="glyphicon glyphicon-menu-right icono"></p>1er examen práctico</li>
+                            </ul>
+                        </div>
+                        <div class="precio-caja-individual">
+                            <h3 class="precio-titulo">UNIQUE</h3>
+                            <p class="precio-descrip">Pack para personas que ya poseen la teorica, ya sea por libre o de otro carné.</p>
+                            <div class="precio-euro">189<span class="precio-euro-actual">€</span><span class="precio-forma-pago">/ pago único</span></div>
+                            <ul class="precio-listado">
+                                <li> <p class="glyphicon glyphicon-menu-right icono"></p>Matrícula</li>
+                                <li><p class="glyphicon glyphicon-menu-right icono"></p>Exámen práctico</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <!-- fin Packs -->
 
+        <% include ./partials/footer %>
 
-<!-- Packs -->
-<div class="container">
-			<section>
-					<div class="precio precio-caja">
-							<div class="precio-caja-individual">
-									<h3 class="precio-titulo">BASIC</h3>
-									<p class="precio-descrip">Precio de pack básico, con el que podrás empezar a sacarte el carné de conducir.</p>
-									<div class="precio-euro">125<span class="precio-euro-actual">€</span><span class="precio-forma-pago">/ pago único</span></div>
-									<ul class="precio-listado">
-											<li><p class="glyphicon glyphicon-menu-right icono"></p>Matrícula</li>
-											<li><p class="glyphicon glyphicon-menu-right icono"></p>Material didáctico</li>
-											<li><p class="glyphicon glyphicon-menu-right icono"></p>Teorica</li>
-									</ul>
-							</div>
-							<div class="precio-caja-individual">
-									<h3 class="precio-titulo">STANDARD</h3>
-									<p class="precio-descrip">Pack BASIC + clases prácticas de conducir <br>+ examen práctico.</p>
-									<div class="precio-euro">85<span class="precio-euro-actual">€</span><span class="precio-forma-pago">/ month</span></div>
-									<ul class="precio-listado">
-										<li><p class="glyphicon glyphicon-menu-right icono"></p>Matrícula</li>
-										<li><p class="glyphicon glyphicon-menu-right icono"></p>Material didáctico</li>
-										<li><p class="glyphicon glyphicon-menu-right icono"></p>Teorica</li>
-										<li><p class="glyphicon glyphicon-menu-right icono"></p>15 clases prácticas</li>
-										<li><p class="glyphicon glyphicon-menu-right icono"></p>1er examen práctico</li>
-									</ul>
-							</div>
-							<div class="precio-caja-individual">
-									<h3 class="precio-titulo">UNIQUE</h3>
-									<p class="precio-descrip">Pack para personas que ya poseen la teorica, ya sea por libre o de otro carné.</p>
-									<div class="precio-euro">189<span class="precio-euro-actual">€</span><span class="precio-forma-pago">/ pago único</span></div>
-									<ul class="precio-listado">
-											<li> <p class="glyphicon glyphicon-menu-right icono"></p>Matrícula</li>
-											<li><p class="glyphicon glyphicon-menu-right icono"></p>Exámen práctico</li>
-									</ul>
-							</div>
-					</div>
-			</section>
-	</div>
-</div>
-	<!-- fin Packs -->
+        <script src="js/bootstrap.min.js"></script>
+        <script type="text/javascript">
 
-	<% include ./partials/footer %>
+            $( document ).ready(function() {
 
-	<script src="js/bootstrap.min.js"></script>
-		<script type="text/javascript">
+                $(function() {
+                    $( "#datepicker" ).datepicker( {
+                        changeMonth: true,
+                        changeYear: true,
+                        dateFormat: 'dd/mm/yy'
+                    });
+                });
 
-$( document ).ready(function() {
+                $('#pdffile').change(function(){
+                    $('#subfile').val($(this).val());
+                });
+            });
 
- $(function() {
-    $( "#datepicker" ).datepicker( {
-    	changeMonth: true,
-        changeYear: true,
-        dateFormat: 'dd/mm/yy'
-    });
-});
+        </script>
 
- $('#pdffile').change(function(){
-     $('#subfile').val($(this).val());
-});
-});
-
-
-
-</script>
-
-</body>
+    </body>
 </html>
