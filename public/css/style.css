@@ -327,7 +327,32 @@ footer {
 }
 
 .img-user {
-  height: 30px;
-  border: 1px solid #000;
-  border-radius: 50%;
+    width: 30px;
+    height: 30px;
+	border-radius: 50%;
+	overflow:hidden;
+    padding-right: 5px;
+}
+
+a {
+  color: #373737
+}
+a:hover{
+  color: #d10000
+}
+
+.boton-registro {
+  padding: 5px 50px;
+  margin: 20px;
+  font-size: 1.2em;
+}
+
+.circular {
+	width: 300px;
+	height: 300px;
+	border-radius: 50%;
+	overflow:hidden;
+}
+.disabled-input{
+  background-color: #fff;
 }
