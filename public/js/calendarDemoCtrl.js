@@ -12,7 +12,7 @@ angular.module('calendarDemoApp').controller('CalendarDemoCtrl', ['$scope', '$ht
 
     $scope.isToday = function () {
         var today = new Date(),
-            currentCalendarDate = new Date($scope.currentDate);
+        currentCalendarDate = new Date($scope.currentDate);
 
         today.setHours(0, 0, 0, 0);
         currentCalendarDate.setHours(0, 0, 0, 0);
@@ -20,13 +20,13 @@ angular.module('calendarDemoApp').controller('CalendarDemoCtrl', ['$scope', '$ht
     };
 
     $scope.loadEvents = function () {
-            $http.get('/practis')
+        $http.get('/practis')
 
-            .success(function(events) {
+        .success(function(events) {
             console.log(events);
             $scope.eventSource = events;
         })
-            .error(function(events) {
+        .error(function(events) {
             console.log('Error: ' + events);
         });
 
@@ -38,18 +38,22 @@ angular.module('calendarDemoApp').controller('CalendarDemoCtrl', ['$scope', '$ht
     };
 
     $scope.onTimeSelected = function (selectedTime) {
-
-        var auxili = {time: selectedTime};
-        console.log(auxili);
-        $http.post('/guardar', auxili)
+        var ahora = new Date();
+        ahora.setDate(ahora.getDate() + 1);
+        if(ahora.getTime() < selectedTime.getTime()){
+            var auxili = {time: selectedTime};
+            console.log(auxili);
+            $http.post('/guardar', auxili)
             .success(function(data) {
-$scope.loadEvents();
-            console.log('practica guardada');
-        })
+                $scope.loadEvents();
+                console.log('practica guardada');
+            })
             .error(function(data) {
-            console.log('Error: ' + data);
-        });
-
+                console.log('Error: ' + data);
+            });
+        } else {
+            console.log('es una fecha anterior');
+        }
 
     };
     // when landing on the page, get all todos and show them
