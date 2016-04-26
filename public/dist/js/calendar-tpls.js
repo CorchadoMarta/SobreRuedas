@@ -708,6 +708,7 @@ angular.module('ui.rCalendar', ['ui.rCalendar.tpls'])
                                     timeDifferenceStart = 0;
                                 } else {
                                     timeDifferenceStart = (eventStartTime - startTime) / oneHour;
+                                    console.log(timeDifferenceStart + " = " + eventStartTime + " - " + startTime + " / " + oneHour);
                                 }
 
                                 var timeDifferenceEnd;
@@ -717,9 +718,9 @@ angular.module('ui.rCalendar', ['ui.rCalendar.tpls'])
                                     timeDifferenceEnd = (eventEndTime - startTime) / oneHour;
                                 }
 
-                                var startIndex = Math.floor(timeDifferenceStart);
+                                var startIndex = timeDifferenceStart;
                                 var endIndex = Math.ceil(timeDifferenceEnd - eps);
-                                var startRowIndex = startIndex % 24;
+                                var startRowIndex = ((startIndex % 24) - 8) * 60 / 45 ;
                                 var dayIndex = Math.floor(startIndex / 24);
                                 var endOfDay = dayIndex * 24;
                                 var endRowIndex;
@@ -727,15 +728,16 @@ angular.module('ui.rCalendar', ['ui.rCalendar.tpls'])
                                 do {
                                     endOfDay += 24;
                                     if (endOfDay <= endIndex) {
-                                        endRowIndex = 24;
+                                        endRowIndex = startRowIndex + 1;
                                     } else {
-                                        endRowIndex = endIndex % 24;
+                                        endRowIndex = startRowIndex + 1;
                                     }
                                     var displayEvent = {
                                         event: event,
                                         startIndex: startRowIndex,
                                         endIndex: endRowIndex
                                     };
+                                    console.log(displayEvent);
                                     eventSet = rows[startRowIndex][dayIndex].events;
                                     if (eventSet) {
                                         eventSet.push(displayEvent);
