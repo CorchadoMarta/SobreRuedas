@@ -6,10 +6,9 @@
         <!-- Bootstrap Core CSS -->
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="stylesheet" href="style.css">
 
         <!--FAVICON -->
-        <link href="img/favicon.png" rel="icon" type="image/png">
+        <link href="img/favicon.ico" rel="icon">
 
         <!--SEO Elements -->
         <title>Autoescuela Sobre Ruedas | La mejor autoescuela del mundo mundial</title>
@@ -18,11 +17,24 @@
 
         <!-- Custom CSS -->
         <link href="css/style.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
         <!-- Typography -->
         <link href='https://fonts.googleapis.com/css?family=Lato:400,300,900,300italic,400italic,900italic' rel='stylesheet' type='text/css'>
 
+        <!-- Jquery -->
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+        <script language="Javascript" type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script language="Javascript" type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+        <link rel="stylesheet" href="dist/css/calendar.min.css"/>
+        <script src="http://cdn.staticfile.org/angular.js/1.2.10/angular.min.js"></script>
+        <script src="dist/js/calendar-tpls.js"></script>
+        <script src="js/calendarDemoCtrl.js"></script>
+
     </head>
     <body data-spy="scroll" data-target=".navbar" data-offset="50">
+        
         <!-- Menú -->
         <nav class="navbar navbar-inverse navbar-fixed-top" data-spy="affix" data-offset-top="197" role="navigation">
             <div class="container">
@@ -43,120 +55,55 @@
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <a class="navbar-brand hidden-xs" href="#" id="cabecera-responsive"> <img src="img/imagotip.png" id="logo-cabecera" /> SOBRE RUEDAS</a>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/">Inicio</a></li>
-                        <li><a href="#">Teorica</a></li>
-                        <li><a href="#">Practica</a></li>
-                        <li><a href="#">Contacto</a></li>
-                        <button type="button"  onclick="window.location.href='/registro'" class="btn btn-default btn-success">REGISTRO <img src="img/key.png" id="hr" /></button>
+                        <%- include(botonRegistro) %>
                     </ul>
                 </div>
                 </p>
             </div>
         </nav>
+     <!-- Cabecera -->
+        <div id="container-img">
 
-    <!-- Cabecera -->
-
-    <section class="text-center hidden-overflow">
-        <div class="container">
-            <h3 class="wp wp-1">Unete a nuestra gran familia</h3>
-            <p class="lead wp wp-2">Te quitaremos el miedo al volante y aprenderás a conducir de manera eficaz y resolutiva.</p>
-            <img src="img/coche.png" alt="coche red" class="coche">
-        </div>
-    </section>
-
-    <!-- Como funcionamos -->
-    <section>
+        </div>   
+        
+    <% include ./partials/publico/contact %>
+    
+    <!-- Footer -->
+    <footer>
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
-                    <div class="identidad">
-                        <div class="identidad-block">
-                            <span class="glyphicon glyphicon-piggy-bank"></span>
-                            <h4 class="identidad-title">Económica</h4>
-                            <h6 class="identidad-subtitle">Paga menos por más.</h6>
-                            <p class="identidad-text">La autoescuela que mejor compite con los precios de mercado actuales.</p>
-                        </div>
-                    </div>
+                <div class="col-sm-3">
+                    <p><a class="navbar-brand hidden-xs" href="#" id="cabecera-responsive"> <img src="img/imagotip.png" id="logo-cabecera" /> SOBRE RUEDAS</a></p>
+                    <br><br>
+                    <p id="location-footer">C/ La Vila Del Pingüí, 26
+                        <br> Bajos, Barcelona 000000<br> España</p>
                 </div>
-                <div class="col-md-4">
-                    <div class="identidad">
-                        <div class="identidad-block">
-                            <span class="glyphicon glyphicon-ok"></span>
-                            <h4 class="identidad-title">Fácil</h4>
-                            <h6 class="identidad-subtitle">Accede rápido a todo.</h6>
-                            <p class="identidad-text">Accede a todas las possibilidades que te ofrecemos con tansolo un click de ratón en una web cercana y próxima.</p>
-                        </div>
-                    </div>
+                <div class="col-sm-3">
                 </div>
-                <div class="col-md-4">
-                    <div class="identidad m-b-0">
-                        <div class="identidad-block">
-                            <span class="glyphicon glyphicon-heart"></span>
-                            <h4 class="identidad-title">Divertida</h4>
-                            <h6 class="identidad-subtitle">Mejor trato asegurado.</h6>
-                            <p class="identidad-text">En esta pequeña familia que hemos formado te sentirás siempre como en casa.</p>
-                        </div>
-                    </div>
+                <div class="col-sm-3">
+                    <p class="titulo-footer">Encuentra lo que buscas</p>
+                    <p><a class="listado-footer" href="/">Inicio</a></p>
+                    <p><a class="listado-footer" href="#">Teorica</a></p>
+                    <p><a class="listado-footer" href="#">Practica</a></p>
+                    <p><a class="listado-footer" href="#">Contacto</a></p>
+                </div>
+                <div class="col-sm-3">
+                    <p class="titulo-footer">Síguenos</p>
+                    <p><a class="listado-footer" href="#"><i class="fa fa-facebook-square fa-2x"></i>&nbsp; &nbsp; facebook/SobreRuedas.com</a></p>
+                    <p><a class="listado-footer" href="#"><i class="fa fa-twitter-square fa-2x"></i>&nbsp; &nbsp; @SobreRuedas</a></p>
+                    <p><a class="listado-footer" href="#"><i class="fa fa-instagram fa-2x"></i>&nbsp; &nbsp; @SobreRuedas</a></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="align-center">
+                    <p><a class="listado-footer" href="#"><i class="fa fa-creative-commons  fa-1x"></i>&nbsp; &nbsp; by Marta Corchado y Juan Oliva</a></p>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- Fin como funcionamos -->
-
-    <!-- Packs -->
-    <div class="background">
-        <div class="container">
-            <section>
-                <div class="precio precio-caja">
-                    <div class="precio-caja-individual">
-                        <h3 class="precio-titulo">BASIC</h3>
-                        <p class="precio-descrip">Precio de pack básico, con el que podrás empezar a sacarte el carné de conducir.</p>
-                        <div class="precio-euro">125<span class="precio-euro-actual">€</span><span class="precio-forma-pago">/ pago único</span></div>
-                        <ul class="precio-listado">
-                            <li><p class="glyphicon glyphicon-menu-right icono"></p>Matrícula</li>
-                            <li><p class="glyphicon glyphicon-menu-right icono"></p>Material didáctico</li>
-                            <li><p class="glyphicon glyphicon-menu-right icono"></p>Teorica</li>
-                        </ul>
-                        <button class="precio-boton">Escoge una opción</button>
-                    </div>
-                    <div class="precio-caja-individual">
-                        <h3 class="precio-titulo">STANDARD</h3>
-                        <p class="precio-descrip">Pack BASIC + clases prácticas de conducir <br>+ examen práctico.</p>
-                        <div class="precio-euro">85<span class="precio-euro-actual">€</span><span class="precio-forma-pago">/ month</span></div>
-                        <ul class="precio-listado">
-                            <li><p class="glyphicon glyphicon-menu-right icono"></p>Matrícula</li>
-                            <li><p class="glyphicon glyphicon-menu-right icono"></p>Material didáctico</li>
-                            <li><p class="glyphicon glyphicon-menu-right icono"></p>Teorica</li>
-                            <li><p class="glyphicon glyphicon-menu-right icono"></p>15 clases prácticas</li>
-                            <li><p class="glyphicon glyphicon-menu-right icono"></p>1er examen práctico</li>
-                        </ul>
-                        <button class="precio-boton">Escoge una opción</button>
-                    </div>
-                    <div class="precio-caja-individual">
-                        <h3 class="precio-titulo">UNIQUE</h3>
-                        <p class="precio-descrip">Pack para personas que ya poseen la teorica, ya sea por libre o de otro carné.</p>
-                        <div class="precio-euro">189<span class="precio-euro-actual">€</span><span class="precio-forma-pago">/ pago único</span></div>
-                        <ul class="precio-listado">
-                            <li> <p class="glyphicon glyphicon-menu-right icono"></p>Matrícula</li>
-                            <li><p class="glyphicon glyphicon-menu-right icono"></p>Exámen práctico</li>
-                        </ul>
-                        <button class="precio-boton">Escoge una opción</button>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </div>
-    <!-- fin Packs -->
-
-
-    <!-- Footer -->
-    <footer>
-        <div class="container-fluid">
-            <h3> SOBRE RUEDAS </h3>
-        </div>
     </footer>
     <!-- Fin Footer -->
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+     <script src="js/bootstrap.min.js"></script>
     </body>
 </html>
+    
+    

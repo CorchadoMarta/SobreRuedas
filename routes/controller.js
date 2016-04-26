@@ -43,25 +43,28 @@ module.exports = function (app, passport){
 
     app.get('/', function(req, res) {
         res.render('index.ejs',
-                   {botonRegistro: 'partials/registro'});
+                   {botonRegistro: 'partials/publico/BotonRegistro'});
     });
     app.get('/test', function(req, res) {
-
-        res.render('test.ejs',
-                   {botonRegistro: 'partials/piolin'});
+        var role = req.user.role;
+        res.render('teorica.ejs',
+                   {botonRegistro: 'partials/'+ role + '/botonUser', nombre: req.user.nombre, testUser: 'partials/' + role + '/testUser.ejs'});
     });
 
     app.get('/calendar',  isLoggedIn, function(req, res) {
-        res.render('calendar.ejs',
-                   {botonRegistro: 'partials/piolin'});
+         var role = req.user.role;
+        res.render('practicas.ejs',
+                   {botonRegistro: 'partials/'+ role + '/botonUser', nombre: req.user.nombre, calendarUser: 'partials/' + role + '/calendar.ejs'});
     });
 
     app.get('/registro', function(req, res) {
-        res.render('registro.ejs',  { botonRegistro: 'partials/registro'});
+        res.render('registro.ejs',  { botonRegistro: 'partials/publico/BotonRegistro'});
     });
 
     app.get('/bienvenido', isLoggedIn , function(req, res) {
-        res.render('bienvenido.ejs', { botonRegistro: 'partials/piolin'});
+         var role = req.user.role;
+        res.render('bienvenido.ejs',
+                   {botonRegistro: 'partials/'+ role + '/botonUser', nombre: req.user.nombre});
         console.log(req.session.passport.user._id);
 
     });

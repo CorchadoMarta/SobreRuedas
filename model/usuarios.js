@@ -46,7 +46,7 @@ var schemaUser = new schema ({
     tel: Number,
     email: String,
     pwd: String,
-    user: {type: Number, default: 0}
+    role: {type: String, default: 'alumno'}
 });
 
 // methods ======================

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" ng-app="calendarDemoApp">
     <head>
         <meta charset="UTF-8">
 
@@ -32,6 +32,18 @@
         <script src="dist/js/calendar-tpls.js"></script>
         <script src="js/calendarDemoCtrl.js"></script>
 
+         <script>
+            function asignarClase() {
+                var person = prompt("Pon tu nombre:", "");
+                if (person != null) {
+                    document.getElementById("newClass").innerHTML = person;
+                }
+                $('#confirmar-clase').on('click', function() {
+                    document.getElementById("newClass").innerHTML = document.getElementById("nombre");
+                });
+            }
+        </script>
+        
     </head>
     <body data-spy="scroll" data-target=".navbar" data-offset="50">
         
@@ -61,13 +73,8 @@
                 </p>
             </div>
         </nav>
-     <!-- Cabecera -->
-        <div id="container-img">
-
-        </div>   
     
-    
-    <% include ./partials/publico/comoFuncionamos %>
+    <%- include(calendarUser) %>
     
     <% include ./partials/publico/contact %>
     
