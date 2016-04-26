@@ -16,5 +16,5 @@ Día | Tiempo dedicado (horas) | Descripción de la tarea
 21/04/2016 | 4h | Aplicación de calendario con codigo de """"""""""""""""" con Ajax
 22/04/2016 | 4h | Estudio del codigo de """"""""""""""" sobre el calendario de prácticas
 25/04/2016 | 4h | Mostrar en el calendario las prácticas guardadas en la BBDD
-26/04/2016 | 5h | 
+26/04/2016 | 5h | Mostrar las prácticas y que se actualizan al instante mediante angular en el calendario y refactorizar las plantillas según los roles.
 
