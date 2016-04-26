@@ -30,7 +30,7 @@ module.exports = function (app, passport){
         });
     });
     app.get('/practis', function(req, res) {
-        practicas.find({userId: req.user._id},{'fechPractica' : 1, _id : 0},function(err, todos) {
+        practicas.find({userId: req.user._id},function(err, todos) {
 
             // if there is an error retrieving, send the error. nothing after res.send(err) will execute
             if (err)
@@ -79,7 +79,9 @@ module.exports = function (app, passport){
     app.post('/guardar', function(req, res){
         console.log(req.body.time);
         console.log(req.session.passport.user._id);
-        var practica = new practicas({'userId': req.user._id, 'fechPractica' : req.body.time});
+        var endtime = new Date(req.body.time); 
+        endtime.setMinutes(endtime.getMinutes() + 45)
+        var practica = new practicas({'userId': req.user._id, 'startTime' : req.body.time, 'endTime' : endtime});
         practica.save( function (err) {
             console.log("hola");
         });
