@@ -377,7 +377,7 @@ angular.module('ui.rCalendar', ['ui.rCalendar.tpls'])
                     } else if (event2.allDay) {
                         return -1;
                     } else {
-                        return (event1.startTime.getTime() - event2.startTime.getTime());
+                        return (event1.startTime - event2.startTime);
                     }
                 }
 
@@ -639,7 +639,7 @@ angular.module('ui.rCalendar', ['ui.rCalendar.tpls'])
 
                     if (rows.hasEvent) {
                         for (day = 0; day < 7; day += 1) {
-                            for (hour = 0; hour < 24; hour += 1) {
+                            for (hour = 0; hour < 16; hour += 1) {
                                 if (rows[hour][day].events) {
                                     rows[hour][day].events = null;
                                 }
@@ -754,9 +754,11 @@ angular.module('ui.rCalendar', ['ui.rCalendar.tpls'])
                     if (normalEventInRange) {
                         for (day = 0; day < 7; day += 1) {
                             var orderedEvents = [];
-                            for (hour = 0; hour < 24; hour += 1) {
+                            for (hour = 0; hour < 16; hour += 1) {
+
                                 if (rows[hour][day].events) {
                                     orderedEvents = orderedEvents.concat(rows[hour][day].events);
+                                                                    
                                 }
                             }
                             if (orderedEvents.length > 0) {

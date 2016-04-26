@@ -20,8 +20,17 @@ angular.module('calendarDemoApp').controller('CalendarDemoCtrl', ['$scope', '$ht
     };
 
     $scope.loadEvents = function () {
+                $http.get('/practis')
 
-        $scope.eventSource = pepon();
+            .success(function(events) {
+            console.log(events);
+            $scope.eventSource = events;
+        })
+            .error(function(events) {
+            console.log('Error: ' + events);
+        });
+
+
     };
 
     $scope.onEventSelected = function (event) {
@@ -44,18 +53,6 @@ angular.module('calendarDemoApp').controller('CalendarDemoCtrl', ['$scope', '$ht
 
     };
     // when landing on the page, get all todos and show them
-
-    function pepon() {
-        $http.get('/practis')
-
-            .success(function(data) {
-            console.log(data);
-            return data;
-        })
-            .error(function(data) {
-            console.log('Error: ' + data);
-        });
-    }
 
 
     function createRandomEvents($http) {
