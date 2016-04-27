@@ -22,19 +22,17 @@
         <!-- Typography -->
         <link href='https://fonts.googleapis.com/css?family=Lato:400,300,900,300italic,400italic,900italic' rel='stylesheet' type='text/css'>
 
-        <!-- Jquery -->
-        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-        <script language="Javascript" type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
-        <script language="Javascript" type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <!-- LINKS VALIDATORS -->
+        <link rel="stylesheet" href="css/bootstrapValidator.css"/>
+        <script type="text/javascript" src="jquery/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/bootstrapValidator.js"></script>
 
-        <link rel="stylesheet" href="dist/css/calendar.min.css"/>
-        <script src="http://cdn.staticfile.org/angular.js/1.2.10/angular.min.js"></script>
-        <script src="dist/js/calendar-tpls.js"></script>
-        <script src="js/calendarDemoCtrl.js"></script>
+
 
     </head>
     <body data-spy="scroll" data-target=".navbar" data-offset="50">
-        
+
         <!-- Menú -->
         <nav class="navbar navbar-inverse navbar-fixed-top" data-spy="affix" data-offset-top="197" role="navigation">
             <div class="container">
@@ -61,56 +59,56 @@
                 </p>
             </div>
         </nav>
-        	<!-- Modal -->
-	<div class="modal fade" id="ISesion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title align-center" id="myModalLabel">Inicio de sesion</h4>
-				</div>
-				<div class="modal-body">
-					<br>
-				  <form class="form-horizontal" role="form" action="/login" method="post">
-				    <div class="form-group">
-				      <label class="control-label col-sm-2" for="email">Email:</label>
-				      <div class="col-sm-10">
-				        <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
-				      </div>
-				    </div>
-				    <div class="form-group">
-				      <label class="control-label col-sm-2" for="pwd">Password:</label>
-				      <div class="col-sm-10">
-				        <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Enter password">
-								<h6><a href="">¿Has olvidado tu contraseña?</a></h6>
-								<div class="checkbox">
-				          <label><input type="checkbox"> Remember me</label>
-				        </div>
-				      </div>
-				    </div>
-				    <div class="form-group">
-				      <div class="col-sm-offset-2 col-sm-10">
-				        <button type="submit" class="btn btn-default">Submit</button>
-				      </div>
-				    </div>
-				  </form>
+    <!-- Modal -->
+    <div class="modal fade" id="ISesion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title align-center" id="myModalLabel">Inicio de sesion</h4>
+                </div>
+                <div class="modal-body">
+                    <br>
+                    <form class="form-horizontal" role="form" action="/login" method="post">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="email">Email:</label>
+                            <div class="col-sm-10">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="pwd">Password:</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Enter password">
+                                <h6><a href="">¿Has olvidado tu contraseña?</a></h6>
+                                <div class="checkbox">
+                                    <label><input type="checkbox"> Remember me</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-default">Submit</button>
+                            </div>
+                        </div>
+                    </form>
 
-				</div>
-				<div class="modal-footer align-center">
-					<h4 class="modal-title ">¿Eres nuevo?</h4>
-					<button onclick="window.location.href='/registro'" class="btn btn-default btn-success boton-registro">Regístrate</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- FIN Modal -->
-    
-    
+                </div>
+                <div class="modal-footer align-center">
+                    <h4 class="modal-title ">¿Eres nuevo?</h4>
+                    <button onclick="window.location.href='/registro'" class="btn btn-default btn-success boton-registro">Regístrate</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FIN Modal -->
+
+
     <% include ./partials/publico/formRegistro %>
-    
+
     <% include ./partials/publico/packs %>
-    
-    
+
+
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -145,26 +143,25 @@
         </div>
     </footer>
     <!-- Fin Footer -->
-     <script src="js/bootstrap.min.js"></script>
-      <script type="text/javascript">
-            $( document ).ready(function() {
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $( document ).ready(function() {
 
-                $(function() {
-                    $( "#datepicker" ).datepicker( {
-                        changeMonth: true,
-                        changeYear: true,
-                        dateFormat: 'dd/mm/yy'
-                    });
-                });
-
-                $('#pdffile').change(function(){
-                    $('#subfile').val($(this).val());
+            $(function() {
+                $( "#datepicker" ).datepicker( {
+                    changeMonth: true,
+                    changeYear: true,
+                    dateFormat: 'dd/mm/yy'
                 });
             });
 
-        </script>
+            $('#pdffile').change(function(){
+                $('#subfile').val($(this).val());
+            });
+        });
+
+    </script>
 
     </body>
 </html>
-    
-    
+
