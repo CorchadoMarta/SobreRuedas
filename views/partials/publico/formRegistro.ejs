@@ -113,192 +113,192 @@
 
 
 <script type="text/javascript">
-$(document).ready(function() {
-    $('#validatorForm').bootstrapValidator({
-        message: 'Campo no válido, vuelve a intentarlo',
-        feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-            email: {
-                validators: {
-                    notEmpty: {
-                        message: 'Campo obligatorio, no puede estar vacío'
-                    },
-                    emailAddress: {
-                        message: 'Email no válido'
+    $(document).ready(function() {
+        $('#validatorForm').bootstrapValidator({
+            message: 'Campo no válido, vuelve a intentarlo',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                email: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Campo obligatorio, no puede estar vacío'
+                        },
+                        emailAddress: {
+                            message: 'Email no válido'
+                        }
                     }
-                }
-            },
-            pwd: {
-                validators: {
-                    notEmpty: {
-                        message: 'Campo obligatorio, no puede estar vacío'
-                    },
-                    identical: {
-                        field: 'confirmPwd',
-                        message: 'La contraseña no es la misma que la confirmación'
+                },
+                pwd: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Campo obligatorio, no puede estar vacío'
+                        },
+                        identical: {
+                            field: 'confirmPwd',
+                            message: 'La contraseña no es la misma que la confirmación'
+                        }
                     }
-                }
-            },
-            confirmPwd: {
-                validators: {
-                    notEmpty: {
-                        message: 'Campo obligatorio, no puede estar vacío'
-                    },
-                    identical: {
-                        field: 'pwd',
-                        message: 'La contraseña no es la misma que la confirmación'
+                },
+                confirmPwd: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Campo obligatorio, no puede estar vacío'
+                        },
+                        identical: {
+                            field: 'pwd',
+                            message: 'La contraseña no es la misma que la confirmación'
+                        }
                     }
-                }
-            },
-            nombre: {
-              row: '.col-sm-4',
-                message: 'Nombre no válido',
-                validators: {
-                    notEmpty: {
-                        message: 'El nombre és obligatorio, no puede esta vacio'
-                    },
-                    stringLength: {
-                        min: 3,
-                        max: 20,
-                        message: 'El nombre no puede ser más corto de 2 letras ni más largo de 20'
-                    },
-                    regexp: {
-                        regexp: /^[a-zA-Z]+$/,
-                        message: 'El nombre solo puede contener letras y espacios'
+                },
+                nombre: {
+                    row: '.col-sm-4',
+                    message: 'Nombre no válido',
+                    validators: {
+                        notEmpty: {
+                            message: 'El nombre és obligatorio, no puede esta vacio'
+                        },
+                        stringLength: {
+                            min: 3,
+                            max: 20,
+                            message: 'El nombre no puede ser más corto de 2 letras ni más largo de 20'
+                        },
+                        regexp: {
+                            regexp: /^[a-zA-Z]+$/,
+                            message: 'El nombre solo puede contener letras y espacios'
+                        }
                     }
-                }
-            },
-            apellidos: {
-                message: 'Apellidos no válidos',
-                validators: {
-                    notEmpty: {
-                        message: 'El apellido és obligatorio, no puede esta vacio'
-                    },
-                    stringLength: {
-                        min: 3,
-                        max: 20,
-                        message: 'El apellido no puede ser más corto de 2 letras ni más largo de 20'
-                    },
-                    regexp: {
-                        regexp: /^[a-zA-Z_\s]+$/,
-                        message: 'El apellido solo puede contener letras y espacios'
+                },
+                apellidos: {
+                    message: 'Apellidos no válidos',
+                    validators: {
+                        notEmpty: {
+                            message: 'El apellido és obligatorio, no puede esta vacio'
+                        },
+                        stringLength: {
+                            min: 3,
+                            max: 20,
+                            message: 'El apellido no puede ser más corto de 2 letras ni más largo de 20'
+                        },
+                        regexp: {
+                            regexp: /^[a-zA-Z_\s]+$/,
+                            message: 'El apellido solo puede contener letras y espacios'
+                        }
                     }
-                }
-            },
-            tel: {
-              validators: {
-                      notEmpty: {
-                          message: 'Campo obligatorio, no puede estar vacío'
-                      },
-                      regexp: {
-                          message: 'El teléfono sólo puede contener 9 numeros',
-                          regexp: /^[0-9]{9}$/
-                      }
-                  }
-            },
-            dni: {
-              validators: {
-                  id: {
-                      country: 'ES',
-                      message: 'DNI no válido (recuerda: letras en mayúscula)'
-                  }
-              }
-            },
-            calle: {
-                message: 'Dirección no valida',
-                validators: {
-                    notEmpty: {
-                        message: 'La dirección és obligatoria, no puede esta vacio'
-                    },
-                    stringLength: {
-                        min: 3,
-                        max: 20,
-                        message: 'La dirección no puede ser más corto de 2 letras ni más largo de 20'
-                    },
-                    regexp: {
-                        regexp: /^[a-zA-Z0-9\s]+$/,
-                        message: 'La dirección solo puede contener letras, numeros y espacios'
+                },
+                tel: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Campo obligatorio, no puede estar vacío'
+                        },
+                        regexp: {
+                            message: 'El teléfono sólo puede contener 9 numeros',
+                            regexp: /^[0-9]{9}$/
+                        }
                     }
-                }
-            },
-            num: {
-              validators: {
-                      notEmpty: {
-                          message: 'Campo obligatorio, no puede estar vacío'
-                      },
-                      regexp: {
-                          message: 'El numero tiene un máximo de 4 cifras',
-                          regexp: /^[0-9]{1,4}$/
-                      }
-                  }
-            },
-            cp: {
-              validators: {
-                      notEmpty: {
-                          message: 'Campo obligatorio, no puede estar vacío'
-                      },
-                      regexp: {
-                          message: 'El codigo postal sólo puede contener 5 numeros',
-                          regexp: /^[0-9]{5}$/
-                      }
-                  }
-            },
-            provincia: {
-                message: 'Provincia no válida',
-                validators: {
-                    notEmpty: {
-                        message: 'La provincia és obligatoria, no puede estar vacio'
-                    },
-                    stringLength: {
-                        min: 2,
-                        max: 20,
-                        message: 'La provincia no puede ser más corta de 2 letras ni más largo de 20'
-                    },
-                    regexp: {
-                        regexp: /^[a-zA-Z]+$/,
-                        message: 'La provincia solo puede contener letras'
+                },
+                dni: {
+                    validators: {
+                        id: {
+                            country: 'ES',
+                            message: 'DNI no válido (recuerda: letras en mayúscula)'
+                        }
                     }
-                }
-            },
-            pais: {
-                message: 'País no válida',
-                validators: {
-                    notEmpty: {
-                        message: 'El país és obligatorio, no puede estar vacio'
-                    },
-                    stringLength: {
-                        min: 2,
-                        max: 20,
-                        message: 'El país no puede ser más corto de 2 letras ni más largo de 20'
-                    },
-                    regexp: {
-                        regexp: /^[a-zA-Z]+$/,
-                        message: 'El país solo puede contener letras'
+                },
+                calle: {
+                    message: 'Dirección no valida',
+                    validators: {
+                        notEmpty: {
+                            message: 'La dirección és obligatoria, no puede esta vacio'
+                        },
+                        stringLength: {
+                            min: 3,
+                            max: 20,
+                            message: 'La dirección no puede ser más corto de 2 letras ni más largo de 20'
+                        },
+                        regexp: {
+                            regexp: /^[a-zA-Z0-9\s]+$/,
+                            message: 'La dirección solo puede contener letras, numeros y espacios'
+                        }
                     }
-                }
-            },
-            subfile: {
-                validators: {
-                    file: {
-                        extension: 'jpg',
-                        type: 'application/jpg',
-                        minSize: 1024*1024,
-                        message: 'Por favor escoge una imagen de formato JPG más pequeña de 1M.'
+                },
+                num: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Campo obligatorio, no puede estar vacío'
+                        },
+                        regexp: {
+                            message: 'El numero tiene un máximo de 4 cifras',
+                            regexp: /^[0-9]{1,4}$/
+                        }
                     }
-                }
-            },
-            acceptTerms: {
-                validators: {
-                    notEmpty: {
-                        message: 'Has de aceptar la política de protección de datos'
+                },
+                cp: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Campo obligatorio, no puede estar vacío'
+                        },
+                        regexp: {
+                            message: 'El codigo postal sólo puede contener 5 numeros',
+                            regexp: /^[0-9]{5}$/
+                        }
+                    }
+                },
+                provincia: {
+                    message: 'Provincia no válida',
+                    validators: {
+                        notEmpty: {
+                            message: 'La provincia és obligatoria, no puede estar vacio'
+                        },
+                        stringLength: {
+                            min: 2,
+                            max: 20,
+                            message: 'La provincia no puede ser más corta de 2 letras ni más largo de 20'
+                        },
+                        regexp: {
+                            regexp: /^[a-zA-Z]+$/,
+                            message: 'La provincia solo puede contener letras'
+                        }
+                    }
+                },
+                pais: {
+                    message: 'País no válida',
+                    validators: {
+                        notEmpty: {
+                            message: 'El país és obligatorio, no puede estar vacio'
+                        },
+                        stringLength: {
+                            min: 2,
+                            max: 20,
+                            message: 'El país no puede ser más corto de 2 letras ni más largo de 20'
+                        },
+                        regexp: {
+                            regexp: /^[a-zA-Z]+$/,
+                            message: 'El país solo puede contener letras'
+                        }
+                    }
+                },
+                subfile: {
+                    validators: {
+                        file: {
+                            extension: 'jpg',
+                            type: 'application/jpg',
+                            minSize: 1024*1024,
+                            message: 'Por favor escoge una imagen de formato JPG más pequeña de 1M.'
+                        }
+                    }
+                },
+                acceptTerms: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Has de aceptar la política de protección de datos'
+                        }
                     }
                 }
             }
-        }
+        });
     });
-});
 </script>
