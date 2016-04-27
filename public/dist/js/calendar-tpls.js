@@ -28,6 +28,7 @@ angular.module('ui.rCalendar', ['ui.rCalendar.tpls'])
 
         $scope.$parent.$watch($attrs.eventSource, function (value) {
             self.onEventSourceChanged(value);
+            console.log("cambio");
         });
 
         $scope.calendarMode = $scope.calendarMode || calendarConfig.calendarMode;
@@ -708,7 +709,6 @@ angular.module('ui.rCalendar', ['ui.rCalendar.tpls'])
                                     timeDifferenceStart = 0;
                                 } else {
                                     timeDifferenceStart = (eventStartTime - startTime) / oneHour;
-                                    console.log(timeDifferenceStart + " = " + eventStartTime + " - " + startTime + " / " + oneHour);
                                 }
 
                                 var timeDifferenceEnd;
@@ -737,7 +737,6 @@ angular.module('ui.rCalendar', ['ui.rCalendar.tpls'])
                                         startIndex: startRowIndex,
                                         endIndex: endRowIndex
                                     };
-                                    console.log(displayEvent);
                                     eventSet = rows[startRowIndex][dayIndex].events;
                                     if (eventSet) {
                                         eventSet.push(displayEvent);

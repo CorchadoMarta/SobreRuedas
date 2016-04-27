@@ -80,7 +80,7 @@ module.exports = function (app, passport){
         console.log(req.body.time);
         console.log(req.session.passport.user._id);
         var endtime = new Date(req.body.time); 
-        endtime.setMinutes(endtime.getMinutes() + 45)
+        endtime.setMinutes(endtime.getMinutes() + 45);
         var practica = new practicas({'userId': req.user._id, 'startTime' : req.body.time, 'endTime' : endtime});
         practica.save( function (err) {
             console.log("hola");

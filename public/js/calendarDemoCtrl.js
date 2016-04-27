@@ -41,11 +41,10 @@ angular.module('calendarDemoApp').controller('CalendarDemoCtrl', ['$scope', '$ht
         var ahora = new Date();
         ahora.setDate(ahora.getDate() + 1);
         if(ahora.getTime() < selectedTime.getTime()){
-            var auxili = {time: selectedTime};
-            console.log(auxili);
-            $http.post('/guardar', auxili)
+            var horaPractica = {time: selectedTime};
+            console.log(horaPractica);
+            $http.post('/guardar', horaPractica)
             .success(function(data) {
-                $scope.loadEvents();
                 console.log('practica guardada');
             })
             .error(function(data) {
