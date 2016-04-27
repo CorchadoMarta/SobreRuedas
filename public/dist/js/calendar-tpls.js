@@ -28,6 +28,7 @@ angular.module('ui.rCalendar', ['ui.rCalendar.tpls'])
 
         $scope.$parent.$watch($attrs.eventSource, function (value) {
             self.onEventSourceChanged(value);
+            console.log("cambio");
         });
 
         $scope.calendarMode = $scope.calendarMode || calendarConfig.calendarMode;
@@ -708,7 +709,6 @@ angular.module('ui.rCalendar', ['ui.rCalendar.tpls'])
                                     timeDifferenceStart = 0;
                                 } else {
                                     timeDifferenceStart = (eventStartTime - startTime) / oneHour;
-                                    console.log(timeDifferenceStart + " = " + eventStartTime + " - " + startTime + " / " + oneHour);
                                 }
 
                                 var timeDifferenceEnd;
@@ -737,7 +737,6 @@ angular.module('ui.rCalendar', ['ui.rCalendar.tpls'])
                                         startIndex: startRowIndex,
                                         endIndex: endRowIndex
                                     };
-                                    console.log(displayEvent);
                                     eventSet = rows[startRowIndex][dayIndex].events;
                                     if (eventSet) {
                                         eventSet.push(displayEvent);
@@ -1108,7 +1107,7 @@ angular.module("template/rcalendar/month.html", []).run(["$templateCache", funct
     "            <td ng-show=\"showWeeks\" class=\"calendar-week-column text-center\">\n" +
     "                <small><em>{{ weekNumbers[$index] }}</em></small>\n" +
     "            </td>\n" +
-    "            <td ng-repeat=\"dt in row track by dt.date\" class=\"monthview-dateCell\" ng-click=\"select(dt.date)\"\n" +
+    "            <td ng-repeat=\"dt in row track by dt.date\" class=\"monthview-dateCell\"\n" +
     "                ng-class=\"{'text-center':true, 'monthview-current': dt.current&&!dt.selected&&!dt.hasEvent,'monthview-secondary-with-event': dt.secondary&&dt.hasEvent, 'monthview-primary-with-event':!dt.secondary&&dt.hasEvent&&!dt.selected, 'monthview-selected': dt.selected}\">\n" +
     "                <div ng-class=\"{'text-muted':dt.secondary}\">\n" +
     "                    {{dt.label}}\n" +
