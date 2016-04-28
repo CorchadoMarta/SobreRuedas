@@ -43,6 +43,7 @@ var schemaUser = new schema ({
         fechFin: Date,
         fechCancel: Date
     },
+    acceptTerms: {type: Boolean, default: true},
     tel: Number,
     email: String,
     pwd: String,
