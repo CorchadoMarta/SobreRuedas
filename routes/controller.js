@@ -68,6 +68,14 @@ module.exports = function (app, passport){
 
     });
 
+    app.get('/alumnos', isLoggedIn , function(req, res) {
+         var role = req.user.role;
+        res.render('alumnos.ejs',
+                   {botonRegistro: 'partials/'+ role + '/botonUser', nombre: req.user.nombre});
+        console.log(req.session.passport.user._id);
+
+    });
+    
     // process the login form
     app.post('/registrar', passport.authenticate('local-signup', {
         successRedirect : '/bienvenido', // redirect to the secure bienvenido section
