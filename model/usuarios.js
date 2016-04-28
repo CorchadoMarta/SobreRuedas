@@ -9,8 +9,7 @@ var schemaUser = new schema ({
     expediente: Number,
     dni: String,
     nombre: String,
-    apellido1: String,
-    apellido2: String,
+    apellidos: String,
     direccion:{
         calle: String,
         num: Number,

@@ -1,6 +1,13 @@
 <!-- Cabecera -->
-        <div id="container-img-calendar">
+
+    <div ng-app="pagosPracticas">
+    
+        <div id="container-img-calendar" ng-controller="mainController">
+        {{ practisUser }}
+
         </div>
+    </div>
+
         <section class="content" style="margin-top: 70px;">
             <section class="container">
                 <section ng-controller="CalendarDemoCtrl" ng-init="loadEvents()">

@@ -39,6 +39,15 @@ module.exports = function (app, passport){
         });
     });
 
+    app.get('/pagos', isLoggedIn , function(req, res) {
+        pagos.find(function(err, practis) {
+            // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+            if (err)
+                res.send(err)
+            res.json(practis);
+        });
+    });
+
 
     app.get('/', function(req, res) {
         res.render('index.ejs',
