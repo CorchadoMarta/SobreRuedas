@@ -18,4 +18,5 @@ Día | Tiempo dedicado (horas) | Descripción de la tarea
 25/04/2016 | 4h | Mostrar en el calendario las prácticas guardadas en la BBDD
 26/04/2016 | 5h | Mostrar las prácticas y que se actualizan al instante mediante angular en el calendario y refactorizar las plantillas según los roles
 27/04/2016 | 5h | Validar datos del formulario de registro, borrar practicas del calendario
+28/04/2016 | 5h | Poner nombres a las practicas, cada usuario solo puede manejar sus prácticas. Aprendizaje de angular
 
