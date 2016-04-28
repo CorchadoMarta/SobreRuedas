@@ -55,6 +55,8 @@
     position: absolute;
     padding: 2px;
     cursor: pointer;
+    text-align: center;
+
 }
 
 .calendar-event-inner {

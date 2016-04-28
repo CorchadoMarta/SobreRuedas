@@ -35,7 +35,6 @@ module.exports = function (app, passport){
             // if there is an error retrieving, send the error. nothing after res.send(err) will execute
             if (err)
                 res.send(err)
-                console.log(todos);
             res.json(todos);
         });
     });
@@ -79,7 +78,8 @@ module.exports = function (app, passport){
     app.post('/guardar', function(req, res){
         var endtime = new Date(req.body.time); 
         endtime.setMinutes(endtime.getMinutes() + 45);
-        var practica = new practicas({'userId': req.user._id, 'startTime' : req.body.time, 'endTime' : endtime});
+        console.log(req.user.nombre);
+        var practica = new practicas({'userId': req.user._id, 'startTime' : req.body.time, 'endTime' : endtime, 'title' : req.user.nombre});
         practica.save( function (err) {
             console.log("hola");
         });
