@@ -68,6 +68,10 @@ module.exports = function (app, passport){
     app.get('/registro', function(req, res) {
         res.render('registro.ejs',  { botonRegistro: 'partials/publico/BotonRegistro'});
     });
+    app.get('/registro:num', function(req, res) {
+        console.log(req);
+        res.render('registro.ejs',  { botonRegistro: 'partials/publico/BotonRegistro'});
+    });
 
     app.get('/bienvenido', isLoggedIn , function(req, res) {
          var role = req.user.role;
