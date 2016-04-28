@@ -30,7 +30,7 @@ module.exports = function (app, passport){
         });
     });
     app.get('/practis', function(req, res) {
-        practicas.find({userId: req.user._id},function(err, todos) {
+        practicas.find({},function(err, todos) {
 
             // if there is an error retrieving, send the error. nothing after res.send(err) will execute
             if (err)
@@ -77,14 +77,26 @@ module.exports = function (app, passport){
     }));
 
     app.post('/guardar', function(req, res){
-        console.log(req.body.time);
-        console.log(req.session.passport.user._id);
         var endtime = new Date(req.body.time); 
         endtime.setMinutes(endtime.getMinutes() + 45);
         var practica = new practicas({'userId': req.user._id, 'startTime' : req.body.time, 'endTime' : endtime});
         practica.save( function (err) {
             console.log("hola");
         });
+        res.end();
+    });
+
+    app.post('/borrar', function(req, res){
+        practicas.remove({'userId': req.user._id, 'startTime' : req.body.time }, function(err) {
+            if (err){
+                res.send(err)
+                console.log('MAL borrado');
+            } else{
+                console.log("borrado");
+            }
+            
+        });
+
         res.end();
     });
 

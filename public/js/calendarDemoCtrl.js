@@ -21,16 +21,14 @@ angular.module('calendarDemoApp').controller('CalendarDemoCtrl', ['$scope', '$ht
 
     $scope.loadEvents = function () {
         $http.get('/practis')
-
         .success(function(events) {
             console.log(events);
             $scope.eventSource = events;
+            return events;
         })
         .error(function(events) {
             console.log('Error: ' + events);
         });
-
-
     };
 
     $scope.onEventSelected = function (event) {
@@ -38,22 +36,52 @@ angular.module('calendarDemoApp').controller('CalendarDemoCtrl', ['$scope', '$ht
     };
 
     $scope.onTimeSelected = function (selectedTime) {
-        var ahora = new Date();
-        ahora.setDate(ahora.getDate() + 1);
-        if(ahora.getTime() < selectedTime.getTime()){
-            var horaPractica = {time: selectedTime};
-            console.log(horaPractica);
-            $http.post('/guardar', horaPractica)
-            .success(function(data) {
-                console.log('practica guardada');
-            })
-            .error(function(data) {
-                console.log('Error: ' + data);
-            });
+        var practis = $scope.eventSource;
+        var horaPractica = {time: selectedTime};
+
+        if(search(selectedTime,practis)){
+             $http.post('/borrar', horaPractica)
+                .success(function(data) {
+                    $scope.loadEvents();
+                    console.log('practica borrada');
+                })
+                .error(function(data) {
+                    console.log('Error: ' + data);
+                });
+                
         } else {
-            console.log('es una fecha anterior');
+            var ahora = new Date();
+            ahora.setDate(ahora.getDate() + 1);
+            if(ahora.getTime() < selectedTime.getTime()){
+                $http.post('/guardar', horaPractica)
+                .success(function(data) {
+                    $scope.loadEvents();
+                    console.log('practica guardada');
+                })
+                .error(function(data) {
+                    console.log('Error: ' + data);
+                });
+            } else {
+                console.log('es una fecha anterior');
+
+            }
+        
         }
 
     };
-    // when landing on the page, get all todos and show them
+function search(nameKey, myArray){
+    if (myArray[0] != undefined){
+        var nuevo = new Date(myArray[0].startTime);
+        console.log(nameKey.getTime());
+        for (var i=0; i < myArray.length || nuevo.getTime() == nameKey.getTime(); i++) {
+                nuevo = new Date(myArray[i].startTime);
+            if (nuevo.getTime() == nameKey.getTime()) {
+                return true;
+            }
+        }
+
+    } 
+
+}
+
 }]);

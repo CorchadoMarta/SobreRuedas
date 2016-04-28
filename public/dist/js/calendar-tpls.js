@@ -28,7 +28,6 @@ angular.module('ui.rCalendar', ['ui.rCalendar.tpls'])
 
         $scope.$parent.$watch($attrs.eventSource, function (value) {
             self.onEventSourceChanged(value);
-            console.log("cambio");
         });
 
         $scope.calendarMode = $scope.calendarMode || calendarConfig.calendarMode;
