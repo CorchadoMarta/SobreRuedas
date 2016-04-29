@@ -40,7 +40,7 @@ module.exports = function (app, passport){
     });
 
     app.get('/pagos', isLoggedIn , function(req, res) {
-        pagos.find(function(err, practis) {
+        pagos.find({'userId': req.user._id}, function(err, practis) {
             // if there is an error retrieving, send the error. nothing after res.send(err) will execute
             if (err)
                 res.send(err)
@@ -97,12 +97,23 @@ module.exports = function (app, passport){
     }));
 
     app.post('/guardar', function(req, res){
+        console.log(req.session);
         var endtime = new Date(req.body.time); 
         endtime.setMinutes(endtime.getMinutes() + 45);
         console.log(req.user.nombre);
         var practica = new practicas({'userId': req.user._id, 'startTime' : req.body.time, 'endTime' : endtime, 'title' : req.user.nombre});
-        practica.save( function (err) {
-            console.log("hola");
+        practica.save(function(err) {
+            console.log("hola" + req.user._id);
+            pagos.update({'userId': req.user._id}, { $push : { practicas: practica.id}}, function(err) {
+                if (err){
+                    res.send(err)
+                    console.log('MAL updateado');
+                } else{
+                    console.log("updateado");
+                }
+                
+            });
+            
         });
         res.end();
     });
@@ -113,6 +124,17 @@ module.exports = function (app, passport){
                 res.send(err)
                 console.log('MAL borrado');
             } else{
+
+                pagos.update({'userId': req.user._id}, { $pull : { practicas: req.body.practId }}, function(err) {
+                if (err){
+                    res.send(err)
+                    console.log('MAL updateado');
+                } else{
+                    console.log("updateado");
+                }
+                
+            });
+
                 console.log("borrado");
             }
             

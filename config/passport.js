@@ -72,12 +72,49 @@ module.exports = function(passport) {
 
                     // save the user
                     usuario.save(function(err) {
-                        pagoUser = new Pago({userId:usuario.id});
-                        pagoUser.save();
-                        if (err)
-                            throw err;
+                        switch(req.body.inlineRadioOptions) {
+                            case 'basic':
+                                pagoUser = new Pago({userId:usuario.id , numPracticas: 0, pagoMensual: false });
+                                pagoUser.matricula.impMatri = 125;
+                                pagoUser.markModified('matricula.impMatri');
+                                pagoUser.matricula.matriculaPagada = true;
+                                pagoUser.markModified('matricula.matriculaPagada');
+                                pagoUser.save();
+                                if (err)
+                                    throw err;
 
-                        return done(null, usuario);
+                                return done(null, usuario);
+
+                                break;
+                            case 'standard':
+                                pagoUser = new Pago({userId:usuario.id , numPracticas: 15, pagoMensual: true, importePagoMensual: 85 });
+                                pagoUser.matricula.impMatri = 85;
+                                pagoUser.markModified('matricula.impMatri');
+                                pagoUser.matricula.matriculaPagada = true;
+                                pagoUser.markModified('matricula.matriculaPagada');
+                                pagoUser.save();
+                                if (err)
+                                    throw err;
+
+                                return done(null, usuario);
+
+                                break;
+                            case 'unique':
+                                pagoUser = new Pago({userId:usuario.id , numPracticas: 0, pagoMensual: false });
+                                pagoUser.matricula.impMatri = 189;
+                                pagoUser.markModified('matricula.impMatri');
+                                pagoUser.matricula.matriculaPagada = true;
+                                pagoUser.markModified('matricula.matriculaPagada');
+                                pagoUser.save();
+                                if (err)
+                                    throw err;
+
+                                return done(null, usuario);
+
+                                break;
+                        };
+
+
                     });
                 }
 

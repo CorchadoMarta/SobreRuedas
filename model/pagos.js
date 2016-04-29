@@ -11,8 +11,7 @@ var schemaPagos = new schema ({
         matriculaPagada: Boolean
     },
     numPracticas: Number,
-    impPractica: Number,
-    practicas: [{idPractis: schema.ObjectId}],
+    practicas: [ schema.ObjectId ],
     tasas: {
         expediente: {
             fechExpd: Date,
@@ -39,8 +38,10 @@ var schemaPagos = new schema ({
     },
     matDidactico: {
         impMaterial: Number,
-        materialPAgado: Boolean
-    }
+        materialPagado: Boolean
+    },
+    pagoMensual: Boolean,
+    importePagoMensual: Number
 
 });
 //Registramos el schemaUser en esta estructura

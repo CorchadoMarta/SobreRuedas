@@ -37,11 +37,13 @@ angular.module('calendarDemoApp').controller('CalendarDemoCtrl', ['$scope', '$ht
 
     $scope.onTimeSelected = function (selectedTime) {
         var practis = $scope.eventSource;
-        var horaPractica = {time: selectedTime};
-
-        if(search(selectedTime,practis)){
+        var practId = search(selectedTime,practis);
+        var horaPractica = {time: selectedTime, practId: practId };
+        console.log(practis.length + " " + pepito);
+        if(practId != undefined){
              $http.post('/borrar', horaPractica)
                 .success(function(data) {
+
                     $scope.loadEvents();
                     console.log('practica borrada');
                 })
@@ -76,7 +78,7 @@ function search(nameKey, myArray){
         for (var i=0; i < myArray.length || nuevo.getTime() == nameKey.getTime(); i++) {
                 nuevo = new Date(myArray[i].startTime);
             if (nuevo.getTime() == nameKey.getTime()) {
-                return true;
+                return myArray[i]._id;
             }
         }
 
@@ -84,4 +86,11 @@ function search(nameKey, myArray){
 
 }
 
+ var pepito =       $http.get('/pagos')
+            .success(function(data) {
+                return data;
+            })
+            .error(function(data) {
+                console.log('Error: ' + data);
+            });
 }]);
