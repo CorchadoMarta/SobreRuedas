@@ -39,8 +39,9 @@ angular.module('calendarDemoApp').controller('CalendarDemoCtrl', ['$scope', '$ht
         var practis = $scope.eventSource;
         var practId = search(selectedTime,practis);
         var horaPractica = {time: selectedTime, practId: practId };
-        console.log(practis.length + " " + pepito);
-        if(practId != undefined){
+        console.log(pepito.numPracticas);
+        if(pepito.numPracticas <= practis.length){
+            if(practId != undefined){
              $http.post('/borrar', horaPractica)
                 .success(function(data) {
 
@@ -70,6 +71,9 @@ angular.module('calendarDemoApp').controller('CalendarDemoCtrl', ['$scope', '$ht
         
         }
 
+        }
+
+
     };
 function search(nameKey, myArray){
     if (myArray[0] != undefined){
@@ -89,7 +93,7 @@ function search(nameKey, myArray){
 
         $http.get('/pagos')
             .success(function(data) {
-                pepito data;
+                pepito = data;
             })
             .error(function(data) {
                 console.log('Error: ' + data);

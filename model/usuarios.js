@@ -37,7 +37,6 @@ var schemaUser = new schema ({
         }
     },
     contabilidad:{
-        pack: String,
         tipoContrato: String,
         fechEntrada: {type: Date, default: Date.now},
         fechFin: Date,

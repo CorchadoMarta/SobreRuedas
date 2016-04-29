@@ -74,7 +74,7 @@ module.exports = function(passport) {
                     usuario.save(function(err) {
                         switch(req.body.inlineRadioOptions) {
                             case 'basic':
-                                pagoUser = new Pago({userId:usuario.id , numPracticas: 0, pagoMensual: false });
+                                pagoUser = new Pago({userId:usuario.id , numPracticasTotalPagadas: 0, pagoMensual: false });
                                 pagoUser.matricula.impMatri = 125;
                                 pagoUser.markModified('matricula.impMatri');
                                 pagoUser.matricula.matriculaPagada = true;
@@ -87,7 +87,7 @@ module.exports = function(passport) {
 
                                 break;
                             case 'standard':
-                                pagoUser = new Pago({userId:usuario.id , numPracticas: 15, pagoMensual: true, importePagoMensual: 85 });
+                                pagoUser = new Pago({userId:usuario.id , numPracticasTotalPagadas: 15, pagoMensual: true, importePagoMensual: 85 });
                                 pagoUser.matricula.impMatri = 85;
                                 pagoUser.markModified('matricula.impMatri');
                                 pagoUser.matricula.matriculaPagada = true;
@@ -100,7 +100,7 @@ module.exports = function(passport) {
 
                                 break;
                             case 'unique':
-                                pagoUser = new Pago({userId:usuario.id , numPracticas: 0, pagoMensual: false });
+                                pagoUser = new Pago({userId:usuario.id , numPracticasTotalPagadas: 0, pagoMensual: false });
                                 pagoUser.matricula.impMatri = 189;
                                 pagoUser.markModified('matricula.impMatri');
                                 pagoUser.matricula.matriculaPagada = true;

@@ -10,7 +10,11 @@ var schemaPagos = new schema ({
         impMatri: Number,
         matriculaPagada: Boolean
     },
-    numPracticas: Number,
+    numPracticasTotalPagadas: Number,
+    practicasPagadas: Number,
+    packDePracticas: Number,
+    importePracticas: { type: Number, default: 27.80},
+    importePackPractis: { type: Number, default: 260},
     practicas: [ schema.ObjectId ],
     tasas: {
         expediente: {
@@ -28,14 +32,19 @@ var schemaPagos = new schema ({
             impCambio: Number,
             cambioPagada: Boolean
         }
-
     },
-    examenPractico:{
+    examenPractico:[{
         fechEx: Date,
         fechExPago: Date,
         impExamen: Number,
         examenPagado: Boolean
-    },
+    }],
+    examenTeorico:[{
+        fechEx: Date,
+        fechExPago: Date,
+        impExamen: Number,
+        examenPagado: Boolean
+    }],
     matDidactico: {
         impMaterial: Number,
         materialPagado: Boolean
