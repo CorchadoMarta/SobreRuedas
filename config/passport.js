@@ -72,7 +72,7 @@ module.exports = function(passport) {
 
                     // save the user
                     usuario.save(function(err) {
-                        switch(req.body.inlineRadioOptions) {
+                        switch(req.body.pack) {
                             case 'basic':
                                 pagoUser = new Pago({userId:usuario.id , numPracticasTotalPagadas: 0, pagoMensual: false });
                                 pagoUser.matricula.impMatri = 125;
