@@ -85,12 +85,15 @@ function search(nameKey, myArray){
     } 
 
 }
+ var pepito;
 
- var pepito =       $http.get('/pagos')
+        $http.get('/pagos')
             .success(function(data) {
-                return data;
+                pepito data;
             })
             .error(function(data) {
                 console.log('Error: ' + data);
             });
+
+
 }]);
