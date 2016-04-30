@@ -20,6 +20,16 @@ angular.module('calendarDemoApp').controller('CalendarDemoCtrl', ['$scope', '$ht
     };
 
     $scope.loadEvents = function () {
+
+        $http.get('/pagos')
+        .success(function(data) {
+            pepito = data;
+            console.log(pepito);
+        })
+        .error(function(data) {
+            console.log('Error: ' + data);
+        });
+
         $http.get('/practis')
         .success(function(events) {
             console.log(events);
@@ -39,48 +49,43 @@ angular.module('calendarDemoApp').controller('CalendarDemoCtrl', ['$scope', '$ht
         var practis = $scope.eventSource;
         var practId = search(selectedTime,practis);
         var horaPractica = {time: selectedTime, practId: practId };
-        console.log(pepito.numPracticas);
-        if(pepito.numPracticas <= practis.length){
-            if(practId != undefined){
-             $http.post('/borrar', horaPractica)
-                .success(function(data) {
 
-                    $scope.loadEvents();
-                    console.log('practica borrada');
-                })
-                .error(function(data) {
-                    console.log('Error: ' + data);
-                });
-                
+        if(practId != undefined){
+
+           $http.post('/borrar', horaPractica)
+           .success(function(data) {
+
+            console.log('practica borrada');
+        })
+           .error(function(data) {
+            console.log('Error: ' + data);
+        });
+
+       } else {
+        var ahora = new Date();
+        ahora.setDate(ahora.getDate() + 1);
+        if(ahora.getTime() < selectedTime.getTime()){
+            $http.post('/guardar', horaPractica)
+            .success(function(data) {
+                console.log('practica guardada');
+            })
+            .error(function(data) {
+                console.log('Error: ' + data);
+            });
         } else {
-            var ahora = new Date();
-            ahora.setDate(ahora.getDate() + 1);
-            if(ahora.getTime() < selectedTime.getTime()){
-                $http.post('/guardar', horaPractica)
-                .success(function(data) {
-                    $scope.loadEvents();
-                    console.log('practica guardada');
-                })
-                .error(function(data) {
-                    console.log('Error: ' + data);
-                });
-            } else {
-                console.log('es una fecha anterior');
-
-            }
-        
+            console.log('es una fecha anterior');
         }
+    }
 
-        }
+    $scope.loadEvents();
 
-
-    };
+};
 function search(nameKey, myArray){
     if (myArray[0] != undefined){
         var nuevo = new Date(myArray[0].startTime);
         console.log(nameKey.getTime());
         for (var i=0; i < myArray.length || nuevo.getTime() == nameKey.getTime(); i++) {
-                nuevo = new Date(myArray[i].startTime);
+            nuevo = new Date(myArray[i].startTime);
             if (nuevo.getTime() == nameKey.getTime()) {
                 return myArray[i]._id;
             }
@@ -89,15 +94,8 @@ function search(nameKey, myArray){
     } 
 
 }
- var pepito;
+var pepito;
 
-        $http.get('/pagos')
-            .success(function(data) {
-                pepito = data;
-            })
-            .error(function(data) {
-                console.log('Error: ' + data);
-            });
 
 
 }]);
