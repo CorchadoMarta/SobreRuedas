@@ -31,14 +31,22 @@
                         <input type="text" class="form-control" id="apellidos" name="apellidos" placeholder="Apellidos">
                     </div>
                 </div>
+
                 <div class="form-group">
                     <label class="control-label col-sm-2">Teléfono:</label>
                     <div class="col-sm-2">
                         <input type="text" class="form-control" id="tel" name="tel" placeholder="666666666">
                     </div>
+
+
+
+
                     <label class="control-label col-sm-2">Fecha de nacimiento:</label>
-                    <div class="col-sm-2">
-                        <input type="text" class="form-control" id="datepicker" name="fechNacimiento">
+                    <div class="col-sm-2 date">
+                       <div class="input-group input-append date" id="datePicker">
+                <input type="text" class="form-control" name="fechNacimiento" />
+                <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+            </div>
                     </div>
                     <label class="control-label col-sm-1">DNI-NIE:</label>
                     <div class="col-sm-3">
@@ -113,6 +121,14 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
+ $('#datePicker').datepicker({
+    format: 'mm/dd/yyyy',
+                startDate: '01/01/1950',
+            endDate: '30/12/1998'
+        });
+
+
+
     var url = window.location.href; 
     var nuevaVar = url.slice(-1);
     $('#inlineRadio' + nuevaVar).prop( "checked", true );
@@ -207,6 +223,17 @@
                         id: {
                             country: 'ES',
                             message: 'DNI no válido (recuerda: letras en mayúscula)'
+                        }
+                    }
+                },
+                fechNacimiento: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Necesitas escoger una fecha'
+                        },
+                        date: {
+                            format: 'MM/DD/YYYY',
+                            message: 'La fecha no es válida.'
                         }
                     }
                 },
