@@ -92,17 +92,6 @@ angular.module('calendarDemoApp').controller('PracticasUser', ['$scope', '$http'
             console.log('Error: ' + practicas);
         });
     };
-    $scope.open = function() {
-        $scope.showModal = true;
-    };
-
-    $scope.ok = function() {
-        $scope.showModal = false;
-    };
-
-    $scope.cancel = function() {
-        $scope.showModal = false;
-    };
 
 }]);
 

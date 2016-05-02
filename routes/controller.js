@@ -19,7 +19,7 @@ module.exports = function (app, passport){
         });
     });
 
-    app.get('/pepe', isLoggedIn , function(req, res) {
+    app.get('/tests', isLoggedIn , function(req, res) {
         tests.find({},{pregunta : 1, _id:0},function(err, todos) {
 
             // if there is an error retrieving, send the error. nothing after res.send(err) will execute
