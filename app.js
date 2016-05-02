@@ -64,22 +64,15 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 require('./config/passport')(passport);
 require('./routes/controller.js')(app, passport);
 
-/* para local
+
 
 app.listen(2626, function() {
     console.log("Server running in 2626");
-});*/
+});
 
 /*https.createServer( options, app).listen(4444);*/
 
 
-//para openshift
-var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
-var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
- 
-app.listen(server_port, server_ip_address, function () {
-  console.log( "Listening on " + server_ip_address + ", server_port " + port )
-});
 
 
 
