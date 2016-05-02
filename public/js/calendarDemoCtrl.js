@@ -79,6 +79,8 @@ angular.module('calendarDemoApp').controller('CalendarDemoCtrl', ['$scope', '$ht
 angular.module('calendarDemoApp').controller('PracticasUser', ['$scope', '$http' , function ($scope, $http) {
     'use strict';
 
+    $scope.prac = {uni : 0, pack : 0 };
+
     $scope.practisUser = function () {
 
         $http.get('/pagos')
@@ -89,6 +91,17 @@ angular.module('calendarDemoApp').controller('PracticasUser', ['$scope', '$http'
         .error(function(practicas) {
             console.log('Error: ' + practicas);
         });
+    };
+    $scope.open = function() {
+        $scope.showModal = true;
+    };
+
+    $scope.ok = function() {
+        $scope.showModal = false;
+    };
+
+    $scope.cancel = function() {
+        $scope.showModal = false;
     };
 
 }]);

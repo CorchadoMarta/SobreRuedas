@@ -1,6 +1,6 @@
 var express 	 = require('express'),
-    fs 		 	 = require('fs'),
-    https 		 = require('https'),
+    /*fs 		 	 = require('fs'),
+    https 		 = require('https'),*/
     helmet 	 	 = require('helmet'),
     compress 	 = require('compression'),
     bodyParser 	 = require('body-parser'),
@@ -14,12 +14,12 @@ var express 	 = require('express'),
 
 
 
-var key = fs.readFileSync('fixtures/keys/localhost.key');
+/*var key = fs.readFileSync('fixtures/keys/localhost.key');
 var cert = fs.readFileSync('fixtures/keys/localhost.crt');
 var options = {
     key: key,
     cert: cert
-};
+};*/
 
 // comprime los datos que envíamos
 app.use(compress()); 
@@ -57,7 +57,7 @@ app.listen(2626, function() {
     console.log("Server running in 2626");
 });
 
-https.createServer( options, app).listen(4444);
+/*https.createServer( options, app).listen(4444);*/
 
 
 

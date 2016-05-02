@@ -98,6 +98,30 @@ module.exports = function (app, passport){
         failureFlash : true // allow flash messages
     }));
 
+    app.post('/comprar', function(req, res, next){
+
+        pagos.find({'userId': req.user._id}, function(err, practis) {
+            // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+            if (err)
+                res.send(err)
+            numPracticasComp = parseInt(req.body.uni) + parseInt((req.body.pack * 10));
+            console.log(req.body.uni +"uni  pack  " +(req.body.pack * 10));
+            pagos.update({'userId': req.user._id}, { $inc : { numPracticasTotalPagadas:  numPracticasComp }}, function(err) {
+                    if (err){
+                        res.send(err)
+                        console.log('MAL updateado');
+                    } else{
+
+                        console.log("updateado");
+                        res.redirect('/calendar');
+                    }
+
+                });
+
+        });
+
+    });
+
     app.post('/guardar', function(req, res){
 
         pagos.find({'userId': req.user._id}, function(err, practis) {
@@ -124,13 +148,13 @@ module.exports = function (app, passport){
             });
 
            };
-res.end();
+           res.end();
 
        });
 
-        
 
-    });
+
+});
 
 app.post('/borrar', function(req, res){
     practicas.remove({'userId': req.user._id, '_id': req.body.practId }, function(err) {
@@ -154,7 +178,7 @@ app.post('/borrar', function(req, res){
             console.log("borrado");
         };
 
-res.end();
+        res.end();
     });
 
     

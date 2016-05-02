@@ -1147,31 +1147,6 @@ angular.module("template/rcalendar/week.html", []).run(["$templateCache", functi
     "        </tr>\n" +
     "        </thead>\n" +
     "    </table>\n" +
-    "    <div class=\"weekview-allday-table\">\n" +
-    "        <div class=\"weekview-allday-label\">\n" +
-    "            all day\n" +
-    "        </div>\n" +
-    "        <div class=\"weekview-allday-content-wrapper\">\n" +
-    "            <table class=\"table table-bordered table-fixed weekview-allday-content-table\">\n" +
-    "                <tbody>\n" +
-    "                <tr>\n" +
-    "                    <td ng-repeat=\"day in dates track by day.date\" class=\"calendar-cell\">\n" +
-    "                        <div ng-class=\"{'calendar-event-wrap': day.events}\" ng-if=\"day.events\"\n" +
-    "                             ng-style=\"{height: 25*day.events.length+'px'}\">\n" +
-    "                            <div ng-repeat=\"displayEvent in day.events\" class=\"calendar-event\"\n" +
-    "                                 ng-click=\"eventSelected({event:displayEvent.event})\"\n" +
-    "                                 ng-style=\"{top: 25*displayEvent.position+'px', width: 100*(displayEvent.endIndex-displayEvent.startIndex)+'%', height: '25px'}\">\n" +
-    "                                <div class=\"calendar-event-inner\">{{displayEvent.event.title}}</div>\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "                    </td>\n" +
-    "                    <td ng-if=\"allDayEventGutterWidth>0\" class=\"gutter-column\"\n" +
-    "                        ng-style=\"{width: allDayEventGutterWidth+'px'}\"></td>\n" +
-    "                </tr>\n" +
-    "                </tbody>\n" +
-    "            </table>\n" +
-    "        </div>\n" +
-    "    </div>\n" +
     "    <div class=\"scrollable\" style=\"height: 400px\">\n" +
     "        <table class=\"table table-bordered table-fixed\">\n" +
     "            <tbody>\n" +
