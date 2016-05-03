@@ -1,0 +1,333 @@
+
+<div id="container-img-registro">
+    <!-- Formulario -->
+    <div class="container">
+        <div id="panel-form">
+            <h2>Registro de nuevo usuario:</h2>
+            <form id="validatorForm" class="form-horizontal" role="form" action="/registrar" method="post" >
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="inputEmail">Email:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="email" name="email" placeholder="Enter email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="pwd">Contraseña:</label>
+                    <div class="col-sm-4">
+                        <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Enter password">
+                    </div>
+                    <label class="control-label col-sm-2" for="pwd">Confirmar Contraseña:</label>
+                    <div class="col-sm-4">
+                        <input type="password" class="form-control" id="confirmPwd" name="confirmPwd" placeholder="Re-Enter password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Nombre:</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
+                    </div>
+                    <label class="control-label col-sm-1">Apellidos:</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="apellidos" name="apellidos" placeholder="Apellidos">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Teléfono:</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" id="tel" name="tel" placeholder="666666666">
+                    </div>
+
+
+
+
+                    <label class="control-label col-sm-2">Fecha de nacimiento:</label>
+                    <div class="col-sm-2 date">
+                       <div class="input-group input-append date" id="datePicker">
+                <input type="text" class="form-control" name="fechNacimiento" />
+                <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+            </div>
+                    </div>
+                    <label class="control-label col-sm-1">DNI-NIE:</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="dni" name="dni" placeholder="12345678Z">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Dirección:</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="direccion" name="calle" placeholder="C/XXXXX">
+                    </div>
+                    <label class="control-label col-sm-1">Número:</label>
+                    <div class="col-sm-1">
+                        <input type="text" class="form-control" id="num" name="num" placeholder="00">
+                    </div>
+                    <label class="control-label col-sm-2">Codigo Postal:</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" id="cp" name="cp" placeholder="00000">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Provincia:</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="provincia" name="provincia" placeholder="Provincia">
+                    </div>
+                    <label class="control-label col-sm-2">País de nacimiento:</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="pais" name="pais" placeholder="País de nacimiento">
+                    </div>
+                </div>
+
+                <!--<div class="form-group">
+                    <label class="control-label col-sm-2">Imagen de usuario:</label>
+                    <div class="col-sm-4">
+                        <input id="pdffile"  accept="image/*" style="visibility: hidden; height: 0px" name="file" type="file" />
+                        <div class="input-group">
+                            <input class="input-xlarge form-control" id="subfile" name="subfile" type="text"/>
+                            <span class="input-group-addon btn btn-default" onclick="$('#pdffile').click();">Archivo</span>
+                        </div>
+                    </div>
+                </div>-->
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Tipo de contrato:</label>
+                    <div class="col-sm-4">
+                        <label class="radio-inline">
+                            <input type="radio" name="pack" id="inlineRadio1" value="basic" > Basic
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="pack" id="inlineRadio2" value="standard"> Standard
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="pack" id="inlineRadio3" value="unique"> Unique
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-5 col-lg-offset-1">
+                        <div class="checkbox">
+                            <input type="checkbox" name="acceptTerms"/> He leído y acepto los terminos y políticas de <a src="...">protección de datos</a>.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">Enviar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+ $('#datePicker').datepicker({
+    format: 'mm/dd/yyyy',
+                startDate: '01/01/1950',
+            endDate: '30/12/1998'
+        });
+
+
+
+    var url = window.location.href; 
+    var nuevaVar = url.slice(-1);
+    $('#inlineRadio' + nuevaVar).prop( "checked", true );
+        $('#validatorForm').bootstrapValidator({
+            message: 'Campo no válido, vuelve a intentarlo',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                email: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Campo obligatorio, no puede estar vacío'
+                        },
+                        emailAddress: {
+                            message: 'Email no válido'
+                        }
+                    }
+                },
+                pwd: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Campo obligatorio, no puede estar vacío'
+                        },
+                        identical: {
+                            field: 'confirmPwd',
+                            message: 'La contraseña no es la misma que la confirmación'
+                        }
+                    }
+                },
+                confirmPwd: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Campo obligatorio, no puede estar vacío'
+                        },
+                        identical: {
+                            field: 'pwd',
+                            message: 'La contraseña no es la misma que la confirmación'
+                        }
+                    }
+                },
+                nombre: {
+                    row: '.col-sm-4',
+                    message: 'Nombre no válido',
+                    validators: {
+                        notEmpty: {
+                            message: 'El nombre és obligatorio, no puede esta vacio'
+                        },
+                        stringLength: {
+                            min: 3,
+                            max: 20,
+                            message: 'El nombre no puede ser más corto de 2 letras ni más largo de 20'
+                        },
+                        regexp: {
+                            regexp: /^[a-zA-Z]+$/,
+                            message: 'El nombre solo puede contener letras y espacios'
+                        }
+                    }
+                },
+                apellidos: {
+                    message: 'Apellidos no válidos',
+                    validators: {
+                        notEmpty: {
+                            message: 'El apellido és obligatorio, no puede esta vacio'
+                        },
+                        stringLength: {
+                            min: 3,
+                            max: 20,
+                            message: 'El apellido no puede ser más corto de 2 letras ni más largo de 20'
+                        },
+                        regexp: {
+                            regexp: /^[a-zA-Z_\s]+$/,
+                            message: 'El apellido solo puede contener letras y espacios'
+                        }
+                    }
+                },
+                tel: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Campo obligatorio, no puede estar vacío'
+                        },
+                        regexp: {
+                            message: 'El teléfono sólo puede contener 9 numeros',
+                            regexp: /^[0-9]{9}$/
+                        }
+                    }
+                },
+                dni: {
+                    validators: {
+                        id: {
+                            country: 'ES',
+                            message: 'DNI no válido (recuerda: letras en mayúscula)'
+                        }
+                    }
+                },
+                fechNacimiento: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Necesitas escoger una fecha'
+                        },
+                        date: {
+                            format: 'MM/DD/YYYY',
+                            message: 'La fecha no es válida.'
+                        }
+                    }
+                },
+                calle: {
+                    message: 'Dirección no valida',
+                    validators: {
+                        notEmpty: {
+                            message: 'La dirección és obligatoria, no puede esta vacio'
+                        },
+                        stringLength: {
+                            min: 3,
+                            max: 20,
+                            message: 'La dirección no puede ser más corto de 2 letras ni más largo de 20'
+                        },
+                        regexp: {
+                            regexp: /^[a-zA-Z0-9\s]+$/,
+                            message: 'La dirección solo puede contener letras, numeros y espacios'
+                        }
+                    }
+                },
+                num: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Campo obligatorio, no puede estar vacío'
+                        },
+                        regexp: {
+                            message: 'El numero tiene un máximo de 4 cifras',
+                            regexp: /^[0-9]{1,4}$/
+                        }
+                    }
+                },
+                cp: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Campo obligatorio, no puede estar vacío'
+                        },
+                        regexp: {
+                            message: 'El codigo postal sólo puede contener 5 numeros',
+                            regexp: /^[0-9]{5}$/
+                        }
+                    }
+                },
+                provincia: {
+                    message: 'Provincia no válida',
+                    validators: {
+                        notEmpty: {
+                            message: 'La provincia és obligatoria, no puede estar vacio'
+                        },
+                        stringLength: {
+                            min: 2,
+                            max: 20,
+                            message: 'La provincia no puede ser más corta de 2 letras ni más largo de 20'
+                        },
+                        regexp: {
+                            regexp: /^[a-zA-Z]+$/,
+                            message: 'La provincia solo puede contener letras'
+                        }
+                    }
+                },
+                pais: {
+                    message: 'País no válida',
+                    validators: {
+                        notEmpty: {
+                            message: 'El país és obligatorio, no puede estar vacio'
+                        },
+                        stringLength: {
+                            min: 2,
+                            max: 20,
+                            message: 'El país no puede ser más corto de 2 letras ni más largo de 20'
+                        },
+                        regexp: {
+                            regexp: /^[a-zA-Z]+$/,
+                            message: 'El país solo puede contener letras'
+                        }
+                    }
+                },
+                subfile: {
+                    validators: {
+                        file: {
+                            extension: 'jpg',
+                            type: 'application/jpg',
+                            minSize: 1024*1024,
+                            message: 'Por favor escoge una imagen de formato JPG más pequeña de 1M.'
+                        }
+                    }
+                },
+                acceptTerms: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Has de aceptar la política de protección de datos'
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>

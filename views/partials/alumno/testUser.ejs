@@ -7,49 +7,23 @@
     <div id="container-img-calendar">
         <div class="container">
             <div id="panel-form" ng-init='loadEvents()'>
+             <inicio></inicio>
+             <form id="validatorForm" class="form-horizontal" role="form" action="/comprar" method="post">
+               
 
-                <form id="validatorForm" class="form-horizontal" role="form" action="/comprar" method="post">
-                    <inicio></inicio>
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ISesion">Finalizar</button>
+                
 
-                        </div>
-                    </div>
-                    <test></test>
-                    
-
-                    <!-- Modal -->
-                    <div modal="showModal" class="modal fade" id="ISesion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title align-center" id="myModalLabel">Finalizar test</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <div>
-                                        <span>¿ Quieres acabar el test?</span>
-                                    </div>
-
-                                </div>
-                                <div class="form-group">
-                                  <div class="col-sm-offset-2 col-sm-10">
-                                    <button class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                </div>
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="submit" class="btn btn-default">Acabar</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+                <!-- Modal -->
+                <test></test>
+            </form>
         </div>
-        <!-- FIN Modal -->
+    </div>
+</div>
+</div>
+<!-- FIN Modal -->
 
 
-    </form>
+</form>
 </div>
 </div>
 </div>
