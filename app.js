@@ -48,7 +48,7 @@ if(process.env.OPENSHIFT_MONGODB_DB_URL){
 
 
 
-mongoose.connect('mongodb://localhost/autoescuela', function(err, res){
+mongoose.connect(mongodb_connection_string, function(err, res){
     if (!err)
         console.log("Conexión establecida");
     else

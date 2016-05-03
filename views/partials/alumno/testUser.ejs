@@ -1,34 +1,23 @@
 <!-- Cabecera -->
 
 
+
 <div ng-app="testUser" ng-controller="hacerTest" >
 
     <div id="container-img-calendar">
         <div class="container">
-            <div id="panel-form">
-                <form id="validatorForm" class="form-horizontal" role="form" action="/comprar" method="post">
-                    <div class="form-group">
-                        <label class="control-label col-sm-4" >Número de prácticas pagadas: {{ practicas[0].numPracticasTotalPagadas }}</label>
-                    </div>
-                    <div class="form-group"> 
-                        <label class="control-label col-sm-2" >Prácticas sueltas:</label>
-                        <div class="col-sm-1">
-                            <input type="number" class="form-control"  name="uni" min="0" ng-model="prac.uni" >
-                        </div>
-                        <label class="control-label col-sm-2" >Pack de prácticas:</label>
-                        <div class="col-sm-1">
-                            <input type="number" class="form-control"  name="pack" min="0" ng-model="prac.pack" >
-                        </div>
-                        <label class="control-label col-sm-2" >Total a pagar: {{ prac.uni * practicas[0].importePracticas + prac.pack * practicas[0].importePackPractis }} €</label>
-                        <label class="control-label col-sm-2" >Número de prácticas a contratar: {{ prac.uni  + prac.pack * 10 }}</label>
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ISesion">Finalizar</button>
+            <div id="panel-form" ng-init='loadEvents()'>
 
-                            </div>
+                <form id="validatorForm" class="form-horizontal" role="form" action="/comprar" method="post">
+                    <inicio></inicio>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ISesion">Finalizar</button>
+
                         </div>
                     </div>
-                    <inicio></inicio>
+                    <test></test>
+                    
 
                     <!-- Modal -->
                     <div modal="showModal" class="modal fade" id="ISesion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

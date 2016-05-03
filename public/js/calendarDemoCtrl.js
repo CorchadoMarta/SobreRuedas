@@ -36,41 +36,47 @@ angular.module('calendarDemoApp').controller('CalendarDemoCtrl', ['$scope', '$ht
     };
 
     $scope.onTimeSelected = function (practiObject) {
+        var selectedTime = practiObject.time;
+        var horaPractica = {time: selectedTime };
+        console.log(selectedTime.getTime());
+        var ahora = new Date();
+        ahora.setDate(ahora.getDate() + 1);
+        if(ahora.getTime() < selectedTime.getTime()){
         //Controlar objeto y fecha por separado
-        if(practiObject.events != undefined){
-            var practId = practiObject.events[0].event._id;
-            var horaPractica = {practId: practId };
+            if(practiObject.events != undefined){
+                var practId = practiObject.events[0].event._id;
+                var horaPractica = {practId: practId };
 
-            $http.post('/borrar', horaPractica)
-            .success(function(data) {
-                $scope.loadEvents();
-                console.log('practica borrada');
-            })
-            .error(function(data) {
-                console.log('Error: ' + data);
-            });
-            
-
-        } else {
-            var selectedTime = practiObject.time;
-            var horaPractica = {time: selectedTime };
-            console.log(selectedTime.getTime());
-            var ahora = new Date();
-            ahora.setDate(ahora.getDate() + 1);
-            if(ahora.getTime() < selectedTime.getTime()){
-                $http.post('/guardar', horaPractica)
+                $http.post('/borrar', horaPractica)
                 .success(function(data) {
                     $scope.loadEvents();
-                    console.log('practica guardada');
+                    console.log('practica borrada');
                 })
                 .error(function(data) {
                     console.log('Error: ' + data);
                 });
+                
             } else {
-                console.log('es una fecha anterior');
-            };
+                var selectedTime = practiObject.time;
+                var horaPractica = {time: selectedTime };
+                console.log(selectedTime.getTime());
+                var ahora = new Date();
+                ahora.setDate(ahora.getDate() + 1);
+                if(ahora.getTime() < selectedTime.getTime()){
+                    $http.post('/guardar', horaPractica)
+                    .success(function(data) {
+                        $scope.loadEvents();
+                        console.log('practica guardada');
+                    })
+                    .error(function(data) {
+                        console.log('Error: ' + data);
+                    });
+                } else {
+                    console.log('es una fecha anterior');
+                };
 
-        }
+            };
+        };
 
     };
 
