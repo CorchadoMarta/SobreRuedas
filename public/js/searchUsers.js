@@ -3,10 +3,11 @@ angular.module('searchUsers', []);
 angular.module('searchUsers').controller('buscaUsuarios', ['$scope', '$http' , function ($scope, $http) {
     'use strict';
 
-    $scope.busquedaUsers = function () {
+    $scope.busquedaUsers = function (user) {
 
-        $http.post('/buscar')
+        $http.post('/buscar', user)
         .success(function(encontrarUsers) {
+            console.log(user);
 
             $scope.users =  encontrarUsers;
         })

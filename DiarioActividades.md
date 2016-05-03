@@ -20,3 +20,4 @@ Día | Tiempo dedicado (horas) | Descripción de la tarea
 27/04/2016 | 5h | Validar datos del formulario de registro, borrar practicas del calendario
 28/04/2016 | 4h | Poner nombres a las practicas, cada usuario solo puede manejar sus prácticas. Aprendizaje de angular. Arreglar errores de registro
 02/05/2016 | 4h | Comprar prácticas y poder escoger práctica en horarrio segun cantidad
+03/05/2016 | 5h | Admin busca usuarios por nombre o dni. Realización de test online
