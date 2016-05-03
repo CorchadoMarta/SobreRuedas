@@ -91,45 +91,20 @@ module.exports = function (app, passport){
                    {botonRegistro: 'partials/'+ role + '/botonUser', nombre: req.user.nombre});
     });
 
-    app.get('/buscar', isLoggedIn , function(req, res) {
-        var nombre = req.body.name;
-        var spacesQuer = nombre.replace(/\w{1,}/, ".*"); 
-        usuarios.find({$or: [ {'nombre': {$regex:spacesQuer, $options : 'i' }}, {'dni': req.body.dni} ] }, function(err, practis) {
+    app.post('/buscar', isLoggedIn , function(req, res) {
+        console.log(req.body);
+        var nombre = req.body.nombre;
+        if (nombre == undefined || nombre == ''){
+            nombre = 4;
+        }
+        usuarios.find({$or: [ {'nombre': {$regex:nombre, $options : 'i' }}, {'dni': req.body.dni} ] }, function(err, practis) {
             // if there is an error retrieving, send the error. nothing after res.send(err) will execute
             if (err)
                 res.send(err)
-                res.json(practis);
-        });
-        usuarios.find({'nombre': req.body.name}, function(err, practis) {
-            // if there is an error retrieving, send the error. nothing after res.send(err) will execute
-            if (err)
-                res.send(err)
-                res.json(practis);
+            res.json(practis);
+
         });
     });
-
-
-    /*    app.post('/busca', isLoggedIn, function(req, res){
-        usuarios.find({'userId': req.user._id}, function(err, practis) {
-            // if there is an error retrieving, send the error. nothing after res.send(err) will execute
-            if (err)
-                res.send(err)
-                numPracticasComp = parseInt(req.body.uni) + parseInt((req.body.pack * 10));
-            console.log(req.body.uni +"uni  pack  " +(req.body.pack * 10));
-            pagos.update({'userId': req.user._id}, { $inc : { numPracticasTotalPagadas:  numPracticasComp }}, function(err) {
-                if (err){
-                    res.send(err)
-                    console.log('MAL updateado');
-                } else{
-
-                    console.log("updateado");
-                    res.redirect('/calendar');
-                }
-
-            });
-
-        });
-    });*/
 
     // process the login form
     app.post('/registrar', passport.authenticate('local-signup', {
