@@ -15,6 +15,9 @@ angular.module('searchUsers').controller('buscaUsuarios', ['$scope', '$http' , f
             console.log('Error: ' + users);
         });
     };
+    $scope.getUser = function(obj) {
+        $scope.userEscogido = obj;
+    };
 }]);
 
 

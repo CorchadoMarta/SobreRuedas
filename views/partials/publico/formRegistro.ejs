@@ -181,11 +181,11 @@
                         },
                         stringLength: {
                             min: 3,
-                            max: 20,
+                            max: 50,
                             message: 'El nombre no puede ser más corto de 2 letras ni más largo de 20'
                         },
                         regexp: {
-                            regexp: /^[a-zA-Z]+$/,
+                            regexp: /^[ñA-Za-z _]*[ñA-Za-z][ñA-Za-z _]*$/,
                             message: 'El nombre solo puede contener letras y espacios'
                         }
                     }
@@ -202,7 +202,7 @@
                             message: 'El apellido no puede ser más corto de 2 letras ni más largo de 20'
                         },
                         regexp: {
-                            regexp: /^[a-zA-Z_\s]+$/,
+                            regexp: /^[ñA-Za-z _]*[ñA-Za-z][ñA-Za-z _]*$/,
                             message: 'El apellido solo puede contener letras y espacios'
                         }
                     }
