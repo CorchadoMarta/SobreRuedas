@@ -185,7 +185,7 @@
                             message: 'El nombre no puede ser más corto de 2 letras ni más largo de 20'
                         },
                         regexp: {
-                            regexp: /^[a-zA-Z]+$/,
+                            regexp: /^[a-zA-Z\s]+$/,
                             message: 'El nombre solo puede contener letras y espacios'
                         }
                     }
@@ -198,11 +198,11 @@
                         },
                         stringLength: {
                             min: 3,
-                            max: 20,
+                            max: 50,
                             message: 'El apellido no puede ser más corto de 2 letras ni más largo de 20'
                         },
                         regexp: {
-                            regexp: /^[a-zA-Z_\s]+$/,
+                            regexp: /^[a-z\u00E0-\u00FC\s-]+$/,
                             message: 'El apellido solo puede contener letras y espacios'
                         }
                     }
@@ -249,7 +249,7 @@
                             message: 'La dirección no puede ser más corto de 2 letras ni más largo de 20'
                         },
                         regexp: {
-                            regexp: /^[a-zA-Z0-9\s]+$/,
+                            regexp: /^[a-zA-Z0-9/\s]+$/,
                             message: 'La dirección solo puede contener letras, numeros y espacios'
                         }
                     }
@@ -288,7 +288,7 @@
                             message: 'La provincia no puede ser más corta de 2 letras ni más largo de 20'
                         },
                         regexp: {
-                            regexp: /^[a-zA-Z]+$/,
+                            regexp: /^[a-zA-ZÑñ_\s]+$/,
                             message: 'La provincia solo puede contener letras'
                         }
                     }
@@ -305,7 +305,7 @@
                             message: 'El país no puede ser más corto de 2 letras ni más largo de 20'
                         },
                         regexp: {
-                            regexp: /^[a-zA-Z]+$/,
+                            regexp: /^[a-zA-ZÑñ_\s]+$/,
                             message: 'El país solo puede contener letras'
                         }
                     }

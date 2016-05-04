@@ -3,11 +3,20 @@
 <div ng-controller="buscaUsuarios">
     <!-- Formulario -->
     <div class="container">
-        <div id="panel-form">
-            <h2>Búsqueda de usuario:</h2>
-            <input type="text" class="form-control" name="nombre" placeholder="Introduce un nombre" ng-model="buscaUser.nombre" ng-change="busquedaUsers(buscaUser)">
-            <input type="text" class="form-control" name="dni" placeholder="Introduce un DNI" ng-model="buscaUser.dni" ng-change="busquedaUsers(buscaUser)">
-            <button class="btn btn-default">{{ users[0].nombre + " " +  users[0].apellidos}}</button>
+        <div id="panel-form" >
+            <div class="row">
+                <div class="col-sm-4">
+                    <h2>Búsqueda de usuario:</h2>
+                    <p>Por Nombre: <input type="text" class="form-control" name="nombre" placeholder="Introduce un nombre" ng-model="buscaUser.nombre" ng-change="busquedaUsers(buscaUser)"></p>
+                    <p>Por DNI: <input type="text" class="form-control" name="dni" placeholder="Introduce un DNI" ng-model="buscaUser.dni" ng-change="busquedaUsers(buscaUser)"></p>
+                    <p>Resultados:</p>
+                    <p class="btn btn-default btn-block" ng-repeat="x in users" ng-click="getUser(x)">{{ x.nombre + " " +  x.apellidos}}</p>
+                </div>
+                <div class="col-sm-8">
+                    <p>Alumno:</p>
+                    <p>{{ userEscogido.nombre + " " + userEscogido.apellidos }} <br> {{ userEscogido.direccion.calle}}</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
