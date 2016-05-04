@@ -2,6 +2,11 @@ angular.module("testUser.tpls", ["template/testUser/general.html", "template/tes
 
 angular.module('testUser', ["testUser.tpls"]).controller('hacerTest', ['$scope', '$http' , function ($scope, $http) {
     'use strict';
+    $scope.position = 0;
+
+    $scope.respUsusario = [];
+
+
     $scope.loadEvents = function () {
 
         $http.get('/tests')
@@ -12,6 +17,16 @@ angular.module('testUser', ["testUser.tpls"]).controller('hacerTest', ['$scope',
             console.log('Error: ' + events);
         });
     };
+
+    $scope.move = function (pos) {
+        console.log($scope.position);
+        if($scope.position >= 0 && $scope.position <= 30){
+            $scope.position += pos;
+        }
+        
+
+    };
+
 
 }])
 .directive('general', function () {
@@ -74,16 +89,6 @@ angular.module("template/testUser/test.html", []).run(["$templateCache", functio
     "               <h4 class='modal-title align-center' id='myModalLabel'>Test</h4>\n" +
     "               <div class='modal-body'>\n" +
     "                   <div>\n" +
-    "                       <span>¿ Quieres acabar el test?</span>\n" +
-    "                   </div>\n" +
-    "                   <div class='form-group'>\n" +
-    "                       <div class='col-sm-offset-2 col-sm-10'>\n" +
-    "                       <button class='btn btn-default' data-dismiss='modal'>Cancelar</button>\n" +
-    "                   </div>\n" +
-    "                   <div class='col-sm-offset-2 col-sm-10'>\n" +
-    "                       <button type='submit' class='btn btn-default'>Acabar</button>\n" +
-    "                   </div>\n" +
-    "                   <div>\n" +
     "                       <p>{{eventSource[0].pregunta}}</p>\n" +
     "                       <div class='form-group'>\n" +
     "                           <input class='modal-body'type='radio'>{{eventSource[0].respuestas.respuesta[0]}}</input>\n" +
@@ -91,6 +96,7 @@ angular.module("template/testUser/test.html", []).run(["$templateCache", functio
     "                           <input class='modal-body'type='radio'>{{eventSource[0].respuestas.respuesta[2]}}</input>\n" +
     "                       </div>\n" +
     "                   </div>\n" +
+    "                   <fin></fin>\n" +
     "               </div>\n" +
     "           </div>\n" +
     "      </div>\n" +
@@ -101,18 +107,10 @@ angular.module("template/testUser/test.html", []).run(["$templateCache", functio
 angular.module("template/testUser/fin.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("template/testUser/fin.html",
 
-    "               <div modal='showModal' class='modal fade' id='ISesion' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' data-backdrop='static' data-keyboard='false'>\n" +
-    "                    <div class='modal-dialog' role='document'>\n" +
-    "                        <div class='modal-content'>\n" +
-    "                            <div class='modal-header'>\n" +
-    "                                <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>\n" +
-    "                                <h4 class='modal-title align-center' id='myModalLabel'>Finalizar test</h4>\n" +
-    "                            </div>\n" +
-    "                            <div class='modal-body'>\n" +
+    "                                <div>\n" +
     "                                <div>\n" +
     "                                    <span>¿ Quieres acabar el test?</span>\n" +
     "                                </div>\n" +
-    "                            </div>\n" +
     "                            <div class='form-group'>\n" +
     "                              <div class='col-sm-offset-2 col-sm-10'>\n" +
     "                               <button class='btn btn-default' data-dismiss='modal'>Cancelar</button>\n" +
@@ -120,6 +118,7 @@ angular.module("template/testUser/fin.html", []).run(["$templateCache", function
     "                            <div class='col-sm-offset-2 col-sm-10'>\n" +
     "                                <button type='submit' class='btn btn-default'>Acabar</button>\n" +
     "                            </div>\n" +
+        "                            </div>\n" +
     "                        </div>");
 
 }]);

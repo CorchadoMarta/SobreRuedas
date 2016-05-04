@@ -7,18 +7,51 @@
     <div id="container-img-calendar">
         <div class="container">
             <div id="panel-form" ng-init='loadEvents()'>
-             <inicio></inicio>
-             <form id="validatorForm" class="form-horizontal" role="form" action="/comprar" method="post">
-               
+                <div>
+                    <h3  class='col-sm-4'>TEST TEÓRICOS</h3>
+                    <label>Escoge Tema</label>
+                    <button type='button' class='btn btn-default'>Escoger</button>
+                    <button type='button' class='btn btn-default' data-toggle='modal' data-target='#ISesion'>Empezar</button>
+                </div>
 
-                
 
-                <!-- Modal -->
-                <test></test>
-            </form>
+                <div class="modal fade" id="ISesion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class='modal-title align-center' id='myModalLabel'>Test</h4>
+                            </div>
+                            <div class="modal-body">
+                                <br>
+                                    <div class="form-group">
+                                        <p>{{eventSource[position].pregunta}}</p>
+                                        <div class='form-group'>
+                                            <input type="radio" name="respuesta" value="0">{{eventSource[position].respuestas.respuesta[0]}}</input>
+                                            <input type="radio" name="respuesta" value="1">{{eventSource[position].respuestas.respuesta[1]}}</input>
+                                            <input type="radio" name="respuesta" value="2">{{eventSource[position].respuestas.respuesta[2]}}</input>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="modal-footer align-center">
+                            <div class="nav-left col-xs-2">
+                                <button type="button" class="btn btn-default btn-sm" ng-click="move(-1)" ng-disabled=" position == 0 "><i
+                                    class="glyphicon glyphicon-chevron-left" ></i>
+                                    </button>
+                                </div>
+                                <div class="calendar-header col-xs-8"></div>
+                                <div class="nav-right col-xs-2">
+                                <button type="button" class="btn btn-default btn-sm" ng-click="move(1)" ng-disabled=" position == 30 "><i
+                                    class="glyphicon glyphicon-chevron-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
 </div>
 <!-- FIN Modal -->
 
