@@ -6,6 +6,7 @@ angular.module('testUser', ["testUser.tpls"]).controller('hacerTest', ['$scope',
 
     $scope.respUsusario = [];
 
+    $scope.respPreg;
 
     $scope.loadEvents = function () {
 
@@ -19,14 +20,20 @@ angular.module('testUser', ["testUser.tpls"]).controller('hacerTest', ['$scope',
     };
 
     $scope.move = function (pos) {
-        console.log($scope.position);
         if($scope.position >= 0 && $scope.position <= 30){
             $scope.position += pos;
-        }
-        
+            if($scope.respUsusario[$scope.position] == undefined){
+                $scope.respPreg = {checked: false};
+            } else {
+                $scope.respPreg = $scope.respUsusario[$scope.position];
+            }   
+           
+        };
 
     };
-
+    $scope.myFunc = function (pos) {
+        $scope.respUsusario[$scope.position] = $scope.respPreg;
+    };
 
 }])
 .directive('general', function () {
@@ -81,27 +88,14 @@ angular.module("template/testUser/inicio.html", []).run(["$templateCache", funct
 
 angular.module("template/testUser/test.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("template/testUser/test.html",
-    "<div modal='showModal' class='modal fade' id='ISesion' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' data-backdrop='static' data-keyboard='false'>\n" +
-    "   <div class='modal-dialog' role='document'>\n" +
-    "       <div class='modal-content'>\n" +
-    "           <div class='modal-header'>\n" +
-    "               <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>\n" +
-    "               <h4 class='modal-title align-center' id='myModalLabel'>Test</h4>\n" +
-    "               <div class='modal-body'>\n" +
-    "                   <div>\n" +
-    "                       <p>{{eventSource[0].pregunta}}</p>\n" +
-    "                       <div class='form-group'>\n" +
-    "                           <input class='modal-body'type='radio'>{{eventSource[0].respuestas.respuesta[0]}}</input>\n" +
-    "                           <input class='modal-body'type='radio'>{{eventSource[0].respuestas.respuesta[1]}}</input>\n" +
-    "                           <input class='modal-body'type='radio'>{{eventSource[0].respuestas.respuesta[2]}}</input>\n" +
-    "                       </div>\n" +
-    "                   </div>\n" +
-    "                   <fin></fin>\n" +
-    "               </div>\n" +
-    "           </div>\n" +
-    "      </div>\n" +
-    "   </div>\n" +
-    "</div>");
+    "            <div class='form-group'>\n" +
+    "                <p>{{eventSource[position].pregunta}}</p>\n" +
+    "                <div class='form-group'>\n" +
+    "                    <input type='radio' name='respuesta' value='0' ng-model='respPreg' ng-change='myFunc()' >{{eventSource[position].respuestas.respuesta[0]}}</input>\n" +
+    "                    <input type='radio' name='respuesta' value='1' ng-model='respPreg' ng-change='myFunc()' >{{eventSource[position].respuestas.respuesta[1]}}</input>\n" +
+    "                    <input type='radio' name='respuesta' value='2' ng-model='respPreg' ng-change='myFunc()' >{{eventSource[position].respuestas.respuesta[2]}}</input>\n" +
+    "                </div>\n" +
+    "            </div>");
 }]);
 
 angular.module("template/testUser/fin.html", []).run(["$templateCache", function($templateCache) {

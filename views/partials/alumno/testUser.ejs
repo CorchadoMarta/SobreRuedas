@@ -13,8 +13,6 @@
                     <button type='button' class='btn btn-default'>Escoger</button>
                     <button type='button' class='btn btn-default' data-toggle='modal' data-target='#ISesion'>Empezar</button>
                 </div>
-
-
                 <div class="modal fade" id="ISesion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -24,14 +22,8 @@
                             </div>
                             <div class="modal-body">
                                 <br>
-                                    <div class="form-group">
-                                        <p>{{eventSource[position].pregunta}}</p>
-                                        <div class='form-group'>
-                                            <input type="radio" name="respuesta" value="0">{{eventSource[position].respuestas.respuesta[0]}}</input>
-                                            <input type="radio" name="respuesta" value="1">{{eventSource[position].respuestas.respuesta[1]}}</input>
-                                            <input type="radio" name="respuesta" value="2">{{eventSource[position].respuestas.respuesta[2]}}</input>
-                                        </div>
-                                    </div>
+                            <test ng-hide="position == 30" ng-show="position != 30"></test>
+                            <fin ng-hide="position != 30" ng-show="position == 30"></fin>
                             </div>
                             <div class="modal-footer align-center">
                             <div class="nav-left col-xs-2">
