@@ -22,3 +22,5 @@ Día | Tiempo dedicado (horas) | Descripción de la tarea
 02/05/2016 | 4h | Comprar prácticas y poder escoger práctica en horarrio segun cantidad
 03/05/2016 | 5h | Admin busca usuarios por nombre o dni. Realización de test online
 04/05/2016 | 5h | Admin busca usuarios por nombre o dni (angular - escoger uno). Realización de test online
+05/05/2016 | 4h | Frontend en la compra de prácticas. Realización de test online
+06/05/2016 | 4h | Despliegue en Openshift. Realización de test online
