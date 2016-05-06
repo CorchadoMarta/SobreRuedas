@@ -1,4 +1,4 @@
-angular.module("testUser.tpls", ["template/testUser/general.html", "template/testUser/inicio.html", "template/testUser/test.html", "template/testUser/fin.html"]);
+angular.module("testUser.tpls", ["template/testUser/resultado.html", "template/testUser/inicio.html", "template/testUser/test.html", "template/testUser/fin.html"]);
 
 angular.module('testUser', ["testUser.tpls"]).controller('hacerTest', ['$scope', '$http' , function ($scope, $http) {
     'use strict';
@@ -7,6 +7,7 @@ angular.module('testUser', ["testUser.tpls"]).controller('hacerTest', ['$scope',
     $scope.respUsusario = [];
 
     $scope.respPreg;
+
 
     $scope.loadEvents = function () {
 
@@ -36,11 +37,11 @@ angular.module('testUser', ["testUser.tpls"]).controller('hacerTest', ['$scope',
     };
 
 }])
-.directive('general', function () {
+.directive('resultado', function () {
     return {
         restrict: 'EA',
         replace: true,
-        templateUrl: 'template/testUser/general.html',
+        templateUrl: 'template/testUser/resultado.html',
         require: ['testUser', '?^ngModel'],
         controller: 'hacerTest',
     };
@@ -117,8 +118,8 @@ angular.module("template/testUser/fin.html", []).run(["$templateCache", function
 
 }]);
 
-angular.module("template/testUser/general.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("template/testUser/general.html",
+angular.module("template/testUser/resultado.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("template/testUser/resultado.html",
     "<div>\n" +
     "    <div>\n" +
     "    <p>PEPEEEEEEEEEEEE</p>\n" +
