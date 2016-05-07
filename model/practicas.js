@@ -1,8 +1,8 @@
-//Fichero usuarios.js
+// Fichero practicas.js
 var mongoose = require('mongoose');
-//Creamos el objeto
+// Creamos el objeto
 var schema = mongoose.Schema;
-//Creamos una instancia del objeto
+// Creamos una instancia del objeto
 var schemaPracticas = new schema ({
     userId: schema.ObjectId,
     fechPagoPract: Date,
@@ -13,6 +13,6 @@ var schemaPracticas = new schema ({
     endTime: Date,
     allDay: {type: Boolean, default: false}
 });
-//Registramos el schemaUser en esta estructura
-//Exportamos el modelo que se corresponde con la colección(tabla) 'Usuarios'
+// Registramos el schemaPracticas en esta estructura
+// Exportamos el modelo que se corresponde con la colección(tabla) 'practicas'
 module.exports = mongoose.model('practicas', schemaPracticas);

@@ -1,4 +1,4 @@
-//Fichero controler.js
+// Fichero controler.js
 var usuarios = require('../model/usuarios.js');
 // var	session = require('express-session');
 var tests = require('../model/test.js');
@@ -22,35 +22,32 @@ module.exports = function (app, passport){
     app.get('/tests', isLoggedIn , function(req, res) {
         tests.find({},function(err, todos) {
 
-            // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+            // si hay un error se envía. no se ejecutará nada después de res.send(err)
             if (err)
                 res.send(err)
-                res.json(todos);
+            res.json(todos);
         });
     });
 
     app.get('/practis', isLoggedIn , function(req, res) {
         practicas.find( function(err, Todos) {
 
-            // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+            // si hay un error se envía. no se ejecutará nada después de res.send(err)
             if (err)
                 res.send(err)
-                res.json(Todos);
+            res.json(Todos);
         });
     });
 
     app.get('/pagos', isLoggedIn , function(req, res) {
         console.log(req.user._id);
         pagos.find({'userId': req.user._id}, function(err, practis) {
-            // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+            // si hay un error se envía. no se ejecutará nada después de res.send(err)
             if (err)
                 res.send(err)
                 res.json(practis);
         });
     });
-
-
-
 
     app.get('/', function(req, res) {
         res.render('index.ejs',
@@ -98,7 +95,7 @@ module.exports = function (app, passport){
             nombre = 4;
         }
         usuarios.find({$or: [ {'nombre': {$regex:nombre, $options : 'i' }}, {'dni': req.body.dni} ] }, function(err, practis) {
-            // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+            // si hay un error se envía. no se ejecutará nada después de res.send(err)
             if (err)
                 res.send(err)
             res.json(practis);
@@ -106,17 +103,17 @@ module.exports = function (app, passport){
         });
     });
 
-    // process the login form
+    // se envía el formulario de registro
     app.post('/registrar', passport.authenticate('local-signup', {
-        successRedirect : '/bienvenido', // redirect to the secure bienvenido section
-        failureRedirect : '/registro', // redirect back to the signup page if there is an error
-        failureFlash : true // allow flash messages
+        successRedirect : '/bienvenido', // si va bien se redirecciona hacia bienvenido
+        failureRedirect : '/registro', // si hay algún error vuelve al formulario de registro
+        failureFlash : true // permiso para los mensajes flash
     }));
 
     app.post('/comprar', function(req, res, next){
 
         pagos.find({'userId': req.user._id}, function(err, practis) {
-            // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+            // si hay un error se envía. no se ejecutará nada después de res.send(err)
             if (err)
                 res.send(err)
                 numPracticasComp = parseInt(req.body.uni) + parseInt((req.body.pack * 10));
@@ -140,7 +137,7 @@ module.exports = function (app, passport){
     app.post('/guardar', function(req, res){
 
         pagos.find({'userId': req.user._id}, function(err, practis) {
-            // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+            // si hay un error se envía. no se ejecutará nada después de res.send(err)
             if (err)
                 res.send(err)
                 if(practis[0].numPracticasTotalPagadas > practis[0].practicas.length){
@@ -166,8 +163,6 @@ module.exports = function (app, passport){
             res.end();
 
         });
-
-
 
     });
 
@@ -196,27 +191,25 @@ module.exports = function (app, passport){
             res.end();
         });
 
-
     });
-
 
     app.get('*',notExists);
 
     app.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/bienvenido', // redirect to the secure bienvenido section
-        failureRedirect : '/', // redirect back to the signup page if there is an error
-        failureFlash : true // allow flash messages
+        successRedirect : '/bienvenido', // si va bien se redirecciona hacia bienvenido
+        failureRedirect : '/', // si hay algún error vuelve ala página de inicio
+        failureFlash : true // permiso para los mensajes flash
     }));
 };
 
-// route middleware to make sure a user is logged in
+// middleware para asegurarnos que el usuario está logueado
 function isLoggedIn(req, res, next) {
 
-    // if user is authenticated in the session, carry on 
+    // si el usuario está autenticado continuamos 
     if (req.isAuthenticated())
         return next();
 
-    // if they aren't redirect them to the home page
+    // si no lo está, se redirecciona al inicio
     res.redirect('/');
 }
 

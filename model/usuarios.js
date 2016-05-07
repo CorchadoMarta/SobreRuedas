@@ -1,10 +1,10 @@
-//Fichero usuarios.js
+// Fichero usuarios.js
 var mongoose = require('mongoose');
-
+// Encriptamos la contraseña
 var bcrypt   = require('bcrypt-nodejs');
-//Creamos el objeto
+// Creamos el objeto
 var schema = mongoose.Schema;
-//Creamos una instancia del objeto
+// Creamos una instancia del objeto
 var schemaUser = new schema ({
     expediente: Number,
     dni: String,
@@ -50,16 +50,16 @@ var schemaUser = new schema ({
     role: {type: String, default: 'alumno'}
 });
 
-// methods ======================
-// generating a hash
+// Métodos 
+// Generación de un hash
 schemaUser.methods.generateHash = function(pwd) {
     return bcrypt.hashSync(pwd, bcrypt.genSaltSync(8), null);
 };
 
-// checking if password is valid
+// Comprobación de si la contraseña es válida
 schemaUser.methods.validPassword = function(pwd) {
     return bcrypt.compareSync(pwd, this.pwd);
 };
-//Registramos el schemaUser en esta estructura
-//Exportamos el modelo que se corresponde con la colección(tabla) 'Usuarios'
+// Registramos el schemaUser en esta estructura
+// Exportamos el modelo que se corresponde con la colección(tabla) 'Usuarios'
 module.exports = mongoose.model('usuarios', schemaUser);

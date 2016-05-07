@@ -1,9 +1,8 @@
-//Fichero reserves.js
+// Fichero test.js
 var mongoose = require('mongoose');
-mongoose.set('debug', true);
-//Creamos el objeto
+// Creamos el objeto
 var schema = mongoose.Schema;
-//Creamos una instancia del objeto
+// Creamos una instancia del objeto
 var schemaTest = new schema ({
     idTema: Number,
     pregunta: String,
@@ -13,6 +12,6 @@ var schemaTest = new schema ({
     },
     imagen: String
 });
-//Registramos el schemaUser en esta estructura
-//Exportamos el modelo que se corresponde con la colección(tabla) 'Usuarios'
+// Registramos el schemaTest en esta estructura
+// Exportamos el modelo que se corresponde con la colección(tabla) 'test'
 module.exports = mongoose.model('test', schemaTest, 'test');
