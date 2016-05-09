@@ -7,7 +7,25 @@ angular.module('testUser', ["testUser.tpls"]).controller('hacerTest', ['$scope',
     $scope.respUsusario = [];
 
     $scope.respPreg;
+/*    $scope.indexPos = {checked: false};
 
+    $scope.myPosition = function (index) {
+        if ($scope.position == index){
+            $scope.indexPos = {checked: true};
+        } else {
+            $scope.indexPos;
+        }
+    };*/
+
+    $scope.moveIndex = function (pos) {
+            $scope.position = pos;
+            if($scope.respUsusario[$scope.position] == undefined){
+                $scope.respPreg = {checked: false};
+            } else {
+                $scope.respPreg = $scope.respUsusario[$scope.position];
+            }   
+           
+    };
 
     $scope.loadEvents = function () {
 
@@ -25,13 +43,14 @@ angular.module('testUser', ["testUser.tpls"]).controller('hacerTest', ['$scope',
             $scope.position += pos;
             if($scope.respUsusario[$scope.position] == undefined){
                 $scope.respPreg = {checked: false};
+
             } else {
                 $scope.respPreg = $scope.respUsusario[$scope.position];
             }   
-           
         };
 
     };
+
     $scope.myFunc = function (pos) {
         $scope.respUsusario[$scope.position] = $scope.respPreg;
     };
@@ -113,7 +132,7 @@ angular.module("template/testUser/fin.html", []).run(["$templateCache", function
     "                            <div class='col-sm-offset-2 col-sm-10'>\n" +
     "                                <button type='submit' class='btn btn-default'>Acabar</button>\n" +
     "                            </div>\n" +
-        "                            </div>\n" +
+    "                            </div>\n" +
     "                        </div>");
 
 }]);

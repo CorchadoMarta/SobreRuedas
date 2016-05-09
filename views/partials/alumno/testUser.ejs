@@ -13,6 +13,8 @@
                     <button type='button' class='btn btn-default'>Escoger</button>
                     <button type='button' class='btn btn-default' data-toggle='modal' data-target='#ISesion'>Empezar</button>
                 </div>
+
+
                 <div class="modal fade" id="ISesion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -22,22 +24,23 @@
                             </div>
                             <div class="modal-body">
                                 <br>
-                            <test ng-hide="position == 30" ng-show="position != 30"></test>
-                            <fin ng-hide="position != 30" ng-show="position == 30"></fin>
+                                <test ng-hide="position == 30" ng-show="position != 30"></test>
+                                <fin ng-hide="position != 30" ng-show="position == 30"></fin>
                             </div>
                             <div class="modal-footer align-center">
-                            <div class="nav-left col-xs-2">
-                                <button type="button" class="btn btn-default btn-sm" ng-click="move(-1)" ng-disabled=" position == 0 "><i
-                                    class="glyphicon glyphicon-chevron-left" ></i>
+                                <div class="nav-left col-xs-2">
+                                    <button type="button" class="btn btn-default btn-sm" ng-click="move(-1)" ng-disabled=" position == 0 "><i
+                                        class="glyphicon glyphicon-chevron-left" ></i>
                                     </button>
                                 </div>
                                 <div class="calendar-header col-xs-8">
-                                    <input type='radio' ng-repeat="x in eventSource" value="{{ $index }}" name="index" >
+                                <input type='radio' ng-repeat="x in eventSource" value="{{ $index }}" name="index" ng-click="moveIndex($index)"> 
                                     <!--  ng-if=" position == $index "--> 
-                                    </input>
+                                </input>
                                 <div class="nav-right col-xs-2">
-                                <button type="button" class="btn btn-default btn-sm" ng-click="move(1)" ng-disabled=" position == 30 "><i
-                                    class="glyphicon glyphicon-chevron-right"></i>
+
+                                    <button type="button" class="btn btn-default btn-sm" ng-click="move(1)" ng-disabled=" position == 30 "><i
+                                        class="glyphicon glyphicon-chevron-right"></i>
                                     </button>
                                 </div>
                             </div>

@@ -1,7 +1,7 @@
 var express 	 = require('express'),
-    fs 		 	 = require('fs'),
+/*    fs 		 	 = require('fs'),
     https 		 = require('https'),
-    helmet 	 	 = require('helmet'),
+    helmet 	 	 = require('helmet'),*/
     compress 	 = require('compression'),
     bodyParser 	 = require('body-parser'),
     mongoose 	 = require('mongoose'),
@@ -15,34 +15,12 @@ var express 	 = require('express'),
 
 // variables para declara un servidor https
 
-var key = fs.readFileSync('fixtures/keys/localhost.key');
+/*var key = fs.readFileSync('fixtures/keys/localhost.key');
 var cert = fs.readFileSync('fixtures/keys/localhost.crt');
 var options = {
     key: key,
     cert: cert
-};
-
-// comprime los datos que envíamos
-app.use(compress()); 
-// imprime cualquier consulta por la consola
-app.use(morgan('dev')); 
-// añade módulos de seguridad
-// app.use(helmet());
-
-// lee las cookies (necesario para autenticar)
-app.use(cookieParser()); 
-
-// inicia ejs para el renderizado de las plantillas
-app.set('view engine', 'ejs');
-
-// declaramos la dirección de las plantillas
-app.use(express.static(__dirname + '/public'));
-app.set('views', __dirname + '/views');
-app.set('view options', { layout: false });
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
-
-
+};*/
 
 // declaración de variables que nos servirán en el despliegue en openshift
 mongodb_connection_string = 'mongodb://127.0.0.1:27017/' + 'autoescuela';
@@ -59,9 +37,31 @@ mongoose.connect(mongodb_connection_string, function(err, res){
         console.log("SIN conexión");
 });
 
+// imprime cualquier consulta por la consola
+app.use(morgan('dev')); 
+// añade módulos de seguridad
+// app.use(helmet());
+
+// lee las cookies (necesario para autenticar)
+app.use(cookieParser()); 
+
+// comprime los datos que envíamos
+app.use(compress()); 
+
+// inicia ejs para el renderizado de las plantillas
+app.set('view engine', 'ejs');
+
+// declaramos la dirección de las plantillas
+app.use(express.static(__dirname + '/public'));
+app.set('views', __dirname + '/views');
+/*app.set('view options', { layout: false });*/
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+
 // necesario para passport
 app.use(session({ secret: 'batmanesbrucewayne' })); 
 app.use(passport.initialize());
+
 // sesiones de login persistentes
 app.use(passport.session());
 app.use(flash()); // use connect-flash for flash messages stored in session
