@@ -7,6 +7,7 @@ angular.module('testUser', ["testUser.tpls"]).controller('hacerTest', ['$scope',
     $scope.respUsusario = [];
 
     $scope.respPreg;
+
 /*    $scope.indexPos = {checked: false};
 
     $scope.myPosition = function (index) {
@@ -39,7 +40,7 @@ angular.module('testUser', ["testUser.tpls"]).controller('hacerTest', ['$scope',
     };
 
     $scope.move = function (pos) {
-        if($scope.position >= 0 && $scope.position <= 30){
+        if($scope.position >= 0  && $scope.position <= 30){
             $scope.position += pos;
             if($scope.respUsusario[$scope.position] == undefined){
                 $scope.respPreg = {checked: false};

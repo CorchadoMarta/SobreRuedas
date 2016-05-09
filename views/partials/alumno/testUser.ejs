@@ -28,28 +28,31 @@
                                 <fin ng-hide="position != 30" ng-show="position == 30"></fin>
                             </div>
                             <div class="modal-footer align-center">
-                                <div class="nav-left col-xs-2">
-                                    <button type="button" class="btn btn-default btn-sm" ng-click="move(-1)" ng-disabled=" position == 0 "><i
-                                        class="glyphicon glyphicon-chevron-left" ></i>
-                                    </button>
-                                </div>
-                                <div class="calendar-header col-xs-8">
-                                <input type='radio' ng-repeat="x in eventSource" value="{{ $index }}" name="index" ng-click="moveIndex($index)"> 
-                                    <!--  ng-if=" position == $index "--> 
-                                </input>
-                                <div class="nav-right col-xs-2">
 
-                                    <button type="button" class="btn btn-default btn-sm" ng-click="move(1)" ng-disabled=" position == 30 "><i
-                                        class="glyphicon glyphicon-chevron-right"></i>
-                                    </button>
-                                </div>
-                            </div>
+
+                                    <ul class="pagination pagination-sm">
+                                       <li >
+                                          <a aria-label="Previous" ng-click="move(-1)" >
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li ng-repeat="x in eventSource" value="{{ $index }}" ng-model="disa" name="index" ng-click="moveIndex($index)"><a href="#">{{ $index }}</a> 
+                                        <!--  ng-if=" position == $index "--> 
+                                    </li>
+                                    <li >
+                                      <a aria-label="Next" ng-click="move(1)" >
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 <!-- FIN Modal -->
 
