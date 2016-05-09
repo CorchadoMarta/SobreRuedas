@@ -18,46 +18,13 @@
                                 <label class="control-label " >Prácticas sueltas:</label>
                                 <div> 
                                     <input type="number" class="form-control"  name="uni" min="0" ng-model="prac.uni" >
-<!--                                    <div class="input-group spinner">
-                                        <input type="number" class="form-control" id="uni" name="uni" min="0" ng-model="prac.uni">
-                                        <div class="input-group-btn-vertical">
-                                            <button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button>
-                                            <button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button>
-                                        </div>
-                                    </div>
-                                    <script>
-                                        $(function(){
-
-                                            $('.spinner .btn:first-of-type').on('click', function() {
-                                                var btn = $(this);
-                                                var input = $('#uni');
-                                                if (input.attr('max') == undefined || parseInt(input.val()) < parseInt(input.attr('max'))) {    
-                                                    input.val(parseInt(input.val(), 10) + 1);
-                                                    console.log( $('#uni').val());
-                                                    console.log($('input[name=uni]').val());
-                                                } else {
-                                                    btn.next("disabled", true);
-                                                }
-                                            });
-                                            $('.spinner .btn:last-of-type').on('click', function() {
-                                                var btn = $(this);
-                                                var input = $('#uni');
-                                                if (input.attr('min') == undefined || parseInt(input.val()) > parseInt(input.attr('min'))) {    
-                                                    input.val(parseInt(input.val(), 10) - 1);
-                                                } else {
-                                                    btn.prev("disabled", true);
-                                                }
-                                            });
-
-                                        })
-                                    </script>-->
                                 </div>
                                 <label class="control-label " >Pack de prácticas:</label>
                                 <div>
                                     <input type="number" class="form-control"  name="pack" min="0" ng-model="prac.pack" >
                                 </div>
                                 <label class="control-label" >Total a pagar: {{ prac.uni * practicas[0].importePracticas + prac.pack * practicas[0].importePackPractis }} €</label>
-                                <label class="control-label" >Número de prácticas a contratar: {{ prac.uni  + prac.pack * 10 }}</label>
+                                <label class="control-label text-pract" >Número de prácticas a contratar: {{ prac.uni  + prac.pack * 10 }}</label>
                                 <div class="form-group">
                                     <div>
                                         <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ISesion">Contratar</button>
