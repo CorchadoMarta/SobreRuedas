@@ -112,9 +112,9 @@ angular.module("template/testUser/test.html", []).run(["$templateCache", functio
     "            <div class='form-group'>\n" +
     "                <p>{{eventSource[position].pregunta}}</p>\n" +
     "                <div class='form-group'>\n" +
-    "                    <input type='radio' name='respuesta' value='0' ng-model='respPreg' ng-change='myFunc()' >{{eventSource[position].respuestas.respuesta[0]}}</input>\n" +
-    "                    <input type='radio' name='respuesta' value='1' ng-model='respPreg' ng-change='myFunc()' >{{eventSource[position].respuestas.respuesta[1]}}</input>\n" +
-    "                    <input type='radio' name='respuesta' value='2' ng-model='respPreg' ng-change='myFunc()' >{{eventSource[position].respuestas.respuesta[2]}}</input>\n" +
+    "                    <input type='radio' name='respuesta' value='0' ng-model='respPreg' ng-change='myFunc()' >{{eventSource[position].respuestas.respuesta[0]}}</input><br>\n" +
+    "                    <input type='radio' name='respuesta' value='1' ng-model='respPreg' ng-change='myFunc()' >{{eventSource[position].respuestas.respuesta[1]}}</input><br>\n" +
+    "                    <input type='radio' name='respuesta' value='2' ng-model='respPreg' ng-change='myFunc()' >{{eventSource[position].respuestas.respuesta[2]}}</input><br>\n" +
     "                </div>\n" +
     "            </div>");
 }]);
