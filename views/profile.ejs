@@ -25,9 +25,9 @@
         <!-- Jquery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 
-           
-    <script src="http://cdn.staticfile.org/angular.js/1.2.10/angular.min.js"></script>
-    <script src="js/datosUser.js"></script>
+
+        <script src="http://cdn.staticfile.org/angular.js/1.2.10/angular.min.js"></script>
+        <script src="js/datosUser.js"></script>
 
 
     </head>
@@ -69,12 +69,26 @@
                     </div>
                     <div class="col-sm-6" ng-init="datosUserFunction()">
                         <p class="title">Datos de perfil</p>
-                        <div class="row">
+                        <div class="row" ng-hide="editor">
                             <div class="col-sm-6">
                                 <p class="datos">Nombre: <span class="datos-user"> {{ datos[0].nombre }}</span></p>
                                 <p class="datos">Apellidos: <span class="datos-user"> {{ datos[0].apellidos }}</span></p>
                                 <p class="datos">DNI: <span class="datos-user"> {{ datos[0].dni }}</span></p>
-                                <p class="datos">Fecha de nacimiento: <span class="datos-user"> {{ datos[0].fechNacimiento }}</span></p>
+                                <p class="datos">Fecha de nacimiento: <span class="datos-user"> {{ datos[0].fechNacimiento | date:'dd-MM-yyyy'}}</span></p>
+                            </div>
+                            <div class="col-sm-6">
+                                <p class="datos">Dirección: <span class="datos-user"> {{ datos[0].direccion.calle + " " + datos[0].direccion.num }}</span></p>
+                                <p class="datos">Codigo postal: <span class="datos-user"> {{ datos[0].direccion.cp }}</span></p>
+                                <p class="datos">Provincia: <span class="datos-user"> {{ datos[0].direccion.provincia }}</span></p>
+                                <p class="datos">País: <span class="datos-user"> {{ datos[0].direccion.pais }}</span></p>
+                            </div>
+                        </div>
+                        <div class="row" ng-show="editor">
+                            <div class="col-sm-6">
+                                <p class="datos">Nombre: <span class="datos-user"><input ng-model="editaNombre" ng-show="editor" placeholder="{{ datos[0].nombre }}"></span></p>
+                                <p class="datos">Apellidos: <span class="datos-user"> {{ datos[0].apellidos }}</span></p>
+                                <p class="datos">DNI: <span class="datos-user"> {{ datos[0].dni }}</span></p>
+                                <p class="datos">Fecha de nacimiento: <span class="datos-user"> {{ datos[0].fechNacimiento | date:'dd-MM-yyyy'}}</span></p>
                             </div>
                             <div class="col-sm-6">
                                 <p class="datos">Dirección: <span class="datos-user"> {{ datos[0].direccion.calle + " " + datos[0].direccion.num }}</span></p>
@@ -85,8 +99,12 @@
                         </div>
 
                     </div>
-                    <div class="col-sm-2">
-                      <button class="btn btn-default">Editar perfil</button>
+                    <div class="col-sm-2" ng-hide="editor">
+                        <button class="btn btn-default" ng-click="editar()">Editar perfil</button>
+                    </div>
+                    <div class="col-sm-2" ng-show="editor">
+                        <button class="btn btn-default" ng-click="guardar()">Guardar</button>
+                        <button class="btn btn-default" ng-click="cancelar()">Cancelar</button>
                     </div>
                 </div>
             </div>
