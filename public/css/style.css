@@ -6,6 +6,10 @@ body {
     height: 100%;
 }
 
+.logoResponsive{
+    max-width: 100%;
+}
+
 /* Menú */
 .navbar {
     margin-bottom: 0px;
