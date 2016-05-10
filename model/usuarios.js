@@ -19,11 +19,7 @@ var schemaUser = new schema ({
         pais: String,
     },
     fechNacimiento: Date,
-    test:{
-        idTema: Number,
-        fechTest: Date,
-        errores: Number
-    },
+    test:[schema.ObjectId],
     examen:{
         fechTeorico: [Date],
         fechPractico: [Date],

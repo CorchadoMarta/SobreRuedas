@@ -12,6 +12,7 @@
                     <label>Escoge Tema</label>
                     <button type='button' class='btn btn-default'>Escoger</button>
                     <button type='button' class='btn btn-default' data-toggle='modal' data-target='#ISesion'>Empezar</button>
+                    <p>{{}}</p>
                 </div>
 
 
@@ -35,7 +36,6 @@
                                 </a>
                             </li>
                             <li ng-repeat="x in eventSource" value="{{ $index }}" ng-model="disa" name="index" ng-click="moveIndex($index)"><a href="#">{{ $index+1 }}</a> 
-                                <!--  ng-if=" position == $index "--> 
                             </li>
                             <li >
                               <a aria-label="Next" ng-click="move(1)" >

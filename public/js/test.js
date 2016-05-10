@@ -2,7 +2,7 @@ angular.module("testUser.tpls", ["template/testUser/resultado.html", "template/t
 
 angular.module('testUser', ["testUser.tpls"]).controller('hacerTest', ['$scope', '$http' , function ($scope, $http) {
     'use strict';
-    
+
     $scope.position = 0;
 
     $scope.respUsusario = new Array(30);
@@ -57,6 +57,17 @@ angular.module('testUser', ["testUser.tpls"]).controller('hacerTest', ['$scope',
         };
         $scope.acabado = true;
         $scope.corregirEstilos();
+
+        var parametroTest = { fallos: $scope.fallos , idTema : $scope.eventSource[0].idTema};
+
+        $http.post('/guardarTest', parametroTest)
+        .success(function() {
+            console.log('Guardado Test');
+        })
+        .error(function() {
+            console.log('Error');
+        });
+
     };
 
 
@@ -68,6 +79,14 @@ angular.module('testUser', ["testUser.tpls"]).controller('hacerTest', ['$scope',
         })
         .error(function(events) {
             console.log('Error: ' + events);
+        });
+
+        $http.get('/testsDelUser')
+        .success(function(eve) {
+            $scope.ultimosTest = eve;
+        })
+        .error(function(eve) {
+            console.log('Error: ' + eve);
         });
     };
 
