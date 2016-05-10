@@ -23,8 +23,7 @@
                             </div>
                             <div class="modal-body">
                                 <br>
-                                <test ng-hide="position == 30" ng-show="position != 30"></test>
-                                <fin ng-hide="position != 30" ng-show="position == 30"></fin>
+                                <test ></test>
                             </div>
                             <div class="modal-footer align-center">
 
@@ -44,6 +43,20 @@
                                     </a>
                                 </li>
                             </ul>
+
+
+                                   <div class='form-group'>
+           <div class='col-sm-offset-2 col-sm-10'>
+               <button ng-hide="acabado" class='btn btn-default' data-dismiss='modal'>Cancelar</button>
+           </div>
+           <div class='col-sm-offset-2 col-sm-10'>
+               <button ng-hide="acabado" type='submit' class='btn btn-default' ng-click='corregir()'>Acabar</button>
+           </div>
+           <div  ng-show="acabado" class='col-sm-offset-2 col-sm-10'>
+               <button type='submit' class='btn btn-default' data-dismiss='modal' ng-click='reset()'>Finalizar</button>
+               <h3>{{ fallos }} fallos</h3>
+           </div>
+       </div>
 
                         </div>
                     </div>

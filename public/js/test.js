@@ -4,9 +4,11 @@ angular.module('testUser', ["testUser.tpls"]).controller('hacerTest', ['$scope',
     'use strict';
     $scope.position = 0;
 
-    $scope.respUsusario = [];
+    $scope.respUsusario = new Array(30);
 
-    $scope.respPreg;
+    $scope.respPreg = {checked: false};
+
+    $scope.acabado = false;
 
 /*    $scope.indexPos = {checked: false};
 
@@ -18,6 +20,13 @@ angular.module('testUser', ["testUser.tpls"]).controller('hacerTest', ['$scope',
         }
     };*/
 
+    $scope.reset = function () {
+        $scope.position = 0;
+        $scope.respUsusario = new Array(30);
+        $scope.respPreg = {checked: false};
+        $scope.acabado = false;
+    };
+
     $scope.moveIndex = function (pos) {
             $scope.position = pos;
             if($scope.respUsusario[$scope.position] == undefined){
@@ -27,6 +36,18 @@ angular.module('testUser', ["testUser.tpls"]).controller('hacerTest', ['$scope',
             }   
            
     };
+
+    $scope.corregir = function () {
+        $scope.fallos = 0;
+        for(var i=0; i <  $scope.respUsusario.length ; i++){
+            console.log($scope.eventSource[i].respuestas.solucion + "respuestas " + $scope.respUsusario[i]);
+            if($scope.eventSource[i].respuestas.solucion != $scope.respUsusario[i]){
+                $scope.fallos++;
+            }
+        };
+        $scope.acabado = true;
+    };
+
 
     $scope.loadEvents = function () {
 
@@ -109,32 +130,32 @@ angular.module("template/testUser/inicio.html", []).run(["$templateCache", funct
 
 angular.module("template/testUser/test.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("template/testUser/test.html",
-    "            <div class='form-group'>\n" +
-    "                <p>{{eventSource[position].pregunta}}</p>\n" +
-    "                <div class='form-group'>\n" +
-    "                    <input type='radio' name='respuesta' value='0' ng-model='respPreg' ng-change='myFunc()' >{{eventSource[position].respuestas.respuesta[0]}}</input><br>\n" +
-    "                    <input type='radio' name='respuesta' value='1' ng-model='respPreg' ng-change='myFunc()' >{{eventSource[position].respuestas.respuesta[1]}}</input><br>\n" +
-    "                    <input type='radio' name='respuesta' value='2' ng-model='respPreg' ng-change='myFunc()' >{{eventSource[position].respuestas.respuesta[2]}}</input><br>\n" +
-    "                </div>\n" +
-    "            </div>");
+    "<div class='form-group'>\n" +
+    "   <p>{{(position+1) + '. ' + eventSource[position].pregunta}}</p>\n" +
+    "   <div class='form-group'>\n" +
+    "       <input type='radio' name='respuesta' value='0' ng-model='respPreg' ng-disabled='acabado' ng-change='myFunc()' >{{eventSource[position].respuestas.respuesta[0]}}</input><br>\n" +
+    "       <input type='radio' name='respuesta' value='1' ng-model='respPreg' ng-disabled='acabado' ng-change='myFunc()' >{{eventSource[position].respuestas.respuesta[1]}}</input><br>\n" +
+    "       <input type='radio' name='respuesta' value='2' ng-model='respPreg' ng-disabled='acabado' ng-change='myFunc()' >{{eventSource[position].respuestas.respuesta[2]}}</input><br>\n" +
+    "   </div>\n" +
+    "</div>");
 }]);
 
 angular.module("template/testUser/fin.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("template/testUser/fin.html",
 
-    "                                <div>\n" +
-    "                                <div>\n" +
-    "                                    <span>¿ Quieres acabar el test?</span>\n" +
-    "                                </div>\n" +
-    "                            <div class='form-group'>\n" +
-    "                              <div class='col-sm-offset-2 col-sm-10'>\n" +
-    "                               <button class='btn btn-default' data-dismiss='modal'>Cancelar</button>\n" +
-    "                            </div>\n" +
-    "                            <div class='col-sm-offset-2 col-sm-10'>\n" +
-    "                                <button type='submit' class='btn btn-default'>Acabar</button>\n" +
-    "                            </div>\n" +
-    "                            </div>\n" +
-    "                        </div>");
+    "<div>\n" +
+    "   <div>\n" +
+    "       <span>¿ Quieres acabar el test?</span>\n" +
+    "   </div>\n" +
+    "   <div class='form-group'>\n" +
+    "       <div class='col-sm-offset-2 col-sm-10'>\n" +
+    "           <button class='btn btn-default' data-dismiss='modal'>Cancelar</button>\n" +
+    "       </div>\n" +
+    "       <div class='col-sm-offset-2 col-sm-10'>\n" +
+    "           <button type='submit' class='btn btn-default' ng-click='corregir()'>Acabar</button>\n" +
+    "       </div>\n" +
+    "   </div>\n" +
+    "</div>");
 
 }]);
 
