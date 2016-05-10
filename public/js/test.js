@@ -10,6 +10,8 @@ angular.module('testUser', ["testUser.tpls"]).controller('hacerTest', ['$scope',
 
     $scope.acabado = false;
 
+    $scope.estilazo = new Array(3);
+
 /*    $scope.indexPos = {checked: false};
 
     $scope.myPosition = function (index) {
@@ -28,13 +30,13 @@ angular.module('testUser', ["testUser.tpls"]).controller('hacerTest', ['$scope',
     };
 
     $scope.moveIndex = function (pos) {
-            $scope.position = pos;
-            if($scope.respUsusario[$scope.position] == undefined){
-                $scope.respPreg = {checked: false};
-            } else {
-                $scope.respPreg = $scope.respUsusario[$scope.position];
-            }   
-           
+        $scope.position = pos;
+        if($scope.respUsusario[$scope.position] == undefined){
+            $scope.respPreg = {checked: false};
+        } else {
+            $scope.respPreg = $scope.respUsusario[$scope.position];
+        }   
+
     };
 
     $scope.corregir = function () {
@@ -68,14 +70,27 @@ angular.module('testUser', ["testUser.tpls"]).controller('hacerTest', ['$scope',
 
             } else {
                 $scope.respPreg = $scope.respUsusario[$scope.position];
-            }   
-        };
+            }
+            if($scope.acabado == true){
+                $scope.estilazo = [];
+                var resultStyle = $scope.eventSource[$scope.position].respuestas.solucion;
+                $scope.estilazo[resultStyle] = {color: 'green'};
+                
+/*            if($scope.eventSource[i].respuestas.solucion != $scope.respUsusario[i]){
+                $scope.estilazo[($scope.eventSource[i].respuestas.solucion)] = {color: green};
+                $scope.estilazo[($scope.respUsusario[i])] = {color: red};
+            };*/
+            console.log($scope.estilazo);
+
+        };   
 
     };
 
-    $scope.myFunc = function (pos) {
-        $scope.respUsusario[$scope.position] = $scope.respPreg;
-    };
+};
+
+$scope.myFunc = function (pos) {
+    $scope.respUsusario[$scope.position] = $scope.respPreg;
+};
 
 }])
 .directive('resultado', function () {
@@ -133,9 +148,9 @@ angular.module("template/testUser/test.html", []).run(["$templateCache", functio
     "<div class='form-group'>\n" +
     "   <p>{{(position+1) + '. ' + eventSource[position].pregunta}}</p>\n" +
     "   <div class='form-group'>\n" +
-    "       <input type='radio' name='respuesta' value='0' ng-model='respPreg' ng-disabled='acabado' ng-change='myFunc()' >{{eventSource[position].respuestas.respuesta[0]}}</input><br>\n" +
-    "       <input type='radio' name='respuesta' value='1' ng-model='respPreg' ng-disabled='acabado' ng-change='myFunc()' >{{eventSource[position].respuestas.respuesta[1]}}</input><br>\n" +
-    "       <input type='radio' name='respuesta' value='2' ng-model='respPreg' ng-disabled='acabado' ng-change='myFunc()' >{{eventSource[position].respuestas.respuesta[2]}}</input><br>\n" +
+    "       <input type='radio' name='respuesta' value='0' ng-model='respPreg' ng-disabled='acabado' ng-change='myFunc()' ><span ng-style='{{ estilazo[0] }}' >{{eventSource[position].respuestas.respuesta[0]}}</span></input><br>\n" +
+    "       <input type='radio' name='respuesta' value='1' ng-model='respPreg' ng-disabled='acabado' ng-change='myFunc()' ><span ng-style='{{ estilazo[1] }}' >{{eventSource[position].respuestas.respuesta[1]}}</span></input><br>\n" +
+    "       <input type='radio' name='respuesta' value='2' ng-model='respPreg' ng-disabled='acabado' ng-change='myFunc()' ><span ng-style='{{ estilazo }}' >{{eventSource[position].respuestas.respuesta[2]}}</span></input><br>\n" +
     "   </div>\n" +
     "</div>");
 }]);

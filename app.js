@@ -32,16 +32,14 @@ if(process.env.OPENSHIFT_MONGODB_DB_URL){
 // configuración inicial para la conexión al servidor mongo mediante mongoose
 mongoose.connect(mongodb_connection_string, function(err, res){
     if (!err)
-        console.log("Conexión establecida!");
+        console.log("Conexión establecida con mongo!");
     else
-        console.log("SIN conexión");
+        console.log("SIN conexión a mongo  TT");
 });
-
 // imprime cualquier consulta por la consola
 app.use(morgan('dev')); 
 // añade módulos de seguridad
 // app.use(helmet());
-
 // lee las cookies (necesario para autenticar)
 app.use(cookieParser()); 
 
