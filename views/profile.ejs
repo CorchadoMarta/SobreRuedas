@@ -1,76 +1,108 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
+<html lang="es" ng-app="datosUser">
+    <head>
+        <meta charset="UTF-8">
 
-    <!-- Bootstrap Core CSS -->
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <link rel="stylesheet" href="css/bootstrap.css">
+        <!-- Bootstrap Core CSS -->
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <link rel="stylesheet" href="css/bootstrap.css">
 
-    <!--FAVICON -->
-    <link href="img/favicon.ico" rel="icon">
+        <!--FAVICON -->
+        <link href="img/favicon.ico" rel="icon">
 
-    <!--SEO Elements -->
-    <title>Autoescuela Sobre Ruedas | La mejor autoescuela del mundo mundial</title>
-    <meta name="Description" content="La mejor autoescuela del mundo mundial." >
-    <meta name="Keywords" content="Autoescuela, clases de teorica, practicas de conducir, coche, carné de coche.">
+        <!--SEO Elements -->
+        <title>Autoescuela Sobre Ruedas | La mejor autoescuela del mundo mundial</title>
+        <meta name="Description" content="La mejor autoescuela del mundo mundial." >
+        <meta name="Keywords" content="Autoescuela, clases de teorica, practicas de conducir, coche, carné de coche.">
 
-    <!-- Custom CSS -->
-    <link href="css/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+        <!-- Custom CSS -->
+        <link href="css/style.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
-    <!-- Typography -->
-    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,900,300italic,400italic,900italic' rel='stylesheet' type='text/css'>
+        <!-- Typography -->
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,300,900,300italic,400italic,900italic' rel='stylesheet' type='text/css'>
 
-    <!-- Jquery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+        <!-- Jquery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+
+           
+    <script src="http://cdn.staticfile.org/angular.js/1.2.10/angular.min.js"></script>
+    <script src="js/datosUser.js"></script>
 
 
+    </head>
+    <body data-spy="scroll" data-target=".navbar" data-offset="50">
 
-</head>
-<body data-spy="scroll" data-target=".navbar" data-offset="50">
-    
-    <!-- Menú -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" data-spy="affix" data-offset-top="197" role="navigation">
-        <div class="container">
-            <p class="container">
-                <!-- Hamburguesa -->
+        <!-- Menú -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" data-spy="affix" data-offset-top="197" role="navigation">
+            <div class="container">
+                <p class="container">
+                    <!-- Hamburguesa -->
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse"
-                    data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Desplegar navegación</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand visible-xs-block" href="#" id="cabecera-responsive"> <img src="img/imagotip.png" id="logo-cabecera" /> SOBRE RUEDAS</a>
+                            data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">Desplegar navegación</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand visible-xs-block" href="#" id="cabecera-responsive"> <img src="img/imagotip.png" id="logo-cabecera" /> SOBRE RUEDAS</a>
+                </div>
+
+                <!-- Menú -->
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <a class="navbar-brand hidden-xs" href="#" id="cabecera-responsive"> <img src="img/imagotip.png" id="logo-cabecera" /> SOBRE RUEDAS</a>
+                    <ul class="nav navbar-nav navbar-right">
+                        <%- include(botonRegistro) %>
+                    </ul>
+                </div>
+                </p>
             </div>
+        </nav>
+    <!-- Cabecera -->
+    <div id="container-img-profile" ng-controller="datosUsuario">
+        <div class="container">
+            <div id="panel-form">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <img src="img/avatar.gif" class="img-circle img-user-profile" />
+                    </div>
+                    <div class="col-sm-6" ng-init="datosUserFunction()">
+                        <p class="title">Datos de perfil</p>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p class="datos">Nombre: <span class="datos-user"> {{ datos[0].nombre }}</span></p>
+                                <p class="datos">Apellidos: <span class="datos-user"> {{ datos[0].apellidos }}</span></p>
+                                <p class="datos">DNI: <span class="datos-user"> {{ datos[0].dni }}</span></p>
+                                <p class="datos">Fecha de nacimiento: <span class="datos-user"> {{ datos[0].fechNacimiento }}</span></p>
+                            </div>
+                            <div class="col-sm-6">
+                                <p class="datos">Dirección: <span class="datos-user"> {{ datos[0].direccion.calle + " " + datos[0].direccion.num }}</span></p>
+                                <p class="datos">Codigo postal: <span class="datos-user"> {{ datos[0].direccion.cp }}</span></p>
+                                <p class="datos">Provincia: <span class="datos-user"> {{ datos[0].direccion.provincia }}</span></p>
+                                <p class="datos">País: <span class="datos-user"> {{ datos[0].direccion.pais }}</span></p>
+                            </div>
+                        </div>
 
-            <!-- Menú -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <a class="navbar-brand hidden-xs" href="#" id="cabecera-responsive"> <img src="img/imagotip.png" id="logo-cabecera" /> SOBRE RUEDAS</a>
-                <ul class="nav navbar-nav navbar-right">
-                    <%- include(botonRegistro) %>
-                </ul>
+                    </div>
+                    <div class="col-sm-2">
+                      <button class="btn btn-default">Editar perfil</button>
+                    </div>
+                </div>
             </div>
-        </p>
-    </div>
-</nav>
-<!-- Cabecera -->
-<div id="container-img-bienvenido">
-
-</div>   
+        </div>
+    </div>   
 
 
-<!-- Footer -->
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-3">
-                <p><a class="navbar-brand hidden-xs" href="#" id="cabecera-responsive"> <img src="img/imagotip.png" id="logo-cabecera" /> SOBRE RUEDAS</a></p>
-                <br><br>
-                <p id="location-footer">C/ La Vila Del Pingüí, 26
-                    <br> Bajos, Barcelona 000000<br> España</p>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <p><a class="navbar-brand hidden-xs" href="#" id="cabecera-responsive"> <img src="img/imagotip.png" id="logo-cabecera" /> SOBRE RUEDAS</a></p>
+                    <br><br>
+                    <p id="location-footer">C/ La Vila Del Pingüí, 26
+                        <br> Bajos, Barcelona 000000<br> España</p>
                 </div>
                 <div class="col-sm-3">
                 </div>
@@ -97,6 +129,6 @@
     </footer>
     <!-- Fin Footer -->
     <script src="js/bootstrap.min.js"></script>
-</body>
+    </body>
 </html>
 

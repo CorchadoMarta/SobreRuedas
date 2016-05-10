@@ -64,6 +64,24 @@ module.exports = function (app, passport){
         res.render('practicas.ejs',
                    {botonRegistro: 'partials/'+ role + '/botonUser', nombre: req.user.nombre, calendarUser: 'partials/' + role + '/calendar.ejs'});
     });
+    
+    app.get('/perfil',  isLoggedIn, function(req, res) {
+        var role = req.user.role;
+        res.render('profile.ejs',
+                   {botonRegistro: 'partials/'+ role + '/botonUser', nombre: req.user.nombre});
+    });
+    
+    app.get('/datosUser',  isLoggedIn, function(req, res) {
+console.log( req.user._id);
+         usuarios.find({'_id': req.user._id},{email: 1, nombre: 1, apellidos: 1, tel: 1, fechNacimiento: 1, dni: 1, direccion: 1} ,function(err, usuario) {
+            // si hay un error se envía. no se ejecutará nada después de res.send(err)
+            if (err)
+                res.send(err)
+                console.log(usuario);
+                res.json(usuario);
+        });
+    });
+    
 
     app.get('/registro', function(req, res) {
         res.render('registro.ejs',  { botonRegistro: 'partials/publico/BotonRegistro'});
