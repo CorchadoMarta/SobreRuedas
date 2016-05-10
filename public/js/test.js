@@ -67,8 +67,19 @@ angular.module('testUser', ["testUser.tpls"]).controller('hacerTest', ['$scope',
         .error(function() {
             console.log('Error');
         });
+        $scope.cargarResultados();
 
     };
+    $scope.cargarResultados = function () {
+        $http.get('/testsDelUser')
+        .success(function(eve) {
+            $scope.ultimosTest = eve;
+        })
+        .error(function(eve) {
+            console.log('Error: ' + eve);
+        });
+    };
+
 
 
     $scope.loadEvents = function () {
@@ -81,13 +92,7 @@ angular.module('testUser', ["testUser.tpls"]).controller('hacerTest', ['$scope',
             console.log('Error: ' + events);
         });
 
-        $http.get('/testsDelUser')
-        .success(function(eve) {
-            $scope.ultimosTest = eve;
-        })
-        .error(function(eve) {
-            console.log('Error: ' + eve);
-        });
+        $scope.cargarResultados();
     };
 
     $scope.move = function (pos) {

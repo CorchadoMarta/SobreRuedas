@@ -80,6 +80,15 @@ module.exports = function (app, passport){
             res.json(usuario);
         });
    });
+
+        app.get('/testsDelUser',  isLoggedIn, function(req, res) {
+       userTest.find({'userId': req.user._id} ,function(err, tests) {
+            // si hay un error se envía. no se ejecutará nada después de res.send(err)
+            if (err)
+                res.send(err)
+            res.json(tests);
+        });
+   });
     
 
     app.get('/registro', function(req, res) {
