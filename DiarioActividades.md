@@ -24,3 +24,7 @@ Día | Tiempo dedicado (horas) | Descripción de la tarea
 04/05/2016 | 5h | Admin busca usuarios por nombre o dni (angular - escoger uno). Realización de test online
 05/05/2016 | 4h | Frontend en la compra de prácticas. Realización de test online
 06/05/2016 | 4h | Despliegue en Openshift. Realización de test online
+07/05/2016 | 4h | Paginación de los test en boostrap y mejora en la búsqueda de usuarios
+09/05/2016 | 4h | Plantilla de perfil de usuario y corrección de test.
+10/05/2016 | 5h | Mejora del perfil de usuario y actualización en la base de datos de los test.
+11/05/2016 | 6h | Envío de correos y actualización del perfil.
