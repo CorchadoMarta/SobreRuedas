@@ -22,6 +22,15 @@
         <!-- Typography -->
         <link href='https://fonts.googleapis.com/css?family=Lato:400,300,900,300italic,400italic,900italic' rel='stylesheet' type='text/css'>
 
+        <!-- LINKS VALIDATORS -->
+        <link rel="stylesheet" href="css/bootstrapValidator.css"/>
+        <script  type="text/javascript" src="js/bootstrapValidator.js"></script>
+        <!-- datepicker bootstrap -->
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" />
+
+
+        <script  src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
+
         <!-- Jquery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 
@@ -84,17 +93,26 @@
                             </div>
                         </div>
                         <div class="row" ng-show="editor">
+                            <form id="validatorForm" class="form-horizontal" role="form" action="" method="post" >
                             <div class="col-sm-6">
-                                <p class="datos">Nombre: <span class="datos-user"><input ng-model="editaNombre" ng-show="editor" placeholder="{{ datos[0].nombre }}"></span></p>
-                                <p class="datos">Apellidos: <span class="datos-user"> {{ datos[0].apellidos }}</span></p>
-                                <p class="datos">DNI: <span class="datos-user"> {{ datos[0].dni }}</span></p>
-                                <p class="datos">Fecha de nacimiento: <span class="datos-user"> {{ datos[0].fechNacimiento | date:'dd-MM-yyyy'}}</span></p>
+                                <p class="datos">Nombre: <span class="datos-user"><input type="text" class="form-control" name="nombre" ng-model="editaNombre" ng-show="editor" placeholder="{{ datos[0].nombre }}"></span></p>
+                                <p class="datos">Apellidos: <span class="datos-user"><input type="text" class="form-control" name="apellidos" ng-model="editaApellidos" ng-show="editor" placeholder="{{ datos[0].apellidos }}"></span></p>
+                                <p class="datos">DNI: <span class="datos-user"><input type="text" class="form-control" name="dni" ng-model="editaDni" ng-show="editor" placeholder="{{ datos[0].dni }}"></span></p>
+                                <p class="datos">Fecha de nacimiento: <span class="datos-user">
+
+                                    <div class="input-group input-append date" id="datePicker">
+                                        <input type="text" class="form-control" name="fechNacimiento" ng-model="editaFecha" ng-show="editor" placeholder="{{ datos[0].fechNacimiento | date:'dd-MM-yyyy'}}" />
+                                        <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                                    </div>
+
+                                    </span></p>
                             </div>
                             <div class="col-sm-6">
-                                <p class="datos">Dirección: <span class="datos-user"> {{ datos[0].direccion.calle + " " + datos[0].direccion.num }}</span></p>
-                                <p class="datos">Codigo postal: <span class="datos-user"> {{ datos[0].direccion.cp }}</span></p>
-                                <p class="datos">Provincia: <span class="datos-user"> {{ datos[0].direccion.provincia }}</span></p>
-                                <p class="datos">País: <span class="datos-user"> {{ datos[0].direccion.pais }}</span></p>
+                                <p class="datos">Dirección: <span class="datos-user"><input type="text" class="form-control" name="calle" ng-model="editaCalle" ng-show="editor" placeholder="{{ datos[0].direccion.calle }}"></span>
+                                    Numero:<span class="datos-user"><input type="text" class="form-control" name="num" ng-model="editaNum" ng-show="editor" placeholder="{{ datos[0].direccion.num }}"></span></p>
+                                <p class="datos">Codigo postal: <span class="datos-user"><input type="text" class="form-control" name="cp" ng-model="editaCp" ng-show="editor" placeholder="{{ datos[0].direccion.cp }}"></span></p>
+                                <p class="datos">Provincia: <span class="datos-user"><input type="text" class="form-control" name="provincia" ng-model="editaProvincia" ng-show="editor" placeholder="{{ datos[0].direccion.provincia }}"></span></p>
+                                <p class="datos">País: <span class="datos-user"><input type="text" class="form-control" name="pais" ng-model="editaPais" ng-show="editor" placeholder="{{ datos[0].direccion.pais }}"></span></p>
                             </div>
                         </div>
 
@@ -105,12 +123,164 @@
                     <div class="col-sm-3" ng-show="editor">
                         <button class="btn btn-default" ng-click="guardar()">Guardar</button>
                         <button class="btn btn-default" ng-click="cancelar()">Cancelar</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>   
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#datePicker').datepicker({
+                format: 'mm/dd/yyyy',
+                startDate: '01/01/1950',
+                endDate: '30/12/1998'
+            });
 
+
+
+            var url = window.location.href; 
+            var nuevaVar = url.slice(-1);
+            $('#inlineRadio' + nuevaVar).prop( "checked", true );
+            $('#validatorForm').bootstrapValidator({
+                message: 'Campo no válido, vuelve a intentarlo',
+                feedbackIcons: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },
+                fields: {
+                    nombre: {
+                        row: '.col-sm-4',
+                        message: 'Nombre no válido',
+                        validators: {
+                            notEmpty: {
+                                message: 'El nombre és obligatorio, no puede esta vacio'
+                            },
+                            stringLength: {
+                                min: 3,
+                                max: 50,
+                                message: 'El nombre no puede ser más corto de 2 letras ni más largo de 20'
+                            },
+                            regexp: {
+                                regexp: /^[ñA-Za-z _]*[ñA-Za-z][ñA-Za-z _]*$/,
+                                message: 'El nombre solo puede contener letras y espacios'
+                            }
+                        }
+                    },
+                    apellidos: {
+                        message: 'Apellidos no válidos',
+                        validators: {
+                            notEmpty: {
+                                message: 'El apellido és obligatorio, no puede esta vacio'
+                            },
+                            stringLength: {
+                                min: 3,
+                                max: 20,
+                                message: 'El apellido no puede ser más corto de 2 letras ni más largo de 20'
+                            },
+                            regexp: {
+                                regexp: /^[ñA-Za-z _]*[ñA-Za-z][ñA-Za-z _]*$/,
+                                message: 'El apellido solo puede contener letras y espacios'
+                            }
+                        }
+                    },
+                    dni: {
+                        validators: {
+                            id: {
+                                country: 'ES',
+                                message: 'DNI no válido (recuerda: letras en mayúscula)'
+                            }
+                        }
+                    },
+                    fechNacimiento: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Necesitas escoger una fecha'
+                            },
+                            date: {
+                                format: 'MM/DD/YYYY',
+                                message: 'La fecha no es válida.'
+                            }
+                        }
+                    },
+                    calle: {
+                        message: 'Dirección no valida',
+                        validators: {
+                            notEmpty: {
+                                message: 'La dirección és obligatoria, no puede esta vacio'
+                            },
+                            stringLength: {
+                                min: 3,
+                                max: 20,
+                                message: 'La dirección no puede ser más corto de 2 letras ni más largo de 20'
+                            },
+                            regexp: {
+                                regexp: /^[a-zA-Z0-9\s]+$/,
+                                message: 'La dirección solo puede contener letras, numeros y espacios'
+                            }
+                        }
+                    },
+                    num: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Campo obligatorio, no puede estar vacío'
+                            },
+                            regexp: {
+                                message: 'El numero tiene un máximo de 4 cifras',
+                                regexp: /^[0-9]{1,4}$/
+                            }
+                        }
+                    },
+                    cp: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Campo obligatorio, no puede estar vacío'
+                            },
+                            regexp: {
+                                message: 'El codigo postal sólo puede contener 5 numeros',
+                                regexp: /^[0-9]{5}$/
+                            }
+                        }
+                    },
+                    provincia: {
+                        message: 'Provincia no válida',
+                        validators: {
+                            notEmpty: {
+                                message: 'La provincia és obligatoria, no puede estar vacio'
+                            },
+                            stringLength: {
+                                min: 2,
+                                max: 20,
+                                message: 'La provincia no puede ser más corta de 2 letras ni más largo de 20'
+                            },
+                            regexp: {
+                                regexp: /^[a-zA-Z]+$/,
+                                message: 'La provincia solo puede contener letras'
+                            }
+                        }
+                    },
+                    pais: {
+                        message: 'País no válida',
+                        validators: {
+                            notEmpty: {
+                                message: 'El país és obligatorio, no puede estar vacio'
+                            },
+                            stringLength: {
+                                min: 2,
+                                max: 20,
+                                message: 'El país no puede ser más corto de 2 letras ni más largo de 20'
+                            },
+                            regexp: {
+                                regexp: /^[a-zA-Z]+$/,
+                                message: 'El país solo puede contener letras'
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
 
     <!-- Footer -->
     <footer>

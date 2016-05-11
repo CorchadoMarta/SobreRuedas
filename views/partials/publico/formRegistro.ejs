@@ -43,10 +43,10 @@
 
                     <label class="control-label col-sm-2">Fecha de nacimiento:</label>
                     <div class="col-sm-2 date">
-                       <div class="input-group input-append date" id="datePicker">
-                <input type="text" class="form-control" name="fechNacimiento" />
-                <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
-            </div>
+                        <div class="input-group input-append date" id="datePicker">
+                            <input type="text" class="form-control" name="fechNacimiento" />
+                            <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                        </div>
                     </div>
                     <label class="control-label col-sm-1">DNI-NIE:</label>
                     <div class="col-sm-3">
@@ -79,15 +79,15 @@
                 </div>
 
                 <!--<div class="form-group">
-                    <label class="control-label col-sm-2">Imagen de usuario:</label>
-                    <div class="col-sm-4">
-                        <input id="pdffile"  accept="image/*" style="visibility: hidden; height: 0px" name="file" type="file" />
-                        <div class="input-group">
-                            <input class="input-xlarge form-control" id="subfile" name="subfile" type="text"/>
-                            <span class="input-group-addon btn btn-default" onclick="$('#pdffile').click();">Archivo</span>
-                        </div>
-                    </div>
-                </div>-->
+<label class="control-label col-sm-2">Imagen de usuario:</label>
+<div class="col-sm-4">
+<input id="pdffile"  accept="image/*" style="visibility: hidden; height: 0px" name="file" type="file" />
+<div class="input-group">
+<input class="input-xlarge form-control" id="subfile" name="subfile" type="text"/>
+<span class="input-group-addon btn btn-default" onclick="$('#pdffile').click();">Archivo</span>
+</div>
+</div>
+</div>-->
                 <div class="form-group">
                     <label class="control-label col-sm-2">Tipo de contrato:</label>
                     <div class="col-sm-4">
@@ -121,17 +121,17 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
- $('#datePicker').datepicker({
-    format: 'mm/dd/yyyy',
-                startDate: '01/01/1950',
+        $('#datePicker').datepicker({
+            format: 'mm/dd/yyyy',
+            startDate: '01/01/1950',
             endDate: '30/12/1998'
         });
 
 
 
-    var url = window.location.href; 
-    var nuevaVar = url.slice(-1);
-    $('#inlineRadio' + nuevaVar).prop( "checked", true );
+        var url = window.location.href; 
+        var nuevaVar = url.slice(-1);
+        $('#inlineRadio' + nuevaVar).prop( "checked", true );
         $('#validatorForm').bootstrapValidator({
             message: 'Campo no válido, vuelve a intentarlo',
             feedbackIcons: {
