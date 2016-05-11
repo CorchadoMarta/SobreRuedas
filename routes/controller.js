@@ -21,266 +21,237 @@ module.exports = function (app, passport){
       auth: {
         api_key: 'key-d1833c38c633fd419bc1b153dc646a7e',
         domain: 'sandboxb03aac7bff2740b6b02096754ca89497.mailgun.org'
+        }
     }
-}
 
-var nodemailerMailgun = nodemailer.createTransport(mg(auth));
+    var nodemailerMailgun = nodemailer.createTransport(mg(auth));
 
-var j = schedule.scheduleJob('15 20 * * 1,2,3,4,5', function(){
-  nodemailerMailgun.sendMail({
-      from: 'noreply@sobreruedas.com',
-          to: ['sobreruedas.dova@gmail.com', 'sobre.ruedas.autoescuela@gmail.com'], // An array if you have multiple recipients.
-          subject: 'Prueba1',
-          text: 'Hasta otra, madafaka!',
-      }, function (err, info) {
-          if (err) {
-            console.log('Error: ' + err);
-        }
-        else {
-            console.log('Response: ' + info);
-        }
-    });
-});
-
-j;
-
-
-
-app.get('/logout',function(req,res){
-    req.session.destroy(function(err) {
-        if(err) {
-            console.log(err);
-        } else {
-            res.redirect('/');
-        }
+    var j = schedule.scheduleJob('15 21 * * 1,2,3,4,5', function(){
+      nodemailerMailgun.sendMail({
+          from: 'noreply@sobreruedas.com',
+              to: ['sobreruedas.dova@gmail.com', 'sobre.ruedas.autoescuela@gmail.com'], // An array if you have multiple recipients.
+              subject: 'YA VA!!!!',
+              text: 'Hasta otra, madafaka!',
+          }, function (err, info) {
+              if (err) {
+                console.log('Error: ' + err);
+            }
+            else {
+                console.log('Response: ' + info);
+            }
+        });
     });
 
-});
+    j;
 
-app.get('/tests', isLoggedIn , function(req, res) {
-    tests.find({},function(err, todos) {
-
-            // si hay un error se envía. no se ejecutará nada después de res.send(err)
-            if (err)
-                res.send(err)
-            res.json(todos);
+    app.get('/logout',function(req,res){
+        req.session.destroy(function(err) {
+            if(err) {
+                console.log(err);
+            } else {
+                res.redirect('/');
+            }
         });
-});
-
-app.get('/practis', isLoggedIn , function(req, res) {
-    practicas.find( function(err, Todos) {
-
-            // si hay un error se envía. no se ejecutará nada después de res.send(err)
-            if (err)
-                res.send(err)
-            res.json(Todos);
-        });
-});
-
-app.get('/pagos', isLoggedIn , function(req, res) {
-    pagos.find({'userId': req.user._id}, function(err, practis) {
-            // si hay un error se envía. no se ejecutará nada después de res.send(err)
-            if (err)
-                res.send(err)
-            res.json(practis);
-        });
-});
-
-app.get('/', function(req, res) {
-    res.render('index.ejs',
-     {botonRegistro: 'partials/publico/BotonRegistro'});
-});
-app.get('/test', isLoggedIn, function(req, res) {
-    var role = req.user.role;
-    res.render('teorica.ejs',
-     {botonRegistro: 'partials/'+ role + '/botonUser', nombre: req.user.nombre, testUser: 'partials/' + role + '/testUser.ejs'});
-});
-
-app.get('/calendar',  isLoggedIn, function(req, res) {
-    var role = req.user.role;
-    res.render('practicas.ejs',
-     {botonRegistro: 'partials/'+ role + '/botonUser', nombre: req.user.nombre, calendarUser: 'partials/' + role + '/calendar.ejs'});
-});
-
-app.get('/perfil',  isLoggedIn, function(req, res) {
-    var role = req.user.role;
-    res.render('profile.ejs',
-     {botonRegistro: 'partials/'+ role + '/botonUser', nombre: ""});
-});
-
-app.get('/datosUser',  isLoggedIn, function(req, res) {
-    usuarios.find({'_id': req.user._id},{email: 1, nombre: 1, apellidos: 1, tel: 1, fechNacimiento: 1, dni: 1, direccion: 1} ,function(err, usuario) {
-            // si hay un error se envía. no se ejecutará nada después de res.send(err)
-            if (err)
-                res.send(err)
-            res.json(usuario);
-        });
-});
-
-app.post('/editaDatosUser', function(req, res){
-    console.log(req.body);
-    usuarios.update({'_id': req.user._id}, { $set : req.body}, function(err) {
-        if (err){
-            res.send(err)
-            console.log('MAL updateado');
-        } else{
-            console.log("updateado");
-            res.redirect('/perfil');
-        }
 
     });
-});
 
-app.get('/testsDelUser',  isLoggedIn, function(req, res) {
-    userTest.find({'userId': req.user._id} ,function(err, tests) {
+    app.get('/tests', isLoggedIn , function(req, res) {
+        tests.find({},function(err, todos) {
+
                 // si hay un error se envía. no se ejecutará nada después de res.send(err)
                 if (err)
                     res.send(err)
-                res.json(tests);
+                res.json(todos);
             });
-});
+    });
 
+    app.get('/practis', isLoggedIn , function(req, res) {
+        practicas.find( function(err, Todos) {
 
-app.get('/registro', function(req, res) {
-    res.render('registro.ejs',  { botonRegistro: 'partials/publico/BotonRegistro'});
-});
-app.get('/registro:num', function(req, res) {
-    res.render('registro.ejs',  { botonRegistro: 'partials/publico/BotonRegistro'});
-});
+                // si hay un error se envía. no se ejecutará nada después de res.send(err)
+                if (err)
+                    res.send(err)
+                res.json(Todos);
+            });
+    });
 
-app.get('/bienvenido', isLoggedIn , function(req, res) {
-
-    var role = req.user.role;
-    res.render('bienvenido.ejs',
-     {botonRegistro: 'partials/'+ role + '/botonUser', nombre: req.user.nombre});
-
-});
-
-app.get('/alumnos', isLoggedIn , function(req, res) {
-    var role = req.user.role;
-    res.render('alumnos.ejs',
-     {botonRegistro: 'partials/'+ role + '/botonUser', nombre: req.user.nombre});
-});
-
-app.post('/buscar', isLoggedIn , function(req, res) {
-    var nombre = req.body.nombre;
-    if (nombre == undefined || nombre == ''){
-        nombre = 4;
-    }
-    usuarios.find({$or: [ {'nombre': {$regex:nombre, $options : 'i' }}, {'dni': req.body.dni} ] }, function(err, practis) {
+    app.get('/pagos', isLoggedIn , function(req, res) {
+        pagos.find({'userId': req.user._id}, function(err, practis) {
                 // si hay un error se envía. no se ejecutará nada después de res.send(err)
                 if (err)
                     res.send(err)
                 res.json(practis);
-
             });
-});
+    });
 
-        // se envía el formulario de registro
-        app.post('/registrar', passport.authenticate('local-signup', {
-            successRedirect : '/bienvenido', // si va bien se redirecciona hacia bienvenido
-            failureRedirect : '/registro', // si hay algún error vuelve al formulario de registro
-            failureFlash : true // permiso para los mensajes flash
-        }));
+    app.get('/', function(req, res) {
+        res.render('index.ejs',
+           {botonRegistro: 'partials/publico/BotonRegistro'});
+    });
 
-        app.post('/comprar', function(req, res, next){
+    app.get('/test', isLoggedIn, function(req, res) {
+        var role = req.user.role;
+        res.render('teorica.ejs',
+           {botonRegistro: 'partials/'+ role + '/botonUser', nombre: req.user.nombre, testUser: 'partials/' + role + '/testUser.ejs'});
+    });
 
-            pagos.find({'userId': req.user._id}, function(err, practis) {
+    app.get('/calendar',  isLoggedIn, function(req, res) {
+        var role = req.user.role;
+        res.render('practicas.ejs',
+           {botonRegistro: 'partials/'+ role + '/botonUser', nombre: req.user.nombre, calendarUser: 'partials/' + role + '/calendar.ejs'});
+    });
+
+    app.get('/perfil',  isLoggedIn, function(req, res) {
+        var role = req.user.role;
+        res.render('profile.ejs',
+           {botonRegistro: 'partials/'+ role + '/botonUser', nombre: ""});
+    });
+
+    app.get('/datosUser',  isLoggedIn, function(req, res) {
+        usuarios.find({'_id': req.user._id},{email: 1, nombre: 1, apellidos: 1, tel: 1, fechNacimiento: 1, dni: 1, direccion: 1} ,function(err, usuario) {
                 // si hay un error se envía. no se ejecutará nada después de res.send(err)
                 if (err)
                     res.send(err)
-                numPracticasComp = parseInt(req.body.uni) + parseInt((req.body.pack * 10));      
-                pagos.update({'userId': req.user._id}, { $inc : { numPracticasTotalPagadas:  numPracticasComp }}, function(err) {
+                res.json(usuario);
+            });
+    });
+
+    app.post('/editaDatosUser', function(req, res){
+        console.log(req.body);
+        usuarios.update({'_id': req.user._id}, { $set : req.body}, function(err) {
+            if (err){
+                res.send(err)
+                console.log('MAL updateado');
+            } else{
+                console.log("updateado");
+                res.redirect('/perfil');
+            }
+
+        });
+    });
+
+    app.get('/testsDelUser',  esAlumno, function(req, res) {
+        userTest.find({'userId': req.user._id} ,function(err, tests) {
+                    // si hay un error se envía. no se ejecutará nada después de res.send(err)
+                    if (err)
+                        res.send(err)
+                    res.json(tests);
+                });
+    });
+
+
+    app.get('/registro', function(req, res) {
+        res.render('registro.ejs',  { botonRegistro: 'partials/publico/BotonRegistro'});
+    });
+    app.get('/registro:num', function(req, res) {
+        res.render('registro.ejs',  { botonRegistro: 'partials/publico/BotonRegistro'});
+    });
+
+    app.get('/bienvenido', isLoggedIn , function(req, res) {
+
+        var role = req.user.role;
+        res.render('bienvenido.ejs',
+           {botonRegistro: 'partials/'+ role + '/botonUser', nombre: req.user.nombre});
+
+    });
+
+    app.get('/alumnos', esAdmin , function(req, res) {
+        var role = req.user.role;
+        res.render('alumnos.ejs',
+           {botonRegistro: 'partials/'+ role + '/botonUser', nombre: req.user.nombre});
+    });
+
+    app.post('/buscar', esAdmin , function(req, res) {
+        var nombre = req.body.nombre;
+        if (nombre == undefined || nombre == ''){
+            nombre = 4;
+        }
+        usuarios.find({$or: [ {'nombre': {$regex:nombre, $options : 'i' }}, {'dni': req.body.dni} ] }, function(err, practis) {
+                    // si hay un error se envía. no se ejecutará nada después de res.send(err)
+                    if (err)
+                        res.send(err)
+                    res.json(practis);
+
+                });
+    });
+
+    // se envía el formulario de registro
+    app.post('/registrar', passport.authenticate('local-signup', {
+        successRedirect : '/bienvenido', // si va bien se redirecciona hacia bienvenido
+        failureRedirect : '/registro', // si hay algún error vuelve al formulario de registro
+        failureFlash : true // permiso para los mensajes flash
+    }));
+
+    app.post('/comprar', function(req, res, next){
+
+        pagos.find({'userId': req.user._id}, function(err, practis) {
+            // si hay un error se envía. no se ejecutará nada después de res.send(err)
+            if (err)
+                res.send(err)
+            numPracticasComp = parseInt(req.body.uni) + parseInt((req.body.pack * 10));      
+            pagos.update({'userId': req.user._id}, { $inc : { numPracticasTotalPagadas:  numPracticasComp }}, function(err) {
+                if (err){
+                    res.send(err)
+                    console.log('MAL updateado');
+                } else{
+
+                    console.log("updateado");
+                    res.redirect('/calendar');
+                }
+
+            });
+
+        });
+
+    });
+
+
+
+    app.post('/guardarTest', function(req, res){
+
+        console.log(req.body);
+
+        var testUser = new userTest({'userId': req.user._id, 'fallos' : req.body.fallos, 'idTema' : req.body.idTema});
+        testUser.save(function(err) {
+            if (err){
+                res.send(err)
+                console.log('MAL guardado el test');
+            } else{
+                usuarios.update({'_id': req.user._id}, { $push : { 'test': testUser.id}}, function(err) {
                     if (err){
                         res.send(err)
-                        console.log('MAL updateado');
+                        console.log('MAL updateado en el usuario');
                     } else{
 
-                        console.log("updateado");
-                        res.redirect('/calendar');
+                        console.log("updateado el usuario");
+                        res.end();
                     }
 
                 });
-
-            });
-
-        });
-
-
-
-        app.post('/guardarTest', function(req, res){
-
-            console.log(req.body);
-
-            var testUser = new userTest({'userId': req.user._id, 'fallos' : req.body.fallos, 'idTema' : req.body.idTema});
-            testUser.save(function(err) {
-                if (err){
-                    res.send(err)
-                    console.log('MAL guardado el test');
-                } else{
-                    usuarios.update({'_id': req.user._id}, { $push : { 'test': testUser.id}}, function(err) {
-                        if (err){
-                            res.send(err)
-                            console.log('MAL updateado en el usuario');
-                        } else{
-
-                            console.log("updateado el usuario");
-                            res.end();
-                        }
-
-                    });
-                    console.log("guardado test");
-                    res.end();
-                }
-
-
-            });
-
-            res.end();
-
-
-        });
-
-        app.post('/guardar', function(req, res){
-
-            pagos.find({'userId': req.user._id}, function(err, practis) {
-                // si hay un error se envía. no se ejecutará nada después de res.send(err)
-                if (err)
-                    res.send(err)
-                if(practis[0].numPracticasTotalPagadas > practis[0].practicas.length){
-                    var endtime = new Date(req.body.time); 
-                    endtime.setMinutes(endtime.getMinutes() + 45);
-                    var practica = new practicas({'userId': req.user._id, 'startTime' : req.body.time, 'endTime' : endtime, 'title' : req.user.nombre});
-                    practica.save(function(err) {
-                        pagos.update({'userId': req.user._id}, { $push : { practicas: practica.id}}, function(err) {
-                            if (err){
-                                res.send(err)
-                                console.log('MAL updateado');
-                            } else{
-
-                                console.log("updateado");
-                                res.end();
-                            }
-
-                        });
-
-                    });
-
-                };
+                console.log("guardado test");
                 res.end();
+            }
 
-            });
 
         });
 
-        app.post('/borrar', function(req, res){
-            practicas.remove({'userId': req.user._id, '_id': req.body.practId }, function(err) {
-                if (err){
-                    res.send(err)
-                    console.log('MAL borrado');
-                } else{
+        res.end();
 
-                    pagos.update({'userId': req.user._id}, { $pull : { practicas: req.body.practId }}, function(err) {
+
+    });
+
+    app.post('/guardar', function(req, res){
+
+        pagos.find({'userId': req.user._id}, function(err, practis) {
+            // si hay un error se envía. no se ejecutará nada después de res.send(err)
+            if (err)
+                res.send(err)
+            if(practis[0].numPracticasTotalPagadas > practis[0].practicas.length){
+                var endtime = new Date(req.body.time); 
+                endtime.setMinutes(endtime.getMinutes() + 45);
+                var practica = new practicas({'userId': req.user._id, 'startTime' : req.body.time, 'endTime' : endtime, 'title' : req.user.nombre});
+                practica.save(function(err) {
+                    pagos.update({'userId': req.user._id}, { $push : { practicas: practica.id}}, function(err) {
                         if (err){
                             res.send(err)
                             console.log('MAL updateado');
@@ -292,34 +263,92 @@ app.post('/buscar', isLoggedIn , function(req, res) {
 
                     });
 
-                    console.log("borrado");
-                };
+                });
 
-                res.end();
-            });
+            };
+            res.end();
 
         });
 
-        app.get('*',notExists);
+    });
 
-        app.post('/login', passport.authenticate('local-login', {
-            successRedirect : '/bienvenido', // si va bien se redirecciona hacia bienvenido
-            failureRedirect : '/', // si hay algún error vuelve ala página de inicio
-            failureFlash : true // permiso para los mensajes flash
-        }));
-    };
+    app.post('/borrar', function(req, res){
+        practicas.remove({'userId': req.user._id, '_id': req.body.practId }, function(err) {
+            if (err){
+                res.send(err)
+                console.log('MAL borrado');
+            } else{
+                pagos.update({'userId': req.user._id}, { $pull : { practicas: req.body.practId }}, function(err) {
+                    if (err){
+                        res.send(err)
+                        console.log('MAL updateado');
+                    } else{
+                        console.log("updateado");
+                        res.end();
+                    }
+                });
+                console.log("borrado");
+            };
+            res.end();
+        });
+    });
 
-             // middleware para asegurarnos que el usuario está logueado
-             function isLoggedIn(req, res, next) {
+    app.get('*',notExists);
 
-        // si el usuario está autenticado continuamos 
-        if (req.isAuthenticated())
-            return next();
+    app.post('/login', passport.authenticate('local-login', {
+        successRedirect : '/bienvenido', // si va bien se redirecciona hacia bienvenido
+        failureRedirect : '/', // si hay algún error vuelve ala página de inicio
+        failureFlash : true // permiso para los mensajes flash
+    }));
+};
 
-        // si no lo está, se redirecciona al inicio
-        res.redirect('/');
+// middleware para asegurarnos que el usuario está logueado
+function esAlumno(req, res, next) {
+
+    // si el usuario está autenticado continuamos 
+    if (req.isAuthenticated() && req.user.role == "alumno"){
+        console.log(req.user.role)
+        return next();
     }
 
-    function notExists(req, res, next) {
-        res.status(404).send('NO VAYAS POR AHI!');
+    // si no lo está, se redirecciona al inicio
+    res.redirect('/');
+}
+
+function esProfe(req, res, next) {
+
+    // si el usuario está autenticado continuamos 
+    if (req.isAuthenticated() && req.user.role == "profe"){
+        console.log(req.user.role)
+        return next();
     }
+
+    // si no lo está, se redirecciona al inicio
+    res.redirect('/');
+}
+
+function esAdmin(req, res, next) {
+
+    // si el usuario está autenticado continuamos 
+    if (req.isAuthenticated() && req.user.role == "admin"){
+        console.log(req.user.role)
+        return next();
+    }
+
+    // si no lo está, se redirecciona al inicio
+    res.redirect('/');
+}
+
+function isLoggedIn(req, res, next) {
+
+    // si el usuario está autenticado continuamos 
+    if (req.isAuthenticated())
+        return next();
+
+    // si no lo está, se redirecciona al inicio
+    res.redirect('/');
+}
+
+function notExists(req, res, next) {
+    res.status(404).send('NO VAYAS POR AHI!');
+}
