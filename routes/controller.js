@@ -9,136 +9,172 @@ var pagos = require('../model/pagos.js');
 
 var userTest = require('../model/userTest.js');
 
+var nodemailer = require('nodemailer');
+
+var mg = require('nodemailer-mailgun-transport');
+
+var schedule = require('node-schedule');
+
 module.exports = function (app, passport){
 
-    app.get('/logout',function(req,res){
-        req.session.destroy(function(err) {
-            if(err) {
-                console.log(err);
-            } else {
-                res.redirect('/');
-            }
-        });
+    var auth = {
+      auth: {
+        api_key: 'key-d1833c38c633fd419bc1b153dc646a7e',
+        domain: 'sandboxb03aac7bff2740b6b02096754ca89497.mailgun.org'
+    }
+}
+
+var nodemailerMailgun = nodemailer.createTransport(mg(auth));
+
+var j = schedule.scheduleJob('15 20 * * 1,2,3,4,5', function(){
+  nodemailerMailgun.sendMail({
+      from: 'noreply@sobreruedas.com',
+          to: ['sobreruedas.dova@gmail.com', 'sobre.ruedas.autoescuela@gmail.com'], // An array if you have multiple recipients.
+          subject: 'Prueba1',
+          text: 'Hasta otra, madafaka!',
+      }, function (err, info) {
+          if (err) {
+            console.log('Error: ' + err);
+        }
+        else {
+            console.log('Response: ' + info);
+        }
+    });
+});
+
+j;
+
+
+
+app.get('/logout',function(req,res){
+    req.session.destroy(function(err) {
+        if(err) {
+            console.log(err);
+        } else {
+            res.redirect('/');
+        }
     });
 
-    app.get('/tests', isLoggedIn , function(req, res) {
-        tests.find({},function(err, todos) {
+});
+
+app.get('/tests', isLoggedIn , function(req, res) {
+    tests.find({},function(err, todos) {
 
             // si hay un error se envía. no se ejecutará nada después de res.send(err)
             if (err)
                 res.send(err)
-                res.json(todos);
-        });
-    });
-
-    app.get('/practis', isLoggedIn , function(req, res) {
-        practicas.find( function(err, Todos) {
-
-            // si hay un error se envía. no se ejecutará nada después de res.send(err)
-            if (err)
-                res.send(err)
-                res.json(Todos);
-        });
-    });
-
-    app.get('/pagos', isLoggedIn , function(req, res) {
-        pagos.find({'userId': req.user._id}, function(err, practis) {
-            // si hay un error se envía. no se ejecutará nada después de res.send(err)
-            if (err)
-                res.send(err)
-                res.json(practis);
-        });
-    });
-
-    app.get('/', function(req, res) {
-        res.render('index.ejs',
-                   {botonRegistro: 'partials/publico/BotonRegistro'});
-    });
-    app.get('/test', isLoggedIn, function(req, res) {
-        var role = req.user.role;
-        res.render('teorica.ejs',
-                   {botonRegistro: 'partials/'+ role + '/botonUser', nombre: req.user.nombre, testUser: 'partials/' + role + '/testUser.ejs'});
-    });
-
-    app.get('/calendar',  isLoggedIn, function(req, res) {
-        var role = req.user.role;
-        res.render('practicas.ejs',
-                   {botonRegistro: 'partials/'+ role + '/botonUser', nombre: req.user.nombre, calendarUser: 'partials/' + role + '/calendar.ejs'});
-    });
-
-    app.get('/perfil',  isLoggedIn, function(req, res) {
-        var role = req.user.role;
-        res.render('profile.ejs',
-                   {botonRegistro: 'partials/'+ role + '/botonUser', nombre: ""});
-    });
-
-    app.get('/datosUser',  isLoggedIn, function(req, res) {
-        usuarios.find({'_id': req.user._id},{email: 1, nombre: 1, apellidos: 1, tel: 1, fechNacimiento: 1, dni: 1, direccion: 1} ,function(err, usuario) {
-            // si hay un error se envía. no se ejecutará nada después de res.send(err)
-            if (err)
-                res.send(err)
-                res.json(usuario);
-        });
-    });
-
-    app.post('/editaDatosUser', function(req, res){
-        console.log(req.body);
-        usuarios.update({'_id': req.user._id}, { $set : req.body}, function(err) {
-            if (err){
-                res.send(err)
-                console.log('MAL updateado');
-            } else{
-                console.log("updateado");
-                res.redirect('/perfil');
-            }
-
+            res.json(todos);
         });
 });
 
-        app.get('/testsDelUser',  isLoggedIn, function(req, res) {
-            userTest.find({'userId': req.user._id} ,function(err, tests) {
+app.get('/practis', isLoggedIn , function(req, res) {
+    practicas.find( function(err, Todos) {
+
+            // si hay un error se envía. no se ejecutará nada después de res.send(err)
+            if (err)
+                res.send(err)
+            res.json(Todos);
+        });
+});
+
+app.get('/pagos', isLoggedIn , function(req, res) {
+    pagos.find({'userId': req.user._id}, function(err, practis) {
+            // si hay un error se envía. no se ejecutará nada después de res.send(err)
+            if (err)
+                res.send(err)
+            res.json(practis);
+        });
+});
+
+app.get('/', function(req, res) {
+    res.render('index.ejs',
+     {botonRegistro: 'partials/publico/BotonRegistro'});
+});
+app.get('/test', isLoggedIn, function(req, res) {
+    var role = req.user.role;
+    res.render('teorica.ejs',
+     {botonRegistro: 'partials/'+ role + '/botonUser', nombre: req.user.nombre, testUser: 'partials/' + role + '/testUser.ejs'});
+});
+
+app.get('/calendar',  isLoggedIn, function(req, res) {
+    var role = req.user.role;
+    res.render('practicas.ejs',
+     {botonRegistro: 'partials/'+ role + '/botonUser', nombre: req.user.nombre, calendarUser: 'partials/' + role + '/calendar.ejs'});
+});
+
+app.get('/perfil',  isLoggedIn, function(req, res) {
+    var role = req.user.role;
+    res.render('profile.ejs',
+     {botonRegistro: 'partials/'+ role + '/botonUser', nombre: ""});
+});
+
+app.get('/datosUser',  isLoggedIn, function(req, res) {
+    usuarios.find({'_id': req.user._id},{email: 1, nombre: 1, apellidos: 1, tel: 1, fechNacimiento: 1, dni: 1, direccion: 1} ,function(err, usuario) {
+            // si hay un error se envía. no se ejecutará nada después de res.send(err)
+            if (err)
+                res.send(err)
+            res.json(usuario);
+        });
+});
+
+app.post('/editaDatosUser', function(req, res){
+    console.log(req.body);
+    usuarios.update({'_id': req.user._id}, { $set : req.body}, function(err) {
+        if (err){
+            res.send(err)
+            console.log('MAL updateado');
+        } else{
+            console.log("updateado");
+            res.redirect('/perfil');
+        }
+
+    });
+});
+
+app.get('/testsDelUser',  isLoggedIn, function(req, res) {
+    userTest.find({'userId': req.user._id} ,function(err, tests) {
                 // si hay un error se envía. no se ejecutará nada después de res.send(err)
                 if (err)
                     res.send(err)
-                    res.json(tests);
+                res.json(tests);
             });
-        });
+});
 
 
-        app.get('/registro', function(req, res) {
-            res.render('registro.ejs',  { botonRegistro: 'partials/publico/BotonRegistro'});
-        });
-        app.get('/registro:num', function(req, res) {
-            res.render('registro.ejs',  { botonRegistro: 'partials/publico/BotonRegistro'});
-        });
+app.get('/registro', function(req, res) {
+    res.render('registro.ejs',  { botonRegistro: 'partials/publico/BotonRegistro'});
+});
+app.get('/registro:num', function(req, res) {
+    res.render('registro.ejs',  { botonRegistro: 'partials/publico/BotonRegistro'});
+});
 
-        app.get('/bienvenido', isLoggedIn , function(req, res) {
+app.get('/bienvenido', isLoggedIn , function(req, res) {
 
-            var role = req.user.role;
-            res.render('bienvenido.ejs',
-                       {botonRegistro: 'partials/'+ role + '/botonUser', nombre: req.user.nombre});
+    var role = req.user.role;
+    res.render('bienvenido.ejs',
+     {botonRegistro: 'partials/'+ role + '/botonUser', nombre: req.user.nombre});
 
-        });
+});
 
-        app.get('/alumnos', isLoggedIn , function(req, res) {
-            var role = req.user.role;
-            res.render('alumnos.ejs',
-                       {botonRegistro: 'partials/'+ role + '/botonUser', nombre: req.user.nombre});
-        });
+app.get('/alumnos', isLoggedIn , function(req, res) {
+    var role = req.user.role;
+    res.render('alumnos.ejs',
+     {botonRegistro: 'partials/'+ role + '/botonUser', nombre: req.user.nombre});
+});
 
-        app.post('/buscar', isLoggedIn , function(req, res) {
-            var nombre = req.body.nombre;
-            if (nombre == undefined || nombre == ''){
-                nombre = 4;
-            }
-            usuarios.find({$or: [ {'nombre': {$regex:nombre, $options : 'i' }}, {'dni': req.body.dni} ] }, function(err, practis) {
+app.post('/buscar', isLoggedIn , function(req, res) {
+    var nombre = req.body.nombre;
+    if (nombre == undefined || nombre == ''){
+        nombre = 4;
+    }
+    usuarios.find({$or: [ {'nombre': {$regex:nombre, $options : 'i' }}, {'dni': req.body.dni} ] }, function(err, practis) {
                 // si hay un error se envía. no se ejecutará nada después de res.send(err)
                 if (err)
                     res.send(err)
-                    res.json(practis);
+                res.json(practis);
 
             });
-        });
+});
 
         // se envía el formulario de registro
         app.post('/registrar', passport.authenticate('local-signup', {
@@ -153,7 +189,7 @@ module.exports = function (app, passport){
                 // si hay un error se envía. no se ejecutará nada después de res.send(err)
                 if (err)
                     res.send(err)
-                    numPracticasComp = parseInt(req.body.uni) + parseInt((req.body.pack * 10));      
+                numPracticasComp = parseInt(req.body.uni) + parseInt((req.body.pack * 10));      
                 pagos.update({'userId': req.user._id}, { $inc : { numPracticasTotalPagadas:  numPracticasComp }}, function(err) {
                     if (err){
                         res.send(err)
@@ -211,26 +247,26 @@ module.exports = function (app, passport){
                 // si hay un error se envía. no se ejecutará nada después de res.send(err)
                 if (err)
                     res.send(err)
-                    if(practis[0].numPracticasTotalPagadas > practis[0].practicas.length){
-                        var endtime = new Date(req.body.time); 
-                        endtime.setMinutes(endtime.getMinutes() + 45);
-                        var practica = new practicas({'userId': req.user._id, 'startTime' : req.body.time, 'endTime' : endtime, 'title' : req.user.nombre});
-                        practica.save(function(err) {
-                            pagos.update({'userId': req.user._id}, { $push : { practicas: practica.id}}, function(err) {
-                                if (err){
-                                    res.send(err)
-                                    console.log('MAL updateado');
-                                } else{
+                if(practis[0].numPracticasTotalPagadas > practis[0].practicas.length){
+                    var endtime = new Date(req.body.time); 
+                    endtime.setMinutes(endtime.getMinutes() + 45);
+                    var practica = new practicas({'userId': req.user._id, 'startTime' : req.body.time, 'endTime' : endtime, 'title' : req.user.nombre});
+                    practica.save(function(err) {
+                        pagos.update({'userId': req.user._id}, { $push : { practicas: practica.id}}, function(err) {
+                            if (err){
+                                res.send(err)
+                                console.log('MAL updateado');
+                            } else{
 
-                                    console.log("updateado");
-                                    res.end();
-                                }
-
-                            });
+                                console.log("updateado");
+                                res.end();
+                            }
 
                         });
 
-                    };
+                    });
+
+                };
                 res.end();
 
             });
