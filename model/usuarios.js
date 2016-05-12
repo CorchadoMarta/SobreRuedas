@@ -43,7 +43,7 @@ var schemaUser = new schema ({
     tel: Number,
     email: String,
     pwd: String,
-    role: {type: String, default: 'alumno'}
+    role: {type: String, default: 'alumno'} //roles: alumno, profe, admin
 });
 
 // Métodos 

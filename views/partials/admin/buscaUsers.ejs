@@ -7,14 +7,52 @@
             <div class="row">
                 <div class="col-sm-4">
                     <h2>Búsqueda de usuario:</h2>
-                    <p>Por Nombre: <input type="text" class="form-control" name="nombre" placeholder="Introduce un nombre" ng-model="buscaUser.nombre" ng-change="busquedaUsers(buscaUser)"></p>
-                    <p>Por DNI: <input type="text" class="form-control" name="dni" placeholder="Introduce un DNI" ng-model="buscaUser.dni" ng-change="busquedaUsers(buscaUser)"></p>
+                    <p>Por Nombre: <input autocomplete="off" type="text" class="form-control" name="nombre" placeholder="Introduce un nombre" ng-model="buscaUser.nombre" ng-change="busquedaUsers(buscaUser)"></p>
+                    <p>Por DNI: <input  autocomplete="off" type="text" class="form-control" name="dni" placeholder="Introduce un DNI" ng-model="buscaUser.dni" ng-change="busquedaUsers(buscaUser)"></p>
                     <p>Resultados:</p>
                     <p class="btn btn-default btn-block" ng-repeat="x in users" ng-click="getUser(x)">{{ x.nombre + " " +  x.apellidos}}</p>
                 </div>
-                <div class="col-sm-8">
+                <div class="col-sm-2">
                     <p>Alumno:</p>
                     <p>{{ userEscogido.nombre + " " + userEscogido.apellidos }} <br> {{ userEscogido.direccion.calle}}</p>
+                </div>
+                <div class="col-sm-6">
+
+                 <label class="control-label col-sm-12">Último examen práctico:{{}}</label>
+                    <label class="control-label col-sm-4">Exámen práctico:</label>
+                    <div class="col-sm-5 date">
+                       <div class="input-group input-append date" id="datePicker">
+                            <input type="text" class="form-control" name="fechNacimiento" />
+                            <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 date">
+
+                        <button class="btn btn-default"> Guardar </button>
+                    </div>
+                     <label class="control-label col-sm-12">Último examen Teórico:{{}}</label>
+                    <label class="control-label col-sm-4">Exámen Teórico:</label>
+                    <div class="col-sm-5 date">
+                       <div class="input-group input-append date" id="datePicker">
+                            <input type="text" class="form-control" name="fechNacimiento" />
+                            <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 date">
+
+                        <button class="btn btn-default"> Guardar </button>
+                    </div>
+                    <label class="control-label col-sm-12">Último examen práctico:{{}}</label>
+                    <label class="control-label col-sm-4">Exámen práctico:</label>
+                    <div class="col-sm-5 date">
+                       <div class="input-group input-append date" id="datePicker">
+                            <input type="text" class="form-control" name="fechNacimiento" />
+                            <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 date">
+                        <button class="btn btn-default"> Guardar </button>
+                    </div>
                 </div>
             </div>
         </div>

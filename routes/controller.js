@@ -26,12 +26,12 @@ module.exports = function (app, passport){
 
     var nodemailerMailgun = nodemailer.createTransport(mg(auth));
 
-    var j = schedule.scheduleJob('15 21 * * 1,2,3,4,5', function(){
+    var j = schedule.scheduleJob('00 19 * * 1,2,3,4,5', function(){
       nodemailerMailgun.sendMail({
           from: 'noreply@sobreruedas.com',
               to: ['sobreruedas.dova@gmail.com', 'sobre.ruedas.autoescuela@gmail.com'], // An array if you have multiple recipients.
-              subject: 'YA VA!!!!',
-              text: 'Hasta otra, madafaka!',
+              subject: 'Este es un mail de bienvenida!!!!',
+              text: 'Aquí va un texto de prueba donde hay que poner algo, algo como que tengo la mejor compañera de proyecto (como tú dirías) del MUNDO MUNDIAL!! ;) ',
           }, function (err, info) {
               if (err) {
                 console.log('Error: ' + err);
@@ -72,6 +72,17 @@ module.exports = function (app, passport){
                 if (err)
                     res.send(err)
                 res.json(Todos);
+            });
+    });
+
+    app.post('/pagos', isLoggedIn , function(req, res) {
+        console.log(req.body);
+        pagos.find({'userId': req.body._id}, function(err, practis) {
+                // si hay un error se envía. no se ejecutará nada después de res.send(err)
+                if (err)
+                    res.send(err)
+                console.log(practis);
+                res.json(practis);
             });
     });
 

@@ -16,7 +16,7 @@ var schemaPagos = new schema ({
     importePracticas: { type: Number, default: 27.80},
     importePackPractis: { type: Number, default: 260},
     practicas: [ schema.ObjectId ],
-    tasas: {
+    tasas: [{
         expediente: {
             fechExpd: Date,
             impExpediente: Number,
@@ -31,8 +31,8 @@ var schemaPagos = new schema ({
             fechCambio: Date,
             impCambio: Number,
             cambioPagada: Boolean
-        }
-    },
+        },
+    }],
     examenPractico:[{
         fechEx: Date,
         fechExPago: Date,

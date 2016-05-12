@@ -15,9 +15,22 @@ angular.module('searchUsers').controller('buscaUsuarios', ['$scope', '$http' , f
             console.log('Error: ' + users);
         });
     };
+
     $scope.getUser = function(obj) {
+        $http.post('/pagos', obj)
+        .success(function(userPAgo) {
+
+            console.log(userPAgo);
+
+            $scope.userPagos =  userPAgo;
+        })
+        .error(function(userPAgo) {
+            console.log('Error: ' + userPAgo);
+        });
+
         $scope.userEscogido = obj;
     };
+
 }]);
 
 
