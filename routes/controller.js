@@ -26,10 +26,10 @@ module.exports = function (app, passport){
 
     var nodemailerMailgun = nodemailer.createTransport(mg(auth));
 
-    var j = schedule.scheduleJob('00 19 * * 1,2,3,4,5', function(){
+    var j = schedule.scheduleJob('00 21 * * 1,2,3,4,5', function(){
       nodemailerMailgun.sendMail({
           from: 'noreply@sobreruedas.com',
-              to: ['sobreruedas.dova@gmail.com', 'sobre.ruedas.autoescuela@gmail.com'], // An array if you have multiple recipients.
+              to: ['sobreruedas.dova@gmail.com', 'sobre.ruedas.autoescuela@gmail.com', 'gcatram@gmail.com'], // An array if you have multiple recipients.
               subject: 'Este es un mail de bienvenida!!!!',
               text: 'Aquí va un texto de prueba donde hay que poner algo, algo como que tengo la mejor compañera de proyecto (como tú dirías) del MUNDO MUNDIAL!! ;) ',
           }, function (err, info) {
