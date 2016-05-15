@@ -1,6 +1,24 @@
 <!-- Cabecera -->
 
 <div ng-controller="buscaUsuarios">
+    <!-- datepicker bootstrap -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" />
+
+<script  src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        var hoy = new Date();
+        hoy.setDate(hoy.getDate()+2);
+        $('.datePicker').datepicker({
+            format: 'mm/dd/yyyy',
+            startDate: hoy
+        });
+        $('.datePicker').on('change', function(){
+            $('.datepicker').hide();
+        });
+    });
+</script>
     <!-- Formulario -->
     <div class="container">
         <div id="panel-form" >
@@ -18,34 +36,34 @@
                 </div>
                 <div class="col-sm-6">
 
-                 <label class="control-label col-sm-12">Último examen práctico:{{}}</label>
-                    <label class="control-label col-sm-4">Exámen práctico:</label>
-                    <div class="col-sm-5 date">
-                       <div class="input-group input-append date" id="datePicker">
-                            <input type="text" class="form-control" name="fechNacimiento" />
-                            <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
-                        </div>
-                    </div>
-                    <div class="col-sm-2 date">
-
-                        <button class="btn btn-default"> Guardar </button>
-                    </div>
-                     <label class="control-label col-sm-12">Último examen Teórico:{{}}</label>
+                 <label class="control-label col-sm-12">Último examen Teórico:{{ userPagos[0].examenTeorico[0].fechEx }}</label>
                     <label class="control-label col-sm-4">Exámen Teórico:</label>
                     <div class="col-sm-5 date">
-                       <div class="input-group input-append date" id="datePicker">
-                            <input type="text" class="form-control" name="fechNacimiento" />
+                       <div class="input-group input-append date datePicker">
+                            <input type="text" class="form-control" ng-model="fechTeo" />
                             <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
                         </div>
                     </div>
                     <div class="col-sm-2 date">
 
-                        <button class="btn btn-default"> Guardar </button>
+                        <button class="btn btn-default" ng-click="exPrac()"> Guardar </button>
+                    </div>
+                     <label class="control-label col-sm-12">Último examen práctico:{{ userPagos[0].examenPractico[0].fechEx }}</label>
+                    <label class="control-label col-sm-4">Exámen práctico:</label>
+                    <div class="col-sm-5 date">
+                       <div class="input-group input-append date datePicker" >
+                            <input type="text" class="form-control"  ng-model="fechPrac" />
+                            <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 date">
+
+                        <button class="btn btn-default" ng-click="exPrac()"> Guardar </button>
                     </div>
                     <label class="control-label col-sm-12">Último examen práctico:{{}}</label>
                     <label class="control-label col-sm-4">Exámen práctico:</label>
                     <div class="col-sm-5 date">
-                       <div class="input-group input-append date" id="datePicker">
+                       <div class="input-group input-append date datePicker" >
                             <input type="text" class="form-control" name="fechNacimiento" />
                             <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
                         </div>

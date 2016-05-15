@@ -50,9 +50,11 @@ var schemaPagos = new schema ({
         materialPagado: Boolean
     },
     pagoMensual: Boolean,
+    pagosMensuales : [ Date ],
     importePagoMensual: Number
 
-});
+},
+{ strict: false });
 // Registramos el schemaPagos en esta estructura
 // Exportamos el modelo que se corresponde con la colección(tabla) 'pagos'
 module.exports = mongoose.model('pagos', schemaPagos); 

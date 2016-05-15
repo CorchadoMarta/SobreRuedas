@@ -15,7 +15,11 @@ var mg = require('nodemailer-mailgun-transport');
 
 var schedule = require('node-schedule');
 
+
+
 module.exports = function (app, passport){
+
+
 
     var auth = {
       auth: {
@@ -84,6 +88,35 @@ module.exports = function (app, passport){
                 console.log(practis);
                 res.json(practis);
             });
+    });
+
+    app.post('/examenes', isLoggedIn , function(req, res) {
+        var cosas = req.body;
+        var useId = cosas.user;
+        delete cosas.user;
+
+        console.log(req.body.tipo);
+
+        if(req.body.tipo){
+                    delete cosas.tipo;
+        pagos.update({'userId': useId}, {$push :  { examenPractico : cosas }}, function(err) {
+                // si hay un error se envía. no se ejecutará nada después de res.send(err)
+                if (err)
+                    res.send(err)
+                console.log('salio bien');
+                res.end();
+            });
+
+        } else {
+                    delete cosas.tipo;
+        pagos.update({'userId': useId}, {$push :  { examenTeorico : cosas }}, function(err) {
+                // si hay un error se envía. no se ejecutará nada después de res.send(err)
+                if (err)
+                    res.send(err)
+                console.log('salio bien');
+                res.end();
+            });
+    }
     });
 
     app.get('/pagos', isLoggedIn , function(req, res) {

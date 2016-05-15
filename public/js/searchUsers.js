@@ -17,18 +17,44 @@ angular.module('searchUsers').controller('buscaUsuarios', ['$scope', '$http' , f
     };
 
     $scope.getUser = function(obj) {
+        $scope.userExams = obj;
         $http.post('/pagos', obj)
-        .success(function(userPAgo) {
+        .success(function(userPago) {
 
-            console.log(userPAgo);
+            console.log(userPago);
 
-            $scope.userPagos =  userPAgo;
+            $scope.userPagos =  userPago;
         })
-        .error(function(userPAgo) {
-            console.log('Error: ' + userPAgo);
+        .error(function(userPago) {
+            console.log('Error: ' + userPago);
         });
 
         $scope.userEscogido = obj;
+    };
+
+    $scope.exPrac = function() {
+        var tipoEx;
+        if ($scope.fechTeo == undefined || ""){
+            tipoEx = 'true'; // examen practico
+        } else {
+            tipoEx = 'false'; // examen teorico
+        };
+        var examen = {fechEx: $scope.fechTeo || $scope.fechPrac,
+        impExamen: 50,
+        examenPagado: false,
+        user: $scope.userExams._id,
+        tipo: tipoEx };
+
+       $http.post('/examenes', examen)
+        .success(function() {
+
+            console.log('es bien');
+
+        })
+        .error(function() {
+            console.log('Es mal');
+        });
+
     };
 
 }]);

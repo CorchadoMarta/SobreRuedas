@@ -21,7 +21,7 @@ var options = {
     key: key,
     cert: cert
 };*/
-
+mongoose.set('debug', true);
 // declaración de variables que nos servirán en el despliegue en openshift
 mongodb_connection_string = 'mongodb://127.0.0.1:27017/' + 'autoescuela';
 // utilización del as variables de openshift cuando estén disponibles
