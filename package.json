@@ -26,7 +26,8 @@
     "nodemon": "~1.9.1",
     "passport": "~0.1.17",
     "passport-local": "~0.1.6",
-    "path": "~0.12.7"
+    "path": "~0.12.7",
+    "angular-cookies": "~1.5.5"
   },
   "devDependencies": {},
   "scripts": {

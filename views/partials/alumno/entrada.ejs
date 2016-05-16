@@ -1,0 +1,74 @@
+<!-- Cabecera -->
+
+
+
+<div ng-app="testUser" ng-controller="hacerTest" >
+
+        <div class="container">
+            <div id="panel-form" ng-init='loadEvents()'>
+                <div>
+                    <h2  class='col-sm-4'>HOLA!</h2>
+                    <label>Escoge Tema</label>
+                    <p> Ahora lo miro </p>
+                    <p>{{"fallos: " + ultimosTest[0].fallos + " fecha:" + ultimosTest[0].fecha}}</p>
+                </div>
+
+
+                <div class="modal fade" id="ISesion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class='modal-title align-center' id='myModalLabel'>Test</h4>
+                            </div>
+                            <div class="modal-body">
+                                <br>
+                                <test ></test>
+                            </div>
+                            <div class="modal-footer align-center">
+
+
+                                <ul class="pagination pagination-sm">
+                                   <li >
+                                      <a aria-label="Previous" ng-click="move(-1)" >
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li ng-repeat="x in eventSource" value="{{ $index }}" ng-model="disa" name="index" ng-click="moveIndex($index)"><a href="#">{{ $index+1 }}</a> 
+                                </li>
+                                <li >
+                                  <a aria-label="Next" ng-click="move(1)" >
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+
+
+                        <div class='form-group'>
+                           <div class='col-sm-offset-2 col-sm-10'>
+                               <button ng-hide="acabado" class='btn btn-default' data-dismiss='modal'>Cancelar</button>
+                           </div>
+                           <div class='col-sm-offset-2 col-sm-10'>
+                               <button ng-hide="acabado" type='submit' class='btn btn-default' ng-click='corregir()'>Acabar</button>
+                           </div>
+                           <div  ng-show="acabado" class='col-sm-offset-2 col-sm-10'>
+                               <button type='submit' class='btn btn-default' data-dismiss='modal' ng-click='reset()'>Finalizar</button>
+                               <h3>{{ fallos }} fallos</h3>
+                           </div>
+                       </div>
+
+                   </div>
+               </div>
+           </div>
+   </div>
+</div>
+</div>
+</div>
+<!-- FIN Modal -->
+
+
+</form>
+</div>
+</div>
+</div>
+
+</div>

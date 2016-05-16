@@ -54,6 +54,7 @@ angular.module('searchUsers').controller('buscaUsuarios', ['$scope', '$http' , f
         .error(function() {
             console.log('Es mal');
         });
+        $scope.getUser($scope.userExams);
 
     };
 

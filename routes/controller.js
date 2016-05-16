@@ -192,10 +192,10 @@ module.exports = function (app, passport){
     });
 
     app.get('/bienvenido', isLoggedIn , function(req, res) {
-
+        console.log(req.session);
         var role = req.user.role;
         res.render('bienvenido.ejs',
-           {botonRegistro: 'partials/'+ role + '/botonUser', nombre: req.user.nombre});
+           {landing: 'partials/'+ role + '/entrada.ejs' , botonRegistro: 'partials/'+ role + '/botonUser', nombre: req.user.nombre});
 
     });
 
