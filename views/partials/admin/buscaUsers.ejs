@@ -35,37 +35,40 @@
                     <p>{{ userEscogido.nombre + " " + userEscogido.apellidos }} <br> {{ userEscogido.direccion.calle}}</p>
                 </div>
                 <div class="col-sm-6">
-
-                 <label class="control-label col-sm-12">Último examen Teórico:{{ userPagos[0].examenTeorico[0].fechEx | date : 'dd/MM/yy' }}</label>
-                    <label class="control-label col-sm-4">Exámen Teórico:</label>
-                    <div class="col-sm-5 date">
-                       <div class="input-group input-append date datePicker">
-                            <input type="text" class="form-control" ng-model="fechTeo" />
-                            <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                    <div ng-show="mostrarTeo">
+                        <label class="control-label col-sm-12">Último examen Teórico:{{ userPagos[0].examenTeorico[0].fechEx | date : 'dd/MM/yy' }}</label>
+                        <label class="control-label col-sm-4">Exámen Teórico:</label>
+                        <div class="col-sm-5 date">
+                           <div class="input-group input-append date datePicker">
+                                <input type="text" class="form-control" ng-model="fechTeo" />
+                                <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 date">
+                            <button class="btn btn-default" ng-click="exPrac(1)"> Guardar </button>
                         </div>
                     </div>
-                    <div class="col-sm-2 date">
+                    <div  ng-show="mostrarPrac">
+                        <label class="control-label col-sm-12">Último examen Teórico:{{ userPagos[0].examenTeorico[0].fechEx | date : 'dd/MM/yy' }}</label>
+                        <label class="control-label col-sm-12">Último examen práctico:{{ userPagos[0].examenPractico[0].fechEx | date : 'dd/MM/yy' }}</label>
+                        <label class="control-label col-sm-4">Exámen práctico:</label>
+                        <div class="col-sm-5 date">
+                           <div class="input-group input-append date datePicker" >
+                                <input type="text" class="form-control"  ng-model="fechPrac" />
+                                <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 date">
 
-                        <button class="btn btn-default" ng-click="exPrac()"> Guardar </button>
-                    </div>
-                     <label class="control-label col-sm-12">Último examen práctico:{{ userPagos[0].examenPractico[0].fechEx | date : 'dd/MM/yy' }}</label>
-                    <label class="control-label col-sm-4">Exámen práctico:</label>
-                    <div class="col-sm-5 date">
-                       <div class="input-group input-append date datePicker" >
-                            <input type="text" class="form-control"  ng-model="fechPrac" />
-                            <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                            <button class="btn btn-default" ng-click="exPrac(0)"> Guardar </button>
                         </div>
                     </div>
-                    <div class="col-sm-2 date">
-
-                        <button class="btn btn-default" ng-click="exPrac()"> Guardar </button>
+                    <div>
+                        <label class="control-label col-sm-4">Renovación:</label>
+                        <div class="col-sm-2 date">
+                            <button class="btn btn-default"> Renovar </button>
+                        </div>
                     </div>
- 
-                    <label class="control-label col-sm-4">Renovación:</label>
-                    <div class="col-sm-2 date">
-                        <button class="btn btn-default"> Renovar </button>
-                    </div>
-                    <div class="col-sm-2">{{ reservas() }}</div>
                 </div>
             </div>
         </div>

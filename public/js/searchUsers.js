@@ -23,6 +23,7 @@ angular.module('searchUsers').controller('buscaUsuarios', ['$scope', '$http' , f
         .success(function(userPago) {
 
             $scope.userPagos =  userPago;
+            $scope.reservas();
         })
         .error(function(userPago) {
             console.log('Error: ' + userPago);
@@ -36,24 +37,25 @@ angular.module('searchUsers').controller('buscaUsuarios', ['$scope', '$http' , f
         if (  $scope.userPagos != undefined){
             var longiExPrac = $scope.userPagos[0].examenPractico.length;
             if(longiExPrac != undefined){
+                $scope.mostrarPrac  = true;
+                $scope.mostrarTeo  = false;
+                //ya estamos en el práctico
                 var longiExTeo = $scope.userPagos[0].examenTeorico.length;
                 console.log("UNO  " + longiExPrac + " Prac -- Teo " + longiExTeo);
-                console.log($scope.userPagos[0].examenPractico[longiExPrac - 1]);
 
             } else {
+                // sólo tiene teórico
+                $scope.mostrarPrac  = false;
+                $scope.mostrarTeo  = true;
                 console.log("DOS  " + longiExPrac + " Prac -- Teo " + longiExTeo);
             }
+            return longiExPrac;
+        };
 
-        }
     };
 
-    $scope.exPrac = function() {
-        var tipoEx;
-        if ($scope.fechTeo == undefined || ""){
-            tipoEx = 'true'; // examen practico
-        } else {
-            tipoEx = 'false'; // examen teorico
-        };
+    $scope.exPrac = function(obj) {
+        var tipoEx = obj;
         var examen = {fechEx: $scope.fechTeo || $scope.fechPrac,
             impExamen: 50,
             examenPagado: false,

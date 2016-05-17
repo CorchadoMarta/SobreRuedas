@@ -21,6 +21,7 @@ var schemaUser = new schema ({
     fechNacimiento: Date,
     test:[schema.ObjectId],
     examen:{
+        teoricoAprobado: {type: Boolean, default: false},
         fechTeorico: [Date],
         fechPractico: [Date],
         documentos:{

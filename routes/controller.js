@@ -98,34 +98,34 @@ module.exports = function (app, passport){
         console.log(req.body.tipo);
 
         if(req.body.tipo){
-                    delete cosas.tipo;
-        pagos.update({'userId': useId}, {$push :  { examenPractico : cosas }}, function(err) {
+            delete cosas.tipo;
+            pagos.update({'userId': useId}, {$push :  {  examenTeorico : cosas }}, function(err) {
                 // si hay un error se envía. no se ejecutará nada después de res.send(err)
                 if (err)
                     res.send(err)
-                console.log('salio bien');
+                console.log('salio bien practico');
                 res.end();
             });
 
         } else {
-                    delete cosas.tipo;
-        pagos.update({'userId': useId}, {$push :  { examenTeorico : cosas }}, function(err) {
+            delete cosas.tipo;
+            pagos.update({'userId': useId}, {$push :  { examenPractico : cosas }}, function(err) {
                 // si hay un error se envía. no se ejecutará nada después de res.send(err)
                 if (err)
                     res.send(err)
-                console.log('salio bien');
+                console.log('salio bien teorico');
                 res.end();
             });
-    }
+        }
     });
 
     app.get('/pagos', isLoggedIn , function(req, res) {
         pagos.find({'userId': req.user._id}, function(err, practis) {
-                // si hay un error se envía. no se ejecutará nada después de res.send(err)
-                if (err)
-                    res.send(err)
-                res.json(practis);
-            });
+            // si hay un error se envía. no se ejecutará nada después de res.send(err)
+            if (err)
+                res.send(err)
+            res.json(practis);
+        });
     });
 
     app.get('/', function(req, res) {
