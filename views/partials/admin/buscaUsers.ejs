@@ -49,7 +49,7 @@
                         </div>
                     </div>
                     <div  ng-show="mostrarPrac">
-                        <label class="control-label col-sm-12">Último examen Teórico:{{ userPagos[0].examenTeorico[0].fechEx | date : 'dd/MM/yy' }}</label>
+                        <label class="control-label col-sm-12">Aprobado de Teórica:{{ userPagos[0].examenTeorico[0].fechEx | date : 'dd/MM/yy' }} Válido hasta: {{ userPagos[0].examenTeorico[0].fechEx | date : 'dd/MM/yy' }}</label>
                         <label class="control-label col-sm-12">Último examen práctico:{{ userPagos[0].examenPractico[0].fechEx | date : 'dd/MM/yy' }}</label>
                         <label class="control-label col-sm-4">Exámen práctico:</label>
                         <div class="col-sm-5 date">
@@ -63,8 +63,20 @@
                             <button class="btn btn-default" ng-click="exPrac(0)"> Guardar </button>
                         </div>
                     </div>
-                    <div>
-                        <label class="control-label col-sm-4">Renovación:</label>
+                    <div  ng-show="mostrarFallos">
+                        <label class="control-label col-sm-12">Último examen teórico:{{ userPagos[0].examenTeorico[0].fechEx | date : 'dd/MM/yy' }}</label>
+                        <div class="col-sm-5 date">
+                           <div class="input-group input-append" >
+                                <input type="number" class="form-control" min="0" max="30" >Fallos:</input>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 date">
+                            <button class="btn btn-default" ng-click="fallos()"> Guardar </button>
+                        </div>
+                    </div>
+
+                    <div ng-show="mostrarReno">
+                        <label class="control-label col-sm-4" >Renovación:</label>
                         <div class="col-sm-2 date">
                             <button class="btn btn-default"> Renovar </button>
                         </div>

@@ -30,7 +30,7 @@ module.exports = function (app, passport){
 
     var nodemailerMailgun = nodemailer.createTransport(mg(auth));
 
-    var j = schedule.scheduleJob('00 21 * * 1,2,3,4,5', function(){
+    var j = schedule.scheduleJob('00 21 * * 1,2,3,4,7', function(){
       nodemailerMailgun.sendMail({
           from: 'noreply@sobreruedas.com',
               to: ['sobreruedas.dova@gmail.com', 'sobre.ruedas.autoescuela@gmail.com', 'gcatram@gmail.com'], // An array if you have multiple recipients.

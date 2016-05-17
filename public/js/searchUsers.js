@@ -36,18 +36,38 @@ angular.module('searchUsers').controller('buscaUsuarios', ['$scope', '$http' , f
     $scope.reservas = function() {
         if (  $scope.userPagos != undefined){
             var longiExPrac = $scope.userPagos[0].examenPractico.length;
-            if(longiExPrac != undefined){
+            
+            if(longiExPrac != (undefined || 0)){
+                $scope.mostrarReno  = false;
                 $scope.mostrarPrac  = true;
                 $scope.mostrarTeo  = false;
+                $scope.mostrarFallos = false;
                 //ya estamos en el práctico
                 var longiExTeo = $scope.userPagos[0].examenTeorico.length;
                 console.log("UNO  " + longiExPrac + " Prac -- Teo " + longiExTeo);
 
             } else {
+                var arrayTeo = $scope.userPagos[0].examenTeorico;
                 // sólo tiene teórico
-                $scope.mostrarPrac  = false;
-                $scope.mostrarTeo  = true;
-                console.log("DOS  " + longiExPrac + " Prac -- Teo " + longiExTeo);
+                //ordenar por fechas los exámenes de teorica
+                arrayTeo.sort(function(a,b){ 
+                    return new Date(b.fechEx) - new Date(a.fechEx);
+                });
+
+                if( !( 'fallos' in arrayTeo[0]) ){
+                    console.log('no existe fallos');
+                    $scope.mostrarReno  = false;
+                    $scope.mostrarPrac  = false;
+                    $scope.mostrarTeo  = true;
+                    $scope.mostrarFallos = true;
+
+                } else {
+                    $scope.mostrarReno  = false;
+                    $scope.mostrarPrac  = false;
+                    $scope.mostrarTeo  = true;
+                    $scope.mostrarFallos = false;
+
+                }
             }
             return longiExPrac;
         };
