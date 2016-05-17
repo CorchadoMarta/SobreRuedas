@@ -187,6 +187,10 @@ module.exports = function (app, passport){
         res.render('teoricaPublic.ejs',  { botonRegistro: 'partials/publico/BotonRegistro'});
     });
     
+    app.get('/practica', function(req, res) {
+        res.render('practicaPublic.ejs',  { botonRegistro: 'partials/publico/BotonRegistro'});
+    });
+    
     app.get('/registro', function(req, res) {
         res.render('registro.ejs',  { botonRegistro: 'partials/publico/BotonRegistro'});
     });

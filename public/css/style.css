@@ -112,6 +112,14 @@ body {
     background-size: cover;
 }
 
+#container-img-practica{
+    background: url("../img/carousel/drive.jpg") no-repeat top center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
 #panel-form{
     background-color: rgba(255, 255, 255, .7);
     border: 1px solid #f5f5f5;
@@ -201,8 +209,8 @@ body {
     background: linear-gradient(45deg, #e25b37, #a1ff8a);
     padding: 3em;
 }
-.precio {
 
+.precio {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -382,11 +390,16 @@ a:hover{
 }
 
 .circular {
-    width: 300px;
-    height: 300px;
+    width: 50%;
+    height: 50%;
     border-radius: 50%;
     overflow:hidden;
 }
+
+.margen{
+    margin: 60px;
+}
+
 .disabled-input{
     background-color: #fff;
 }
