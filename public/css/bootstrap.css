@@ -4215,7 +4215,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   position: relative;
   min-height: 50px;
   margin-bottom: 20px;
-  border: 1px solid transparent;
+  border: 1px solid white;
+  background-color: rgba(255, 255, 255, .8);;
 }
 @media (min-width: 768px) {
   .navbar {
@@ -4670,6 +4671,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   background-color: transparent;
   border: 1px solid rgba(184,0,0,0.4);
 	border-radius: 10px;
+    padding: 12px 15px;
 }
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
