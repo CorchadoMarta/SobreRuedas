@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+
+        <!-- Bootstrap Core CSS -->
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <link rel="stylesheet" href="css/bootstrap.css">
+
+
+        <!--FAVICON -->
+        <link href="img/favicon.ico" rel="icon">
+
+        <!--SEO Elements -->
+        <title>Autoescuela Sobre Ruedas | La mejor autoescuela del mundo mundial</title>
+        <meta name="Description" content="La mejor autoescuela del mundo mundial." >
+        <meta name="Keywords" content="Autoescuela, clases de teorica, practicas de conducir, coche, carné de coche.">
+
+        <!-- Custom CSS -->
+        <link href="css/style.css" rel="stylesheet">
+
+
+        <!-- Typography -->
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,300,900,400italic' rel='stylesheet' type='text/css'>
+
+        <!-- Jquery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+
+
+    </head>
+    <body data-spy="scroll" data-target=".navbar" data-offset="50">
+
+        <!-- Menú -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" data-spy="affix" data-offset-top="197" role="navigation">
+            <div class="container">
+                <p class="container">
+                    <!-- Hamburguesa -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">Desplegar navegación</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand visible-xs-block" href="#" id="cabecera-responsive"> <img src="img/imagotip.png" id="logo-cabecera" /> SOBRE RUEDAS</a>
+                </div>
+
+                <!-- Menú -->
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <a class="navbar-brand hidden-xs" href="#" id="cabecera-responsive"> <img src="img/imagotip.png" id="logo-cabecera" /> SOBRE RUEDAS</a>
+                    <ul class="nav navbar-nav navbar-right">
+                        <%- include(botonRegistro) %>
+                    </ul>
+                </div>
+                </p>
+            </div>
+        </nav>
+    <!-- Cabecera -->
+    <div id="container-img-teorica">
+        <div class="container">
+            <div id="panel-form">
+                <div class="row">
+                    <div class="col-sm-4 col-xs-12" >
+                       <img class="logoResponsive" src="img/aprobado.png" alt="Logo" />
+                    </div>
+                    <div class="col-sm-8">
+                        <p class="text-banner-principal-petit">Aprobado garantizado</p>
+                        <p class="text-banner-principal-petit-negre">Nuestro método de enseñanza es infalibre.<br> Asiste a clase regularmente y realiza algún test al día.<br> La teórica no es IMPOSIBLE con nuestro método.</p>
+                        <p class="text-banner-principal">¿Lo tienes claro? ¡Apúntate ya!</p>
+                         <div class="align-center"><button onclick="window.location.href='/registro'" class="btn btn-default btn-success boton-registro">Regístrate</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>   
+
+    <!-- Modal -->
+    <div class="modal fade" id="ISesion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title align-center" id="myModalLabel">Inicio de sesion</h4>
+                </div>
+                <div class="modal-body">
+                    <br>
+                    <form class="form-horizontal" role="form" action="/login" method="post">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="email">Email:</label>
+                            <div class="col-sm-10">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="pwd">Password:</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Enter password">
+                                <h6><a href="">¿Has olvidado tu contraseña?</a></h6>
+                                <div class="checkbox">
+                                    <label><input type="checkbox"> Remember me</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-default">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer align-center">
+                    <h4 class="modal-title ">¿Eres nuevo?</h4>
+                    <button onclick="window.location.href='/registro'" class="btn btn-default btn-success boton-registro">Regístrate</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FIN Modal -->
+
+    <% include ./partials/publico/horarios %>
+
+    <% include ./partials/publico/metodo %>
+
+    <% include ./partials/publico/CVprofesores %>
+
+    <% include ./partials/publico/contact %>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <p><a class="navbar-brand hidden-xs" href="#" id="cabecera-responsive"> <img src="img/imagotip.png" id="logo-cabecera" /> SOBRE RUEDAS</a></p>
+                    <br><br>
+                    <p id="location-footer">C/ La Vila Del Pingüí, 26
+                        <br> Bajos, Barcelona 000000<br> España</p>
+                </div>
+                <div class="col-sm-3">
+                </div>
+                <div class="col-sm-3">
+                    <p class="titulo-footer">Encuentra lo que buscas</p>
+                    <p><a class="listado-footer" href="/">Inicio</a></p>
+                    <p><a class="listado-footer" href="#">Teorica</a></p>
+                    <p><a class="listado-footer" href="#">Practica</a></p>
+                    <p><a class="listado-footer" href="#">Contacto</a></p>
+                </div>
+                <div class="col-sm-3">
+                    <p class="titulo-footer">Síguenos</p>
+                    <p><a class="listado-footer" href="#"><i class="fa fa-facebook-square fa-2x"></i>&nbsp; &nbsp; facebook/SobreRuedas.com</a></p>
+                    <p><a class="listado-footer" href="#"><i class="fa fa-twitter-square fa-2x"></i>&nbsp; &nbsp; @SobreRuedas</a></p>
+                    <p><a class="listado-footer" href="#"><i class="fa fa-instagram fa-2x"></i>&nbsp; &nbsp; @SobreRuedas</a></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="align-center">
+                    <p><a class="listado-footer" href="#"><i class="fa fa-creative-commons  fa-1x"></i>&nbsp; &nbsp; by Marta Corchado y Juan Oliva</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Fin Footer -->
+    <script src="js/bootstrap.min.js"></script>
+    </body>
+</html>
+

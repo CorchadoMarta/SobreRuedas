@@ -104,6 +104,14 @@ body {
     background-size: cover;
 }
 
+#container-img-teorica{
+    background: url("../img/carousel/aula.jpg") no-repeat top center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
 #panel-form{
     background-color: rgba(255, 255, 255, .7);
     border: 1px solid #f5f5f5;
@@ -149,7 +157,7 @@ body {
 
 .identidad-subtitle {
     margin-bottom: .5rem;
-    font-size: 1rem;
+    font-size: 1em;
     font-weight: 300;
     line-height: 2;
     padding-bottom: 5px;
@@ -429,6 +437,15 @@ a:hover{
     text-align: center;
 }
 
+.text-banner-principal-petit-negre{
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.5em;
+    color: black;
+    text-align: center;
+}
+
 .title{
     font-family: 'Lato', sans-serif;
     font-weight: 400;
@@ -453,4 +470,10 @@ a:hover{
     font-style: normal;
     font-size: 1em;
     color: black;
+}
+
+.img-clase{
+    width: 60%;
+    text-align: center;
+    padding: 10px;
 }

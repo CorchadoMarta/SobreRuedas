@@ -183,10 +183,14 @@ module.exports = function (app, passport){
                 });
     });
 
-
+    app.get('/teorica', function(req, res) {
+        res.render('teoricaPublic.ejs',  { botonRegistro: 'partials/publico/BotonRegistro'});
+    });
+    
     app.get('/registro', function(req, res) {
         res.render('registro.ejs',  { botonRegistro: 'partials/publico/BotonRegistro'});
     });
+    
     app.get('/registro:num', function(req, res) {
         res.render('registro.ejs',  { botonRegistro: 'partials/publico/BotonRegistro'});
     });
