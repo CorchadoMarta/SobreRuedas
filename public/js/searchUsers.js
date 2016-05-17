@@ -35,6 +35,7 @@ angular.module('searchUsers').controller('buscaUsuarios', ['$scope', '$http' , f
 
     $scope.reservas = function() {
         if (  $scope.userPagos != undefined){
+            var hoy = new Date();
             var longiExPrac = $scope.userPagos[0].examenPractico.length;
             
             if(longiExPrac != (undefined || 0)){
@@ -47,18 +48,22 @@ angular.module('searchUsers').controller('buscaUsuarios', ['$scope', '$http' , f
                 console.log("UNO  " + longiExPrac + " Prac -- Teo " + longiExTeo);
 
             } else {
+                console.log($scope.userPagos[0].examenTeorico[0].fechEx);
+                console.log(hoy);
                 var arrayTeo = $scope.userPagos[0].examenTeorico;
                 // sólo tiene teórico
                 //ordenar por fechas los exámenes de teorica
                 arrayTeo.sort(function(a,b){ 
                     return new Date(b.fechEx) - new Date(a.fechEx);
                 });
-
-                if( !( 'fallos' in arrayTeo[0]) ){
+                console.log(arrayTeo);
+                var fechaPrueba = new Date(arrayTeo[0].fechEx);
+                console.log(fechaPrueba);
+                if( !( 'fallos' in arrayTeo[0]) && hoy > fechaPrueba ){
                     console.log('no existe fallos');
                     $scope.mostrarReno  = false;
                     $scope.mostrarPrac  = false;
-                    $scope.mostrarTeo  = true;
+                    $scope.mostrarTeo  = false;
                     $scope.mostrarFallos = true;
 
                 } else {
