@@ -71,7 +71,7 @@ body {
 }
 
 #container-img-bienvenido{
-    background: url("../img/carousel/background1.jpg") no-repeat top center;
+    background: url("../img/carousel/drive.jpg") no-repeat top center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -89,7 +89,7 @@ body {
 }
 
 #container-img-calendar{
-    background: url("../img/carousel/practicas.jpg") no-repeat top center;
+    background: url("../img/carousel/background1.jpg") no-repeat top center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -114,6 +114,22 @@ body {
 
 #container-img-practica{
     background: url("../img/carousel/drive.jpg") no-repeat top center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#container-img-contact{
+    background: url("../img/carousel/contactus.jpg") no-repeat top center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#container-img-calendar-pub{
+    background: url("../img/carousel/background3.jpg") no-repeat top center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -437,7 +453,6 @@ a:hover{
     font-style: normal;
     font-size: 3em;
     color: firebrick;
-    text-align: center;
     line-height:46px;
 }
 
@@ -447,7 +462,6 @@ a:hover{
     font-style: normal;
     font-size: 1.5em;
     color: firebrick;
-    text-align: center;
 }
 
 .text-banner-principal-petit-negre{
@@ -456,7 +470,6 @@ a:hover{
     font-style: normal;
     font-size: 1.5em;
     color: black;
-    text-align: center;
 }
 
 .title{
@@ -489,4 +502,23 @@ a:hover{
     width: 60%;
     text-align: center;
     padding: 10px;
+}
+
+.google-maps {
+    position: relative;
+    padding-bottom: 75%; // This is the aspect ratio
+    height: 0;
+    overflow: hidden;
+}
+.google-maps iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.calendar-padd {
+    padding-top: 130px; 
+    padding-bottom:30px
 }
