@@ -162,13 +162,29 @@ module.exports = function (app, passport){
 
     app.post('/editaDatosUser', function(req, res){
         console.log(req.body);
-        usuarios.update({'_id': req.user._id}, { $set : req.body}, function(err) {
+        usuarios.update({'_id': req.user._id}, { $set : req.body }, function(err) {
             if (err){
                 res.send(err)
                 console.log('MAL updateado');
             } else{
                 console.log("updateado");
                 res.redirect('/perfil');
+            }
+
+        });
+    });
+
+    app.post('/fallos', function(req, res){
+        console.log(req.body);
+        var idUser = req.user;
+        delete req.user;
+        pagos.update({'userId': idUser}, { $set : req.body }, function(err) {
+            if (err){
+                res.send(err)
+                console.log('MAL updateado');
+            } else{
+                console.log("updateado");
+                res.end();
             }
 
         });
@@ -370,7 +386,7 @@ function esAlumno(req, res, next) {
 function esProfe(req, res, next) {
 
     // si el usuario está autenticado continuamos 
-    if (req.isAuthenticated() && req.user.role == "profe"){
+    if (req.isAuthenticated() && req.user.role == "profesor"){
         console.log(req.user.role)
         return next();
     }

@@ -25,19 +25,30 @@
         <!-- LINKS VALIDATORS -->
         <link rel="stylesheet" href="css/bootstrapValidator.css"/>
         <script  type="text/javascript" src="js/bootstrapValidator.js"></script>
-        <!-- datepicker bootstrap -->
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" />
-
-
-        <script  src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
 
         <!-- Jquery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 
-
         <script src="http://cdn.staticfile.org/angular.js/1.2.10/angular.min.js"></script>
         <script src="js/datosUser.js"></script>
+        
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" />
 
+        <script  src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                var hoy = new Date();
+                hoy.setDate(hoy.getDate()+2);
+                $('.datePicker').datepicker({
+                    format: 'mm/dd/yyyy',
+                    startDate: hoy
+                });
+                $('.datePicker').on('change', function(){
+                    $('.datepicker').hide();
+                });
+            });
+        </script>
 
     </head>
     <body data-spy="scroll" data-target=".navbar" data-offset="50">
@@ -99,13 +110,11 @@
                                 <p class="datos">Apellidos: <span class="datos-user"><input type="text" class="form-control" name="apellidos" ng-model="editaApellidos" ng-show="editor" placeholder="{{ datos[0].apellidos }}"></span></p>
                                 <p class="datos">DNI: <span class="datos-user"><input type="text" class="form-control" name="dni" ng-model="editaDni" ng-show="editor" placeholder="{{ datos[0].dni }}"></span></p>
                                 <p class="datos">Fecha de nacimiento: <span class="datos-user">
-
-                                    <div class="input-group input-append date" id="datePicker">
-                                        <input type="text" class="form-control" name="fechNacimiento" ng-model="editaFecha" ng-show="editor" placeholder="{{ datos[0].fechNacimiento | date:'dd-MM-yyyy'}}" />
-                                        <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
-                                    </div>
-
-                                    </span></p>
+                                <div class="input-group input-append date datePicker">
+                                    <input type="text" class="form-control" name="fechNacimiento" ng-model="editaFecha" ng-show="editor" placeholder="{{ datos[0].fechNacimiento | date:'dd-MM-yyyy'}}" />
+                                    <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                                </div>
+                                </span></p>
                             </div>
                             <div class="col-sm-6">
                                 <p class="datos">Dirección: <span class="datos-user"><input type="text" class="form-control" name="calle" ng-model="editaCalle" ng-show="editor" placeholder="{{ datos[0].direccion.calle }}"></span>
@@ -131,11 +140,17 @@
     </div>   
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#datePicker').datepicker({
-                format: 'mm/dd/yyyy',
-                startDate: '01/01/1950',
-                endDate: '30/12/1998'
-            });
+
+        var hoy = new Date();
+        hoy.setDate(hoy.getDate()+2);
+        $('.datePicker').datepicker({
+            format: 'mm/dd/yyyy',
+            startDate: hoy
+        });
+        $('.datePicker').on('change', function(){
+            $('.datepicker').hide();
+        });
+
 
 
 

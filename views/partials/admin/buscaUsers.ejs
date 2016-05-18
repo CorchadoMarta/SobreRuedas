@@ -12,7 +12,7 @@
         hoy.setDate(hoy.getDate()+2);
         $('.datePicker').datepicker({
             format: 'mm/dd/yyyy',
-            startDate: hoy
+//            startDate: hoy
         });
         $('.datePicker').on('change', function(){
             $('.datepicker').hide();
@@ -67,7 +67,7 @@
                         <label class="control-label col-sm-12">Último examen teórico:{{ userPagos[0].examenTeorico[0].fechEx | date : 'dd/MM/yy' }}</label>
                         <div class="col-sm-5 date">
                            <div class="input-group input-append" >
-                                <input type="number" class="form-control" min="0" max="30" >Fallos:</input>
+                                <input type="number" class="form-control" min="0" max="30" ng-model="fallosEx" >Fallos:</input>
                             </div>
                         </div>
                         <div class="col-sm-2 date">

@@ -48,41 +48,66 @@ angular.module('searchUsers').controller('buscaUsuarios', ['$scope', '$http' , f
                 console.log("UNO  " + longiExPrac + " Prac -- Teo " + longiExTeo);
 
             } else {
-                console.log($scope.userPagos[0].examenTeorico[0].fechEx);
-                console.log(hoy);
-                var arrayTeo = $scope.userPagos[0].examenTeorico;
-                // sólo tiene teórico
-                //ordenar por fechas los exámenes de teorica
-                arrayTeo.sort(function(a,b){ 
-                    return new Date(b.fechEx) - new Date(a.fechEx);
-                });
-                console.log(arrayTeo);
-                var fechaPrueba = new Date(arrayTeo[0].fechEx);
-                console.log(fechaPrueba);
-                if( !( 'fallos' in arrayTeo[0]) && hoy > fechaPrueba ){
-                    console.log('no existe fallos');
-                    $scope.mostrarReno  = false;
-                    $scope.mostrarPrac  = false;
-                    $scope.mostrarTeo  = false;
-                    $scope.mostrarFallos = true;
+                if ( $scope.userPagos[0].examenTeorico.length != 0){
+                    console.log($scope.userPagos[0].examenTeorico[0].fechEx);
+                    console.log(hoy);
+                    var arrayTeo = $scope.userPagos[0].examenTeorico;
+                    // sólo tiene teórico
+                    //ordenar por fechas los exámenes de teorica
+                    arrayTeo.sort(function(a,b){ 
+                        return new Date(b.fechEx) - new Date(a.fechEx);
+                    });
+                    console.log(arrayTeo);
+                    var fechaPrueba = new Date(arrayTeo[0].fechEx);
+                    console.log('fecha' + fechaPrueba);
+                    if( !( 'fallos' in arrayTeo[0]) && hoy > fechaPrueba ){
+                        console.log('no existe fallos');
+                        $scope.mostrarReno  = false;
+                        $scope.mostrarPrac  = false;
+                        $scope.mostrarTeo  = false;
+                        $scope.mostrarFallos = true;
+
+                    }
 
                 } else {
                     $scope.mostrarReno  = false;
                     $scope.mostrarPrac  = false;
                     $scope.mostrarTeo  = true;
                     $scope.mostrarFallos = false;
-
                 }
+
             }
             return longiExPrac;
         };
 
     };
 
+    $scope.fallos = function(obj) {
+
+    //impExTeo = 0, impEXPrac = 40.6
+    var examenFallo = {fallos: $scope.fallosEx,
+        user: $scope.userExams._id,
+        exId: $scope.userPagos[0].examenTeorico[0]._id};
+        console.log($scope.userPagos[0].examenTeorico[0]);
+            console.log(examenFallo);
+
+        $http.post('/fallos', examenFallo)
+        .success(function() {
+            console.log('es bien');
+        })
+        .error(function() {
+            console.log('Es mal');
+        });
+
+        $scope.getUser($scope.userExams);
+
+    };
+
     $scope.exPrac = function(obj) {
         var tipoEx = obj;
+        //impExTeo = 0, impEXPrac = 40.6
         var examen = {fechEx: $scope.fechTeo || $scope.fechPrac,
-            impExamen: 50,
+            impExamen: 40.6,
             examenPagado: false,
             user: $scope.userExams._id,
             tipo: tipoEx };
