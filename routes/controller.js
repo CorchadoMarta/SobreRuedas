@@ -130,7 +130,7 @@ module.exports = function (app, passport){
 
     app.get('/', function(req, res) {
         res.render('index.ejs',
-           {botonRegistro: 'partials/publico/BotonRegistro'});
+           {botonRegistro: 'partials/publico/botonRegistro'});
     });
 
     app.get('/test', isLoggedIn, function(req, res) {
@@ -200,19 +200,19 @@ module.exports = function (app, passport){
     });
 
     app.get('/teorica', function(req, res) {
-        res.render('teoricaPublic.ejs',  { botonRegistro: 'partials/publico/BotonRegistro'});
+        res.render('teoricaPublic.ejs',  { botonRegistro: 'partials/publico/botonRegistro'});
     });
     
     app.get('/practica', function(req, res) {
-        res.render('practicaPublic.ejs',  { botonRegistro: 'partials/publico/BotonRegistro'});
+        res.render('practicaPublic.ejs',  { botonRegistro: 'partials/publico/botonRegistro'});
     });
     
     app.get('/registro', function(req, res) {
-        res.render('registro.ejs',  { botonRegistro: 'partials/publico/BotonRegistro'});
+        res.render('registro.ejs',  { botonRegistro: 'partials/publico/botonRegistro'});
     });
     
     app.get('/registro:num', function(req, res) {
-        res.render('registro.ejs',  { botonRegistro: 'partials/publico/BotonRegistro'});
+        res.render('registro.ejs',  { botonRegistro: 'partials/publico/botonRegistro'});
     });
 
     app.get('/bienvenido', isLoggedIn , function(req, res) {
@@ -220,6 +220,25 @@ module.exports = function (app, passport){
         var role = req.user.role;
         res.render('bienvenido.ejs',
            {landing: 'partials/'+ role + '/entrada.ejs' , botonRegistro: 'partials/'+ role + '/botonUser', nombre: req.user.nombre});
+
+    });
+    
+    app.get('/contacto', function(req, res) {
+        console.log(req.session);
+        var role;
+        var nombre;
+        if (nombre == undefined){
+            nombre = "publico";
+        } else {
+            nombre = req.user.nombre;
+        }
+        if (role == undefined){
+            role = "publico";
+        } else {
+            role = req.user.role;
+        }
+        res.render('contacto.ejs',
+           {botonRegistro: 'partials/'+ role + '/botonUser', nombre: nombre});
 
     });
 
