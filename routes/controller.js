@@ -22,22 +22,22 @@ module.exports = function (app, passport){
 
 
     var auth = {
-      auth: {
-        api_key: 'key-d1833c38c633fd419bc1b153dc646a7e',
-        domain: 'sandboxb03aac7bff2740b6b02096754ca89497.mailgun.org'
+        auth: {
+            api_key: 'key-d1833c38c633fd419bc1b153dc646a7e',
+            domain: 'sandboxb03aac7bff2740b6b02096754ca89497.mailgun.org'
         }
     }
 
     var nodemailerMailgun = nodemailer.createTransport(mg(auth));
 
     var j = schedule.scheduleJob('00 21 * * 1,2,3,4,7', function(){
-      nodemailerMailgun.sendMail({
-          from: 'noreply@sobreruedas.com',
-              to: ['sobreruedas.dova@gmail.com', 'sobre.ruedas.autoescuela@gmail.com', 'gcatram@gmail.com'], // An array if you have multiple recipients.
-              subject: 'Este es un mail de bienvenida!!!!',
-              text: 'Aquí va un texto de prueba donde hay que poner algo, algo como que tengo la mejor compañera de proyecto (como tú dirías) del MUNDO MUNDIAL!! ;) ',
-          }, function (err, info) {
-              if (err) {
+        nodemailerMailgun.sendMail({
+            from: 'noreply@sobreruedas.com',
+            to: ['sobreruedas.dova@gmail.com', 'sobre.ruedas.autoescuela@gmail.com', 'gcatram@gmail.com'], // An array if you have multiple recipients.
+            subject: 'Este es un mail de bienvenida!!!!',
+            text: 'Aquí va un texto de prueba donde hay que poner algo, algo como que tengo la mejor compañera de proyecto (como tú dirías) del MUNDO MUNDIAL!! ;) ',
+        }, function (err, info) {
+            if (err) {
                 console.log('Error: ' + err);
             }
             else {
@@ -62,30 +62,30 @@ module.exports = function (app, passport){
     app.get('/tests', isLoggedIn , function(req, res) {
         tests.find({},function(err, todos) {
 
-                // si hay un error se envía. no se ejecutará nada después de res.send(err)
-                if (err)
-                    res.send(err)
+            // si hay un error se envía. no se ejecutará nada después de res.send(err)
+            if (err)
+                res.send(err)
                 res.json(todos);
-            });
+        });
     });
 
     app.get('/practis', isLoggedIn , function(req, res) {
         practicas.find( function(err, Todos) {
 
-                // si hay un error se envía. no se ejecutará nada después de res.send(err)
-                if (err)
-                    res.send(err)
+            // si hay un error se envía. no se ejecutará nada después de res.send(err)
+            if (err)
+                res.send(err)
                 res.json(Todos);
-            });
+        });
     });
 
     app.post('/pagos', isLoggedIn , function(req, res) {
         pagos.find({'userId': req.body._id}, function(err, practis) {
-                // si hay un error se envía. no se ejecutará nada después de res.send(err)
-                if (err)
-                    res.send(err)
+            // si hay un error se envía. no se ejecutará nada después de res.send(err)
+            if (err)
+                res.send(err)
                 res.json(practis);
-            });
+        });
     });
 
     app.post('/examenes', isLoggedIn , function(req, res) {
@@ -99,7 +99,7 @@ module.exports = function (app, passport){
                 // si hay un error se envía. no se ejecutará nada después de res.send(err)
                 if (err)
                     res.send(err)
-                console.log('salio bien practico');
+                    console.log('salio bien practico');
                 res.end();
             });
 
@@ -109,7 +109,7 @@ module.exports = function (app, passport){
                 // si hay un error se envía. no se ejecutará nada después de res.send(err)
                 if (err)
                     res.send(err)
-                console.log('salio bien teorico');
+                    console.log('salio bien teorico');
                 res.end();
             });
         }
@@ -120,40 +120,40 @@ module.exports = function (app, passport){
             // si hay un error se envía. no se ejecutará nada después de res.send(err)
             if (err)
                 res.send(err)
-            res.json(practis);
+                res.json(practis);
         });
     });
 
     app.get('/', function(req, res) {
         res.render('index.ejs',
-           {botonRegistro: 'partials/publico/botonRegistro'});
+                   {botonRegistro: 'partials/publico/botonRegistro'});
     });
 
     app.get('/test', isLoggedIn, function(req, res) {
         var role = req.user.role;
         res.render('teorica.ejs',
-           {botonRegistro: 'partials/'+ role + '/botonUser', nombre: req.user.nombre, testUser: 'partials/' + role + '/testUser.ejs'});
+                   {botonRegistro: 'partials/'+ role + '/botonUser', nombre: req.user.nombre, testUser: 'partials/' + role + '/testUser.ejs'});
     });
 
     app.get('/calendar',  isLoggedIn, function(req, res) {
         var role = req.user.role;
         res.render('practicas.ejs',
-           {botonRegistro: 'partials/'+ role + '/botonUser', nombre: req.user.nombre, calendarUser: 'partials/' + role + '/calendar.ejs'});
+                   {botonRegistro: 'partials/'+ role + '/botonUser', nombre: req.user.nombre, calendarUser: 'partials/' + role + '/calendar.ejs'});
     });
 
     app.get('/perfil',  isLoggedIn, function(req, res) {
         var role = req.user.role;
         res.render('profile.ejs',
-           {botonRegistro: 'partials/'+ role + '/botonUser', nombre: ""});
+                   {botonRegistro: 'partials/'+ role + '/botonUser', nombre: ""});
     });
 
     app.get('/datosUser',  isLoggedIn, function(req, res) {
         usuarios.find({'_id': req.user._id},{email: 1, nombre: 1, apellidos: 1, tel: 1, fechNacimiento: 1, dni: 1, direccion: 1} ,function(err, usuario) {
-                // si hay un error se envía. no se ejecutará nada después de res.send(err)
-                if (err)
-                    res.send(err)
+            // si hay un error se envía. no se ejecutará nada después de res.send(err)
+            if (err)
+                res.send(err)
                 res.json(usuario);
-            });
+        });
     });
 
     app.post('/editaDatosUser', function(req, res){
@@ -173,7 +173,7 @@ module.exports = function (app, passport){
         var idEx = req.body.exId;
         pagos.update({'userId': req.body.user, 'examenTeorico._id': idEx}, { $set :{'examenTeorico.$.fallos': req.body.fallos}  }, function(err) {
             if (err){
-                
+
                 console.log('MAL updateado');
                 res.send(err + "Estamos en los fallos");
             } else{
@@ -186,25 +186,25 @@ module.exports = function (app, passport){
 
     app.get('/testsDelUser',  esAlumno, function(req, res) {
         userTest.find({'userId': req.user._id} ,function(err, tests) {
-                    // si hay un error se envía. no se ejecutará nada después de res.send(err)
-                    if (err)
-                        res.send(err)
-                    res.json(tests);
-                });
+            // si hay un error se envía. no se ejecutará nada después de res.send(err)
+            if (err)
+                res.send(err)
+                res.json(tests);
+        });
     });
 
     app.get('/teorica', function(req, res) {
         res.render('teoricaPublic.ejs',  { botonRegistro: 'partials/publico/botonRegistro'});
     });
-    
+
     app.get('/practica', function(req, res) {
         res.render('practicaPublic.ejs',  { botonRegistro: 'partials/publico/botonRegistro'});
     });
-    
+
     app.get('/registro', function(req, res) {
         res.render('registro.ejs',  { botonRegistro: 'partials/publico/botonRegistro'});
     });
-    
+
     app.get('/registro:num', function(req, res) {
         res.render('registro.ejs',  { botonRegistro: 'partials/publico/botonRegistro'});
     });
@@ -212,10 +212,10 @@ module.exports = function (app, passport){
     app.get('/bienvenido', isLoggedIn , function(req, res) {
         var role = req.user.role;
         res.render('bienvenido.ejs',
-           {landing: 'partials/'+ role + '/entrada.ejs' , botonRegistro: 'partials/'+ role + '/botonUser', nombre: req.user.nombre});
+                   {landing: 'partials/'+ role + '/entrada.ejs' , botonRegistro: 'partials/'+ role + '/botonUser', nombre: req.user.nombre});
 
     });
-    
+
     app.get('/contacto', function(req, res) {
         var role;
         var nombre;
@@ -230,14 +230,14 @@ module.exports = function (app, passport){
             role = req.user.role;
         }
         res.render('contacto.ejs',
-           {botonRegistro: 'partials/'+ role + '/botonUser', nombre: nombre});
+                   {botonRegistro: 'partials/'+ role + '/botonUser', nombre: nombre});
 
     });
 
     app.get('/alumnos', esAdmin , function(req, res) {
         var role = req.user.role;
         res.render('alumnos.ejs',
-           {botonRegistro: 'partials/'+ role + '/botonUser', nombre: req.user.nombre});
+                   {botonRegistro: 'partials/'+ role + '/botonUser', nombre: req.user.nombre});
     });
 
     app.post('/buscar', esAdmin , function(req, res) {
@@ -246,12 +246,12 @@ module.exports = function (app, passport){
             nombre = 4;
         }
         usuarios.find({$or: [ {'nombre': {$regex:nombre, $options : 'i' }}, {'dni': req.body.dni} ] }, function(err, practis) {
-                    // si hay un error se envía. no se ejecutará nada después de res.send(err)
-                    if (err)
-                        res.send(err)
-                    res.json(practis);
+            // si hay un error se envía. no se ejecutará nada después de res.send(err)
+            if (err)
+                res.send(err)
+                res.json(practis);
 
-                });
+        });
     });
 
     // se envía el formulario de registro
@@ -267,7 +267,7 @@ module.exports = function (app, passport){
             // si hay un error se envía. no se ejecutará nada después de res.send(err)
             if (err)
                 res.send(err)
-            numPracticasComp = parseInt(req.body.uni) + parseInt((req.body.pack * 10));      
+                numPracticasComp = parseInt(req.body.uni) + parseInt((req.body.pack * 10));      
             pagos.update({'userId': req.user._id}, { $inc : { numPracticasTotalPagadas:  numPracticasComp }}, function(err) {
                 if (err){
                     res.send(err)
@@ -322,26 +322,26 @@ module.exports = function (app, passport){
             // si hay un error se envía. no se ejecutará nada después de res.send(err)
             if (err)
                 res.send(err)
-            if(practis[0].numPracticasTotalPagadas > practis[0].practicas.length){
-                var endtime = new Date(req.body.time); 
-                endtime.setMinutes(endtime.getMinutes() + 45);
-                var practica = new practicas({'userId': req.user._id, 'startTime' : req.body.time, 'endTime' : endtime, 'title' : req.user.nombre});
-                practica.save(function(err) {
-                    pagos.update({'userId': req.user._id}, { $push : { practicas: practica.id}}, function(err) {
-                        if (err){
-                            res.send(err)
-                            console.log('MAL updateado');
-                        } else{
+                if(practis[0].numPracticasTotalPagadas > practis[0].practicas.length){
+                    var endtime = new Date(req.body.time); 
+                    endtime.setMinutes(endtime.getMinutes() + 45);
+                    var practica = new practicas({'userId': req.user._id, 'startTime' : req.body.time, 'endTime' : endtime, 'title' : req.user.nombre});
+                    practica.save(function(err) {
+                        pagos.update({'userId': req.user._id}, { $push : { practicas: practica.id}}, function(err) {
+                            if (err){
+                                res.send(err)
+                                console.log('MAL updateado');
+                            } else{
 
-                            console.log("updateado");
-                            res.end();
-                        }
+                                console.log("updateado");
+                                res.end();
+                            }
+
+                        });
 
                     });
 
-                });
-
-            };
+                };
             res.end();
 
         });

@@ -22,8 +22,6 @@ var schemaUser = new schema ({
     test:[schema.ObjectId],
     examen:{
         teoricoAprobado: {type: Boolean, default: false},
-        fechTeorico: [Date],
-        fechPractico: [Date],
         documentos:{
             foto: {
                 cant: Number,
@@ -34,10 +32,9 @@ var schemaUser = new schema ({
         }
     },
     contabilidad:{
-        tipoContrato: String,
+        tipoContrato: String, //Solo para el profesor 
         fechEntrada: {type: Date, default: Date.now},
-        fechFin: Date,
-        fechCancel: Date
+        fechFin: Date
     },
     pack : String,
     acceptTerms: {type: String, default: 'on'},
