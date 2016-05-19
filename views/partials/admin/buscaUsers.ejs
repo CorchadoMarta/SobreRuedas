@@ -36,7 +36,7 @@
                 </div>
                 <div class="col-sm-6">
                     <div ng-show="mostrarTeo">
-                        <label class="control-label col-sm-12">Último examen Teórico:{{ userPagos[0].examenTeorico[0].fechEx | date : 'dd/MM/yy' }}</label>
+                        <label class="control-label col-sm-12">Último examen Teórico:{{ userPagos[0].examenTeorico[0].fechEx | date : 'dd/MM/yy' }}{{userPagos[0].examenTeorico[0].fallos}}</label>
                         <label class="control-label col-sm-4">Exámen Teórico:</label>
                         <div class="col-sm-5 date">
                            <div class="input-group input-append date datePicker">

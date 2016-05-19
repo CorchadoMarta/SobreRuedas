@@ -80,12 +80,10 @@ module.exports = function (app, passport){
     });
 
     app.post('/pagos', isLoggedIn , function(req, res) {
-        console.log(req.body);
         pagos.find({'userId': req.body._id}, function(err, practis) {
                 // si hay un error se envía. no se ejecutará nada después de res.send(err)
                 if (err)
                     res.send(err)
-                console.log(practis);
                 res.json(practis);
             });
     });
@@ -94,8 +92,6 @@ module.exports = function (app, passport){
         var cosas = req.body;
         var useId = cosas.user;
         delete cosas.user;
-
-        console.log(req.body.tipo);
 
         if(req.body.tipo){
             delete cosas.tipo;
@@ -161,7 +157,6 @@ module.exports = function (app, passport){
     });
 
     app.post('/editaDatosUser', function(req, res){
-        console.log(req.body);
         usuarios.update({'_id': req.user._id}, { $set : req.body }, function(err) {
             if (err){
                 res.send(err)
@@ -175,13 +170,12 @@ module.exports = function (app, passport){
     });
 
     app.post('/fallos', function(req, res){
-        console.log(req.body);
-        var idUser = req.user;
-        delete req.user;
-        pagos.update({'userId': idUser}, { $set : req.body }, function(err) {
+        var idEx = req.body.exId;
+        pagos.update({'userId': req.body.user, 'examenTeorico._id': idEx}, { $set :{'examenTeorico.$.fallos': req.body.fallos}  }, function(err) {
             if (err){
-                res.send(err)
+                
                 console.log('MAL updateado');
+                res.send(err + "Estamos en los fallos");
             } else{
                 console.log("updateado");
                 res.end();
@@ -216,7 +210,6 @@ module.exports = function (app, passport){
     });
 
     app.get('/bienvenido', isLoggedIn , function(req, res) {
-        console.log(req.session);
         var role = req.user.role;
         res.render('bienvenido.ejs',
            {landing: 'partials/'+ role + '/entrada.ejs' , botonRegistro: 'partials/'+ role + '/botonUser', nombre: req.user.nombre});
@@ -224,7 +217,6 @@ module.exports = function (app, passport){
     });
     
     app.get('/contacto', function(req, res) {
-        console.log(req.session);
         var role;
         var nombre;
         if (nombre == undefined){
@@ -295,9 +287,6 @@ module.exports = function (app, passport){
 
 
     app.post('/guardarTest', function(req, res){
-
-        console.log(req.body);
-
         var testUser = new userTest({'userId': req.user._id, 'fallos' : req.body.fallos, 'idTema' : req.body.idTema});
         testUser.save(function(err) {
             if (err){
@@ -394,7 +383,6 @@ function esAlumno(req, res, next) {
 
     // si el usuario está autenticado continuamos 
     if (req.isAuthenticated() && req.user.role == "alumno"){
-        console.log(req.user.role)
         return next();
     }
 
@@ -406,7 +394,6 @@ function esProfe(req, res, next) {
 
     // si el usuario está autenticado continuamos 
     if (req.isAuthenticated() && req.user.role == "profesor"){
-        console.log(req.user.role)
         return next();
     }
 
@@ -418,7 +405,6 @@ function esAdmin(req, res, next) {
 
     // si el usuario está autenticado continuamos 
     if (req.isAuthenticated() && req.user.role == "admin"){
-        console.log(req.user.role)
         return next();
     }
 
