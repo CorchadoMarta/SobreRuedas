@@ -80,7 +80,7 @@ module.exports = function (app, passport){
     });
 
     app.post('/pagos', isLoggedIn , function(req, res) {
-        pagos.find({'userId': req.body._id}, function(err, practis) {
+        pagos.find({'userId': req.body._id || req.user._id}, function(err, practis) {
             // si hay un error se envía. no se ejecutará nada después de res.send(err)
             if (err)
                 res.send(err)

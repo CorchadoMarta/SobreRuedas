@@ -107,7 +107,7 @@ angular.module('searchUsers').controller('buscaUsuarios', ['$scope', '$http' , f
             user: $scope.userExams._id };
             $http.post('/editaDatosUser', aprobado)
             .success(function() {
-                 $scope.getUser($scope.userExams);
+                $scope.busquedaUsers();
                 console.log('es bien boolean probado');
             })
             .error(function() {

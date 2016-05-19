@@ -1,16 +1,17 @@
 <!-- Cabecera -->
 
+    <script src="http://cdn.staticfile.org/angular.js/1.2.10/angular.min.js"></script>
+    <script src="js/searchUsers.js"></script>
 
-
-<div ng-app="testUser" ng-controller="hacerTest" >
+<div ng-app="searchUsers" ng-controller="buscaUsuarios" >
 
     <div class="container">
-        <div id="panel-form" ng-init='loadEvents()'>
+        <div id="panel-form" ng-init='getUser()'>
             <div>
                 <h2  class='col-sm-4'>HOLA!</h2>
                 <label>Notificaciones:</label>
                 <p> Ahora lo miro </p>
-                <p>{{"fallos: " + ultimosTest[0].fallos + " fecha:" + ultimosTest[0].fecha}}</p>
+                <p>{{userPagos[0].examenTeorico[0].examenPagado}}</p>
                 <button class='btn btn-default'>Boton
                 </button>
             </div>
@@ -40,7 +41,7 @@
                              <div  ng-show="acabado" class='col-sm-offset-2 col-sm-10'>
                                  <button type='submit' class='btn btn-default' data-dismiss='modal' ng-click='reset()'>Finalizar
                                  </button>
-                                 <h3>{{ fallos }} fallos</h3>
+                                 <h3>{{  }} fallos</h3>
                              </div>
                          </div>
 
@@ -54,7 +55,6 @@
 <!-- FIN Modal -->
 
 
-</form>
 </div>
 </div>
 </div>
