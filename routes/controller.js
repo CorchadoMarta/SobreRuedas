@@ -157,7 +157,9 @@ module.exports = function (app, passport){
     });
 
     app.post('/editaDatosUser', function(req, res){
-        usuarios.update({'_id': req.user._id}, { $set : req.body }, function(err) {
+        var idUs = req.body.user || req.user._id;
+        delete req.body.user;
+        usuarios.update({'_id': idUs}, { $set : req.body }, function(err) {
             if (err){
                 res.send(err)
                 console.log('MAL updateado');
@@ -171,6 +173,7 @@ module.exports = function (app, passport){
 
     app.post('/fallos', function(req, res){
         var idEx = req.body.exId;
+        // para poder updatear un array en mongo, hay que poner un '$' entre el nombre del objeto y los campos que hay dentro del objeto, dentro del array de objetos
         pagos.update({'userId': req.body.user, 'examenTeorico._id': idEx}, { $set :{'examenTeorico.$.fallos': req.body.fallos}  }, function(err) {
             if (err){
 

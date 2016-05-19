@@ -15,6 +15,10 @@ angular.module('searchUsers').controller('buscaUsuarios', ['$scope', '$http' , f
         .error(function(encontrarUsers) {
             console.log('Error: ' + users);
         });
+        $scope.mostrarReno  = false;
+        $scope.mostrarPrac  = false;
+        $scope.mostrarTeo  = false;
+        $scope.mostrarFallos = false;
     };
 
     $scope.getUser = function(obj) {
@@ -38,19 +42,16 @@ angular.module('searchUsers').controller('buscaUsuarios', ['$scope', '$http' , f
             var hoy = new Date();
             var longiExPrac = $scope.userPagos[0].examenPractico.length;
             
-            if(longiExPrac != (undefined || 0)){
+            if($scope.userExams.examen.teoricoAprobado){
                 $scope.mostrarReno  = false;
                 $scope.mostrarPrac  = true;
                 $scope.mostrarTeo  = false;
                 $scope.mostrarFallos = false;
                 //ya estamos en el práctico
                 var longiExTeo = $scope.userPagos[0].examenTeorico.length;
-                console.log("UNO  " + longiExPrac + " Prac -- Teo " + longiExTeo);
 
             } else {
                 if ( $scope.userPagos[0].examenTeorico.length != 0){
-                    console.log($scope.userPagos[0].examenTeorico[0].fechEx);
-                    console.log(hoy);
                     var arrayTeo = $scope.userPagos[0].examenTeorico;
                     // sólo tiene teórico
                     //ordenar por fechas los exámenes de teorica
@@ -59,14 +60,17 @@ angular.module('searchUsers').controller('buscaUsuarios', ['$scope', '$http' , f
                     });
                     console.log(arrayTeo);
                     var fechaPrueba = new Date(arrayTeo[0].fechEx);
-                    console.log('fecha' + fechaPrueba);
                     if( !( 'fallos' in arrayTeo[0]) && hoy > fechaPrueba ){
-                        console.log('no existe fallos');
                         $scope.mostrarReno  = false;
                         $scope.mostrarPrac  = false;
                         $scope.mostrarTeo  = false;
                         $scope.mostrarFallos = true;
 
+                    } else {
+                        $scope.mostrarReno  = false;
+                        $scope.mostrarPrac  = false;
+                        $scope.mostrarTeo  = true;
+                        $scope.mostrarFallos = false;
                     }
 
                 } else {
@@ -89,7 +93,7 @@ angular.module('searchUsers').controller('buscaUsuarios', ['$scope', '$http' , f
         user: $scope.userExams._id,
         exId: $scope.userPagos[0].examenTeorico[0]._id};
         console.log($scope.userPagos[0].examenTeorico[0]);
-            console.log(examenFallo);
+        console.log(examenFallo);
 
         $http.post('/fallos', examenFallo)
         .success(function() {
@@ -98,6 +102,18 @@ angular.module('searchUsers').controller('buscaUsuarios', ['$scope', '$http' , f
         .error(function() {
             console.log('Es mal');
         });
+        if ($scope.fallosEx <= 3){
+            var aprobado ={ 'examen.teoricoAprobado' : true,
+            user: $scope.userExams._id };
+            $http.post('/editaDatosUser', aprobado)
+            .success(function() {
+                 $scope.getUser($scope.userExams);
+                console.log('es bien boolean probado');
+            })
+            .error(function() {
+                console.log('Es mal');
+            });
+        }
 
         $scope.getUser($scope.userExams);
 
@@ -114,14 +130,14 @@ angular.module('searchUsers').controller('buscaUsuarios', ['$scope', '$http' , f
 
             $http.post('/examenes', examen)
             .success(function() {
-
+            $scope.getUser($scope.userExams);
                 console.log('es bien');
 
             })
             .error(function() {
                 console.log('Es mal');
             });
-            $scope.getUser($scope.userExams);
+
 
         };
 
