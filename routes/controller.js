@@ -341,7 +341,7 @@ module.exports = function (app, passport){
             // si hay un error se envía. no se ejecutará nada después de res.send(err)
             if (err)
                 res.send(err)
-                if(practis[0].numPracticasTotalPagadas > practis[0].practicas.length){
+                if(practis[0].numPracticasTotalPagadas > practis[0].practicas.length || req.user.role  == "profesor"){
                     var endtime = new Date(req.body.time); 
                     endtime.setMinutes(endtime.getMinutes() + 45);
                     var practica = new practicas({'userId': req.user._id, 'startTime' : req.body.time, 'endTime' : endtime, 'title' : req.user.nombre});
