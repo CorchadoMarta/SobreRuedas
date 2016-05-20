@@ -9,27 +9,27 @@ var pagos = require('../model/pagos.js');
 
 var userTest = require('../model/userTest.js');
 
-var nodemailer = require('nodemailer');
+var nodemailer = require('nodemailer'); //Envia mails
 
-var mg = require('nodemailer-mailgun-transport');
+var mg = require('nodemailer-mailgun-transport'); //Enlaza con un servidor que envia mails, y asi no necesitamos una cuenta de verdad
 
-var schedule = require('node-schedule');
+var schedule = require('node-schedule'); //PLanifica horario para ejecutar funcion
 
 
 
 module.exports = function (app, passport){
 
 
-
+    //Datos de Mailgun (mg)
     var auth = {
         auth: {
             api_key: 'key-d1833c38c633fd419bc1b153dc646a7e',
             domain: 'sandboxb03aac7bff2740b6b02096754ca89497.mailgun.org'
         }
     }
-
+    //Relaciona Nodemailer con Mailgun
     var nodemailerMailgun = nodemailer.createTransport(mg(auth));
-
+    //Ejecutamos la funcion en el horario establecido
     var j = schedule.scheduleJob('00 21 * * 1,2,3,4,7', function(){
         nodemailerMailgun.sendMail({
             from: 'noreply@sobreruedas.com',
@@ -66,6 +66,21 @@ module.exports = function (app, passport){
             if (err)
                 res.send(err)
                 res.json(todos);
+        });
+    });
+
+    app.get('/buscarPracticas', isLoggedIn , function(req, res) {
+        var start = new Date();
+        start.setHours(0,0,0,0);
+
+        var end = new Date();
+        end.setHours(23,59,59,999);
+        practicas.find( {startTime : {$gte: start, $lt: end}}, function(err, Todos) {
+
+            // si hay un error se envía. no se ejecutará nada después de res.send(err)
+            if (err)
+                res.send(err)
+            res.json(Todos);
         });
     });
 
@@ -341,7 +356,7 @@ module.exports = function (app, passport){
             // si hay un error se envía. no se ejecutará nada después de res.send(err)
             if (err)
                 res.send(err)
-                if(practis[0].numPracticasTotalPagadas > practis[0].practicas.length || req.user.role  == "profesor"){
+                if(practis[0].numPracticasTotalPagadas > practis[0].practicas.length || req.user.role  == "profesor" || req.user.role  == "admin"){
                     var endtime = new Date(req.body.time); 
                     endtime.setMinutes(endtime.getMinutes() + 45);
                     var practica = new practicas({'userId': req.user._id, 'startTime' : req.body.time, 'endTime' : endtime, 'title' : req.user.nombre});

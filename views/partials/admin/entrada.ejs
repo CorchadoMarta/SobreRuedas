@@ -5,58 +5,12 @@
 <div ng-app="testUser" ng-controller="hacerTest" >
 
     <div class="container">
-        <div id="panel-form" ng-init='loadEvents()'>
-            <div>
-                <h2  class='col-sm-4'>HOLA!</h2>
-                <label>Notificaciones:</label>
-                <p> Ahora lo miro </p>
-                <p>{{"fallos: " + ultimosTest[0].fallos + " fecha:" + ultimosTest[0].fecha}}</p>
-                <button class='btn btn-default'>Boton
-                </button>
-            </div>
-
-
-            <div class="modal fade" id="ISesion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class='modal-title align-center' id='myModalLabel'>Test</h4>
-                        </div>
-                        <div class="modal-body">
-                            <br>
-                        </div>
-                        <div class="modal-footer align-center">
-
-
-                            <div class='form-group'>
-                             <div class='col-sm-offset-2 col-sm-10'>
-                                 <button ng-hide="acabado" class='btn btn-default' data-dismiss='modal'>Cancelar
-                                 </button>
-                             </div>
-                             <div class='col-sm-offset-2 col-sm-10'>
-                                 <button ng-hide="acabado" type='submit' class='btn btn-default' ng-click='corregir()'>Acabar
-                                 </button>
-                             </div>
-                             <div  ng-show="acabado" class='col-sm-offset-2 col-sm-10'>
-                                 <button type='submit' class='btn btn-default' data-dismiss='modal' ng-click='reset()'>Finalizar
-                                 </button>
-                                 <h3>{{ fallos }} fallos</h3>
-                             </div>
-                         </div>
-
-                     </div>
-                 </div>
+        <div id="panel-form">
+            <div class ="row">
+                <div class="col-sm-12 col-xs-12" >
+                 <img class="logoResponsive" src="img/logo.png" alt="Logo" />
              </div>
          </div>
      </div>
  </div>
-</div>
-<!-- FIN Modal -->
-
-
-</form>
-</div>
-</div>
-</div>
-
 </div>

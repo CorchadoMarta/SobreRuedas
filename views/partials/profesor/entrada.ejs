@@ -1,20 +1,24 @@
 <!-- Cabecera -->
 
 
+    <script src="http://cdn.staticfile.org/angular.js/1.2.10/angular.min.js"></script>
+    <script src="js/practicasProfe.js"></script>
 
-<div ng-app="testUser" ng-controller="hacerTest" >
+
+<div ng-app="showPractis" ng-controller="buscarPractis" >
 
     <div class="container">
-        <div id="panel-form" ng-init='loadEvents()'>
-            <div>
-                <h2  class='col-sm-4'>HOLA!</h2>
-                <label>Notificaciones:</label>
-                <p> Ahora lo miro </p>
-                <p>{{"fallos: " + ultimosTest[0].fallos + " fecha:" + ultimosTest[0].fecha}}</p>
-                <button class='btn btn-default'>Boton
-                </button>
-            </div>
-
+        <div id="panel-form" ng-init='busquedaPracticas()'>
+                <div class="row">
+                    <div class="col-sm-4 col-xs-12" >
+                       <img class="logoResponsive" src="img/volante.png" alt="Volante" />
+                    </div>
+                    <div class="col-sm-8">
+                        <p class="text-banner-principal-petit align-center">Prácticas de conducir </p>
+                        <p class="text-banner-principal align-center">Programadas para hoy:</p>
+                        <p class="text-banner-principal-petit-negre align-center" ng-repeat="x in users">{{x.title + " a las  " + (x.startTime | date:'HH:mm') }}</p>
+                    </div>
+                </div>
 
             <div class="modal fade" id="ISesion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
                 <div class="modal-dialog" role="document">

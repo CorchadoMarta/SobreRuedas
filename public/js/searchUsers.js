@@ -3,32 +3,6 @@ angular.module('searchUsers', []);
 angular.module('searchUsers').controller('buscaUsuarios', ['$scope', '$http' , function ($scope, $http) {
     'use strict';
 
-    $scope.pagar = function () {
-        var user1 = {user: $scope.userExams._id,
-        exId: $scope.userPagos[0].examenPractico[0]._id};
-        console.log(user1);
-        $http.post('/pagar', user1)
-        .success(function(encontrarUsers) {
-            $scope.userPagos[0].examenPractico[0].examenPagado = true;
-              console.log('Bien 1');
-        })
-        .error(function(encontrarUsers) {
-            console.log('Error: mal2' + users);
-        });
-    };
-
-    $scope.datosTraer = function (){
-        $http.get('/datosUser')
-        .success(function(datosServer) {
-
-            $scope.userExams =  datosServer;
-            $scope.getUser($scope.userExams[0]);
-        })
-        .error(function(datosServer) {
-            console.log('Error: ' + datosServer);
-        });
-    };
-
 
     $scope.busquedaUsers = function (user) {
 
@@ -95,8 +69,8 @@ angular.module('searchUsers').controller('buscaUsuarios', ['$scope', '$http' , f
                     } else {
                         if(arrayTeo.length == 2 && !$scope.userExams.examen.teoricoAprobado){
                             console.log($scope.userPagos[0]);
-                            $scope.mostrarReno  = true;
-                            $scope.mostrarPrac  = false;
+                            $scope.mostrarReno  = false;
+                            $scope.mostrarPrac  = true;
                             $scope.mostrarTeo  = false;
                             $scope.mostrarFallos = false;
 
@@ -175,8 +149,33 @@ angular.module('searchUsers').controller('buscaUsuarios', ['$scope', '$http' , f
 
 
         };
+        $scope.pagar = function () {
+            var user1 = {user: $scope.userExams._id,
+                exId: $scope.userPagos[0].examenPractico[0]._id};
+                console.log(user1);
+                $http.post('/pagar', user1)
+                .success(function(encontrarUsers) {
+                    $scope.userPagos[0].examenPractico[0].examenPagado = true;
+                    console.log('Bien 1');
+                })
+                .error(function(encontrarUsers) {
+                    console.log('Error: mal2' + users);
+                });
+            };
 
-    }]);
+            $scope.datosTraer = function (){
+                $http.get('/datosUser')
+                .success(function(datosServer) {
+
+                    $scope.userExams =  datosServer;
+                    $scope.getUser($scope.userExams[0]);
+                })
+                .error(function(datosServer) {
+                    console.log('Error: ' + datosServer);
+                });
+            };
+
+        }]);
 
 
 
