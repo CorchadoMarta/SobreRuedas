@@ -19,12 +19,12 @@ var schemaPagos = new schema ({
     tasas: [{
         expediente: {
             fechExpd: Date,
-            impExpediente: Number,
+            impExpediente: { type: Number, default: 89},
             expPagado: Boolean 
         },
         renovación: {
             fechReno: Date,
-            impReno: Number,
+            impReno: { type: Number, default: 189},
             renoPagada: Boolean
         },
         cambio: {
@@ -36,15 +36,12 @@ var schemaPagos = new schema ({
     examenPractico:[{
         fechEx: Date,
         fechExPago: Date,
-        impExamen: Number,
+        impExamen: { type: Number, default: 59},
         examenPagado: Boolean
     }],
     examenTeorico:[{
         fallos: Number,
         fechEx: Date,
-        fechExPago: Date,
-        impExamen: Number,
-        examenPagado: Boolean
     }],
     matDidactico: {
         impMaterial: Number,

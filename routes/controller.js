@@ -148,7 +148,7 @@ module.exports = function (app, passport){
     });
 
     app.get('/datosUser',  isLoggedIn, function(req, res) {
-        usuarios.find({'_id': req.user._id},{email: 1, nombre: 1, apellidos: 1, tel: 1, fechNacimiento: 1, dni: 1, direccion: 1} ,function(err, usuario) {
+        usuarios.find({'_id': req.user._id},{email: 1, nombre: 1, apellidos: 1, tel: 1, fechNacimiento: 1, dni: 1, direccion: 1, 'examen.teoricoAprobado' : 1} ,function(err, usuario) {
             // si hay un error se envía. no se ejecutará nada después de res.send(err)
             if (err)
                 res.send(err)
@@ -181,6 +181,22 @@ module.exports = function (app, passport){
                 res.send(err + "Estamos en los fallos");
             } else{
                 console.log("updateado");
+                res.end();
+            }
+
+        });
+    });
+
+    app.post('/pagar', function(req, res){
+        var idEx = req.body.exId;
+        // para poder updatear un array en mongo, hay que poner un '$' entre el nombre del objeto y los campos que hay dentro del objeto, dentro del array de objetos
+        pagos.update({'userId': req.body.user, 'examenPractico._id': idEx}, { $set :{'examenPractico.$.examenPagado': true }  }, function(err) {
+            if (err){
+
+                console.log('MAL pagado');
+                res.send(err + "Estamos en los fallos");
+            } else{
+                console.log("pagado");
                 res.end();
             }
 

@@ -3,6 +3,32 @@ angular.module('searchUsers', []);
 angular.module('searchUsers').controller('buscaUsuarios', ['$scope', '$http' , function ($scope, $http) {
     'use strict';
 
+    $scope.pagar = function () {
+        var user1 = {user: $scope.userExams._id,
+        exId: $scope.userPagos[0].examenPractico[0]._id};
+        console.log(user1);
+        $http.post('/pagar', user1)
+        .success(function(encontrarUsers) {
+            $scope.userPagos[0].examenPractico[0].examenPagado = true;
+              console.log('Bien 1');
+        })
+        .error(function(encontrarUsers) {
+            console.log('Error: mal2' + users);
+        });
+    };
+
+    $scope.datosTraer = function (){
+        $http.get('/datosUser')
+        .success(function(datosServer) {
+
+            $scope.userExams =  datosServer;
+            $scope.getUser($scope.userExams[0]);
+        })
+        .error(function(datosServer) {
+            console.log('Error: ' + datosServer);
+        });
+    };
+
 
     $scope.busquedaUsers = function (user) {
 
@@ -23,9 +49,9 @@ angular.module('searchUsers').controller('buscaUsuarios', ['$scope', '$http' , f
 
     $scope.getUser = function(obj) {
         $scope.userExams = obj;
+        console.log($scope.userExams);
         $http.post('/pagos', obj)
         .success(function(userPago) {
-
             $scope.userPagos =  userPago;
             $scope.reservas();
         })
@@ -67,10 +93,21 @@ angular.module('searchUsers').controller('buscaUsuarios', ['$scope', '$http' , f
                         $scope.mostrarFallos = true;
 
                     } else {
-                        $scope.mostrarReno  = false;
-                        $scope.mostrarPrac  = false;
-                        $scope.mostrarTeo  = true;
-                        $scope.mostrarFallos = false;
+                        if(arrayTeo.length == 2 && !$scope.userExams.examen.teoricoAprobado){
+                            console.log($scope.userPagos[0]);
+                            $scope.mostrarReno  = true;
+                            $scope.mostrarPrac  = false;
+                            $scope.mostrarTeo  = false;
+                            $scope.mostrarFallos = false;
+
+                        } else {
+                            $scope.mostrarReno  = false;
+                            $scope.mostrarPrac  = false;
+                            $scope.mostrarTeo  = true;
+                            $scope.mostrarFallos = false;
+
+                        }
+
                     }
 
                 } else {
@@ -107,7 +144,7 @@ angular.module('searchUsers').controller('buscaUsuarios', ['$scope', '$http' , f
             user: $scope.userExams._id };
             $http.post('/editaDatosUser', aprobado)
             .success(function() {
-                $scope.busquedaUsers();
+                $scope.userExams.examen[0].teoricoAprobado = true;
                 console.log('es bien boolean probado');
             })
             .error(function() {
@@ -121,16 +158,14 @@ angular.module('searchUsers').controller('buscaUsuarios', ['$scope', '$http' , f
 
     $scope.exPrac = function(obj) {
         var tipoEx = obj;
-        //impExTeo = 0, impEXPrac = 40.6
         var examen = {fechEx: $scope.fechTeo || $scope.fechPrac,
-            impExamen: 40.6,
             examenPagado: false,
             user: $scope.userExams._id,
             tipo: tipoEx };
 
             $http.post('/examenes', examen)
             .success(function() {
-            $scope.getUser($scope.userExams);
+                $scope.getUser($scope.userExams);
                 console.log('es bien');
 
             })

@@ -5,18 +5,18 @@
 
 <div ng-app="searchUsers" ng-controller="buscaUsuarios" >
 
-    <div class="container">
-        <div id="panel-form" ng-init='getUser()'>
+    <div class="container" >
+        <div id="panel-form" ng-init='datosTraer()' >
             <div>
                 <h2  class='col-sm-4'>HOLA!</h2>
                 <label>Notificaciones:</label>
-                <p> Ahora lo miro </p>
-                <p>{{userPagos[0].examenTeorico[0].examenPagado}}</p>
-                <button class='btn btn-default'>Boton
-                </button>
+
             </div>
-
-
+            <div ng-if="! userPagos[0].examenPractico[0].examenPagado && userPagos[0].examenPractico[0].examenPagado !== undefined">
+            <p>Fecha del examen{{userPagos[0].examenPractico[0].fechEx  | date : 'dd/MM/yy' }}</p>
+                <p>tienes que pagar el exámen práctico:{{userPagos[0].examenPractico[0].impExamen}}€</p>
+                <button class='btn btn-default' ng-click='pagar()' >Pagar</button>
+            </div>
             <div class="modal fade" id="ISesion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
