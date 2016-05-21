@@ -14,7 +14,7 @@
             </div>
             <div ng-if="! userPagos[0].examenPractico[0].examenPagado && userPagos[0].examenPractico[0].examenPagado !== undefined">
             <p>Fecha del examen{{userPagos[0].examenPractico[0].fechEx  | date : 'dd/MM/yy' }}</p>
-                <p>tienes que pagar el exámen práctico:{{userPagos[0].examenPractico[0].impExamen}}€</p>
+                <p>tienes que pagar el examen práctico:{{userPagos[0].examenPractico[0].impExamen}}€</p>
                 <button class='btn btn-default' ng-click='pagar()' >Pagar</button>
             </div>
             <div class="modal fade" id="ISesion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
