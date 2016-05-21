@@ -3,6 +3,7 @@ angular.module("testUser.tpls", ["template/testUser/resultado.html", "template/t
 angular.module('testUser', ["testUser.tpls"]).controller('hacerTest', ['$scope', '$http' , function ($scope, $http) {
     'use strict';
 
+    // inicio de variables
     $scope.position = 0;
 
     $scope.respUsusario = new Array(30);
@@ -13,7 +14,7 @@ angular.module('testUser', ["testUser.tpls"]).controller('hacerTest', ['$scope',
 
     $scope.estilazo = new Array(3);
 
-
+    // limpia el modal para el siguiente test
     $scope.reset = function () {
         $scope.position = 0;
         $scope.respUsusario = new Array(30);
@@ -22,6 +23,7 @@ angular.module('testUser', ["testUser.tpls"]).controller('hacerTest', ['$scope',
         $scope.estilazo = [];
     };
 
+    // mover el test por el array mediante un click en los números
     $scope.moveIndex = function (pos) {
         $scope.position = pos;
         if($scope.respUsusario[$scope.position] == undefined){
@@ -33,68 +35,7 @@ angular.module('testUser', ["testUser.tpls"]).controller('hacerTest', ['$scope',
 
     };
 
-    $scope.corregirEstilos = function () {
-        if($scope.acabado == true){
-            $scope.estilazo = [];
-            var resultStyle = $scope.eventSource[$scope.position].respuestas.solucion;
-            $scope.estilazo[resultStyle] = 'green';
-
-            if($scope.eventSource[$scope.position].respuestas.solucion != $scope.respUsusario[$scope.position]){
-                $scope.estilazo[($scope.respUsusario[$scope.position])] = 'red';
-            }
-            console.log($scope.estilazo);
-
-        };   
-    };
-
-    $scope.corregir = function () {
-        $scope.fallos = 0;
-        for(var i=0; i <  $scope.respUsusario.length ; i++){
-            console.log($scope.eventSource[i].respuestas.solucion + "respuestas " + $scope.respUsusario[i]);
-            if($scope.eventSource[i].respuestas.solucion != $scope.respUsusario[i]){
-                $scope.fallos++;
-            }
-        };
-        $scope.acabado = true;
-        $scope.corregirEstilos();
-
-        var parametroTest = { fallos: $scope.fallos , idTema : $scope.eventSource[0].idTema};
-
-        $http.post('/guardarTest', parametroTest)
-        .success(function() {
-            console.log('Guardado Test');
-        })
-        .error(function() {
-            console.log('Error');
-        });
-        $scope.cargarResultados();
-
-    };
-    $scope.cargarResultados = function () {
-        $http.get('/testsDelUser')
-        .success(function(eve) {
-            $scope.ultimosTest = eve;
-        })
-        .error(function(eve) {
-            console.log('Error: ' + eve);
-        });
-    };
-
-
-
-    $scope.loadEvents = function () {
-
-        $http.get('/tests')
-        .success(function(events) {
-            $scope.eventSource = events;
-        })
-        .error(function(events) {
-            console.log('Error: ' + events);
-        });
-
-        $scope.cargarResultados();
-    };
-
+    // mover el test por el array mediante un click en los extremos
     $scope.move = function (pos) {
         if($scope.position >= 0  && $scope.position <= 30){
             $scope.position += pos;
@@ -110,6 +51,77 @@ angular.module('testUser', ["testUser.tpls"]).controller('hacerTest', ['$scope',
 
     };
 
+    // cambia de color las respuestas, verde si son correctas y rojas si no lo son
+    $scope.corregirEstilos = function () {
+        if($scope.acabado == true){
+            $scope.estilazo = [];
+            var resultStyle = $scope.eventSource[$scope.position].respuestas.solucion;
+            // la respuesta correcta se colorea de verde
+            $scope.estilazo[resultStyle] = 'green';
+
+            //si la respuesta correcta no coincide con la del usuario, ésta segunda se colorea de rojo
+            if($scope.eventSource[$scope.position].respuestas.solucion != $scope.respUsusario[$scope.position]){
+                $scope.estilazo[($scope.respUsusario[$scope.position])] = 'red';
+            }
+        };   
+    };
+
+    // corrige el examen
+    $scope.corregir = function () {
+        // varriable que recoge los fallos
+        $scope.fallos = 0;
+        // recorremos el array de las respuestas
+        for(var i=0; i <  $scope.respUsusario.length ; i++){
+            // si el array usuario no coincide con el array del test, se suma un fallo
+            if($scope.eventSource[i].respuestas.solucion != $scope.respUsusario[i]){
+                $scope.fallos++;
+            }
+        };
+
+        $scope.acabado = true;
+        // cambio de color en las respuestas según si son correctas o no
+        $scope.corregirEstilos();
+
+        var parametroTest = { fallos: $scope.fallos , idTema : $scope.eventSource[0].idTema};
+        // pasamos al servidor los datos del test
+        $http.post('/guardarTest', parametroTest)
+        .success(function() {
+            console.log('Guardado Test');
+        })
+        .error(function() {
+            console.log('Error');
+        });
+        $scope.cargarResultados();
+
+    };
+
+    // vemos el resultado del último examen
+    $scope.cargarResultados = function () {
+        $http.get('/testsDelUser')
+        .success(function(eve) {
+            $scope.ultimosTest = eve;
+        })
+        .error(function(eve) {
+            console.log('Error: ' + eve);
+        });
+    };
+
+
+    //carga el examen de la base de datos
+    $scope.loadEvents = function () {
+
+        $http.get('/tests')
+        .success(function(events) {
+            $scope.eventSource = events;
+        })
+        .error(function(events) {
+            console.log('Error: ' + events);
+        });
+
+        $scope.cargarResultados();
+    };
+
+    // añade la respuesta del usuario a un array de respuestas
     $scope.myFunc = function (pos) {
         $scope.respUsusario[$scope.position] = $scope.respPreg;
     };
