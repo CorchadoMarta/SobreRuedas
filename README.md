@@ -34,3 +34,27 @@ MEAN
 
 Html5-CSS3-Jquery-Bootstrap
 
+**Instalación e inicio:**
+
+Para instalar este proyecto primero hay que clonarlo desde git con la siguiente función desde la línea de comando:
+
+git clone https://github.com/CorchadoMarta/SobreRuedas.git
+
+Después se instalan los módulos predefinidos:
+
+npm install
+
+Ahora ya está el proyecto instalado. Para arrancar el servidor hay que utilizar la siguiente función:
+
+node app.js
+
+Al hacer esto empezará a funcionar un servidor local en la dirección:
+
+/localhost:2626
+
+Ya está instalado y funcionando. Lo siguiente que vamos a hacer es ir a la página de registro, y añadir dos usuarios. Uno deberá de tener como nombre 'admin' y otro como nombre deberá tener 'profesor'. Una vez creados estos usuarios, vamos a otorgarles privilegios especiales. Volvemos a la línea de comando y ejecutamos un script que hará la función:
+
+./admin-profe.sh
+
+Con esto ya tenemos el servidor en marcha y tenemos dos usuarios especiales; un administrador y un profesor.
+
