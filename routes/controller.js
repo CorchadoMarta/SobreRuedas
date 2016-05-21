@@ -31,10 +31,10 @@ module.exports = function (app, passport){
     //Relaciona Nodemailer con el transporte Mailgun
     var nodemailerMailgun = nodemailer.createTransport(mg(auth));
     //Ejecutamos la funcion en el horario establecido
-    var j = schedule.scheduleJob('00 21 * * 1,2,3,4,7', function(){
+    schedule.scheduleJob('37 19 * * 1,2,3,4,7', function(){
         nodemailerMailgun.sendMail({
             from: 'noreply@sobreruedas.com',
-            to: ['sobreruedas.dova@gmail.com', 'sobre.ruedas.autoescuela@gmail.com', 'gcatram@gmail.com'], // An array if you have multiple recipients.
+            to: ['sobreruedas.dova@gmail.com', 'juan.olgo@gmail.com' , 'sobre.ruedas.autoescuela@gmail.com', 'gcatram@gmail.com'], // An array if you have multiple recipients.
             subject: 'Este es un mail de bienvenida!!!!',
             text: 'Aquí va un texto de prueba donde hay que poner algo, algo como que tengo la mejor compañera de proyecto (como tú dirías) del MUNDO MUNDIAL!! ;) ',
         }, function (err, info) {
@@ -47,7 +47,26 @@ module.exports = function (app, passport){
         });
     });
 
-    j;
+
+    // el usuario envía un mail a el administrador
+    app.post('/contacto' , function(req, res) {
+        console.log(req.body);
+        nodemailerMailgun.sendMail({
+           /* from: 'noreply@sobreruedas.com',
+            to: ['sobreruedas.dova@gmail.com', 'juan.olgo@gmail.com' , 'sobre.ruedas.autoescuela@gmail.com', 'gcatram@gmail.com'], // An array if you have multiple recipients.
+            subject: 'Este es un mail de bienvenida!!!!',
+            text: 'Aquí va un texto de prueba donde hay que poner algo, algo como que tengo la mejor compañera de proyecto (como tú dirías) del MUNDO MUNDIAL!! ;) ',
+        }, function (err, info) {
+            if (err) {
+                console.log('Error: ' + err);
+            }
+            else {
+                console.log('Response: ' + info);
+            }*/
+        });
+    });
+
+
 
     // se envía el formulario de registro
     app.post('/registrar', passport.authenticate('local-signup', {
@@ -129,18 +148,14 @@ module.exports = function (app, passport){
     
     //muestra la pantalla de contacto
     app.get('/contacto', function(req, res) {
-        var role;
-        var nombre;
-        if (nombre == undefined){
-            nombre = "publico";
-        } else {
+        var role = "publico";
+        var nombre = "publico";
+        if(req.user != undefined){
+            role = req.user.role;
             nombre = req.user.nombre;
         }
-        if (role == undefined){
-            role = "publico";
-        } else {
-            role = req.user.role;
-        }
+        
+        console.log(role);
         res.render('contacto.ejs',
            {botonRegistro: 'partials/'+ role + '/botonUser', nombre: nombre});
 
