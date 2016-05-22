@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="1.7.0_79" class="java.beans.XMLDecoder">
+<java version="1.7.0_67" class="java.beans.XMLDecoder">
  <object class="com.horstmann.violet.ClassDiagramGraph">
   <void method="addNode">
    <object class="com.horstmann.violet.ClassNode" id="ClassNode0">
@@ -21,6 +21,17 @@
 + String email
 +String pwd
 + String role</string>
+     </void>
+    </void>
+    <void property="methods">
+     <void property="text">
+      <string>registrar()
+login()
+logout()
+calendar()
+datosUser()
+editarDatosUser()
+</string>
      </void>
     </void>
     <void property="name">
@@ -270,6 +281,12 @@
   </void>
   <void method="addNode">
    <object class="com.horstmann.violet.ClassNode" id="ClassNode7">
+    <void property="methods">
+     <void property="text">
+      <string>practica()
+buscarPracticas()</string>
+     </void>
+    </void>
     <void property="name">
      <void property="text">
       <string>Profesor</string>
@@ -299,6 +316,16 @@
   </void>
   <void method="addNode">
    <object class="com.horstmann.violet.ClassNode" id="ClassNode8">
+    <void property="methods">
+     <void property="text">
+      <string>contacto()
+practica()
+alumnos()
+pagos()
+examenes()
+datosUser()</string>
+     </void>
+    </void>
     <void property="name">
      <void property="text">
       <string>Admin
@@ -329,6 +356,15 @@
   </void>
   <void method="addNode">
    <object class="com.horstmann.violet.ClassNode" id="ClassNode9">
+    <void property="methods">
+     <void property="text">
+      <string>perfil()
+teorica()
+fallos()
+pagarPracticas()
+practica()</string>
+     </void>
+    </void>
     <void property="name">
      <void property="text">
       <string>Alumno
