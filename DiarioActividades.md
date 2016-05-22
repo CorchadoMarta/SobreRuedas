@@ -31,3 +31,6 @@ Día | Tiempo dedicado (horas) | Descripción de la tarea
 12/05/2016 | 4h | Añadir examenes teoricos y practicos desde admin.
 17/05/2016 | 5h | Paginas de relleno en html y css. Añadir examenes teoricos y practicos desde admin. 
 18/05/2016 | 6h | Paginas de relleno en html y css - añadir examenes teoricos y practicos desde admin. (continuación)
+19/05/2016 | 4h | Añadir examenes teoricos y practicos desde admin, más solución de errores y testeo.
+20/05/2016 | 4h | Testeo, preparación de presentación y realización de documentación y video.
+
