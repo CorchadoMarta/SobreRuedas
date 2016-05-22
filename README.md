@@ -60,3 +60,6 @@ Ya está instalado y funcionando. Lo siguiente que vamos a hacer es ir a la pág
 
 Con esto ya tenemos el servidor en marcha y tenemos dos usuarios especiales; un administrador y un profesor.
 
+**Fuentes de material:**
+http://freemusicarchive.org
+https://pixabay.com
