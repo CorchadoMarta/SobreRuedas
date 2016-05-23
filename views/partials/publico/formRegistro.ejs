@@ -79,15 +79,15 @@
                 </div>
 
                 <!--<div class="form-group">
-<label class="control-label col-sm-2">Imagen de usuario:</label>
-<div class="col-sm-4">
-<input id="pdffile"  accept="image/*" style="visibility: hidden; height: 0px" name="file" type="file" />
-<div class="input-group">
-<input class="input-xlarge form-control" id="subfile" name="subfile" type="text"/>
-<span class="input-group-addon btn btn-default" onclick="$('#pdffile').click();">Archivo</span>
-</div>
-</div>
-</div>-->
+                <label class="control-label col-sm-2">Imagen de usuario:</label>
+                <div class="col-sm-4">
+                <input id="pdffile"  accept="image/*" style="visibility: hidden; height: 0px" name="file" type="file" />
+                <div class="input-group">
+                <input class="input-xlarge form-control" id="subfile" name="subfile" type="text"/>
+                <span class="input-group-addon btn btn-default" onclick="$('#pdffile').click();">Archivo</span>
+                </div>
+                </div>
+                </div>-->
                 <div class="form-group">
                     <label class="control-label col-sm-2">Tipo de contrato:</label>
                     <div class="col-sm-4">
@@ -213,8 +213,8 @@
                             message: 'Campo obligatorio, no puede estar vacío'
                         },
                         regexp: {
-                            message: 'El teléfono sólo puede contener 9 numeros',
-                            regexp: /^[0-9]{9}$/
+                            message: 'El teléfono sólo puede contener 9 números y tiene que empezar por 6 o 9',
+                            regexp: /^[6,9][0-9]{8}$/
                         }
                     }
                 },

@@ -1,25 +1,31 @@
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+
+    <!-- LINKS VALIDATORS -->
+    <link rel="stylesheet" href="css/bootstrapValidator.css"/>
+    <script  type="text/javascript" src="js/bootstrapValidator.js"></script>
 
 <div class="background">
     <div class="container">
         <h2 class="align-center">Resuelve tus dudas y pide información</h2><br>
-        <form role="form">
+        <form role="form"  id="validatorForm" role="form" action="/mailContacto" method="post">
             <div class="row">
                 <div class="col-sm-4 form-group">
                     <h4>Datos personales</h4>
                     <br>
                     <div class="input-group">
                         <div class="input-group-addon"><span class="glyphicon glyphicon-education" aria-hidden="true"></span></div>
-                        <input type="text" class="form-control" id="exampleInputAmount" placeholder="Dinos tu nombre">
+                        <input type="text" class="form-control" id="exampleInputAmount" placeholder="Dinos tu nombre" name="nombre">
                     </div>
                     <br>
                     <div class="input-group">
                         <div class="input-group-addon"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span></div>
-                        <input type="text" class="form-control" id="exampleInputAmount" placeholder="Teléfono de contacto">
+                        <input type="text" class="form-control"  id="tel" placeholder="Teléfono de contacto" name="tel">
                     </div>
                     <br>
                     <div class="input-group">
                         <div class="input-group-addon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></div>
-                        <input type="text" class="form-control" id="exampleInputAmount" placeholder="Una dirección de email">
+                        <input type="text" class="form-control" id="exampleInputAmount" placeholder="Una dirección de email" name="email">
                     </div>
                 </div>
                 <div class="col-sm-4 form-group">
@@ -36,7 +42,7 @@
                     </div>
                     <br>
                     <div class="input-group">
-                        <span class="input-group-addon"><input type="radio" name="info" value="Prácticas de reciclage" /></span>
+                        <span class="input-group-addon"><input type="radio" name="info" value="Prácticas de reciclaje" /></span>
                         <input type="text" class="form-control disabled-input" id="disabledInput" placeholder="Prácticas de reciclaje" readonly />
                     </div>
                 </div>
@@ -58,7 +64,7 @@
                         <input type="text" class="form-control disabled-input" id="disabledInput" placeholder="Vía email" readonly>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="col-sm-12 form-group">
                     <div class="align-center">
                         <button type="submit" class="btn btn-success boton-registro">Pedir información</button>
                     </div>
@@ -67,3 +73,74 @@
         </form>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+            // The default options
+        $('#validatorForm').bootstrapValidator({
+            message: 'Campo no válido, vuelve a intentarlo',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                info: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Info no puede estar vacío'
+                        }
+                    }
+                },
+                modo: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Modo no puede estar vacío'
+                        }
+                    }
+                },
+                email: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Campo obligatorio, no puede estar vacío'
+                        },
+                        emailAddress: {
+                            message: 'Email no válido'
+                        }
+                    }
+                },
+                nombre: {
+                    row: '.col-sm-4',
+                    message: 'Nombre no válido',
+                    validators: {
+                        notEmpty: {
+                            message: 'El nombre és obligatorio, no puede esta vacio'
+                        },
+                        stringLength: {
+                            min: 3,
+                            max: 50,
+                            message: 'El nombre no puede ser más corto de 2 letras ni más largo de 20'
+                        },
+                        regexp: {
+                            regexp: /^[ñA-Za-z _]*[ñA-Za-z][ñA-Za-z _]*$/,
+                            message: 'El nombre solo puede contener letras y espacios'
+                        }
+                    }
+                },
+            
+                tel: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Campo obligatorio, no puede estar vacío'
+                        },
+                        regexp: {
+                            message: 'El teléfono sólo puede contener 9 numeros',
+                            regexp: /^[6,9][0-9]{8}$/
+                        }
+                    }
+                }
+               
+            }
+        });
+    });
+</script>

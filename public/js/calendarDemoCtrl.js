@@ -42,7 +42,7 @@ angular.module('calendarDemoApp').controller('CalendarDemoCtrl', ['$scope', '$ht
         var ahora = new Date();
         ahora.setDate(ahora.getDate() + 1);
         if(ahora.getTime() < selectedTime.getTime()){
-        //Controlar objeto y fecha por separado
+        // Si existe práctica donde hemos seleccionado y es del usuario logueado, la borra
             if(practiObject.events != undefined){
                 var practId = practiObject.events[0].event._id;
                 var horaPractica = {practId: practId };

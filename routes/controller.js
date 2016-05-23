@@ -31,40 +31,92 @@ module.exports = function (app, passport){
     //Relaciona Nodemailer con el transporte Mailgun
     var nodemailerMailgun = nodemailer.createTransport(mg(auth));
     //Ejecutamos la funcion en el horario establecido
-    schedule.scheduleJob('37 19 * * 1,2,3,4,7', function(){
-        nodemailerMailgun.sendMail({
+    var mailsUsers = ['sobreruedas.dova@gmail.com', 'sobre.ruedas.autoescuela@gmail.com'];
+    mailsUsers.forEach( function(entry) {
+        console.log(entry);
+
+    });
+    schedule.scheduleJob('15 21 * * 0,1,2,3,4', function(){
+                // fecha inicial
+        var start = new Date();
+        start.setHours(0,0,0,0);
+        start.setDate(start.getDate() + 1 );
+
+        // fecha final
+        var end = new Date();
+        end.setHours(23,59,59,999);
+        end.setDate(end.getDate() + 1 );
+        console.log(start + " start -- end " + end);
+        // buscamos en un intervalo de horas, que es el día de hoy
+        practicas.find( {startTime : {$gte: start, $lt: end}}, {userId:1, startTime:1, _id:0},function(err, Todos) {
+            // si hay un error se envía. no se ejecutará nada después de res.send(err)
+            if (err)
+                res.send(err)
+            var arrayMails = [];
+            Todos.forEach( function(entry) {
+                arrayMails.push(entry.userId);
+
+            });
+            console.log(arrayMails);
+            usuarios.find({_id : { $all: arrayMails}},{email:1}, function(err, emails){
+                console.log(emails[0]);
+            })
+            
+      /*      res.json(Todos);*/
+        });
+/*        nodemailerMailgun.sendMail({
             from: 'noreply@sobreruedas.com',
-            to: ['sobreruedas.dova@gmail.com', 'juan.olgo@gmail.com' , 'sobre.ruedas.autoescuela@gmail.com', 'gcatram@gmail.com'], // An array if you have multiple recipients.
-            subject: 'Este es un mail de bienvenida!!!!',
-            text: 'Aquí va un texto de prueba donde hay que poner algo, algo como que tengo la mejor compañera de proyecto (como tú dirías) del MUNDO MUNDIAL!! ;) ',
+            to: ['sobreruedas.dova@gmail.com', 'sobre.ruedas.autoescuela@gmail.com'], // An array if you have multiple recipients.
+            subject: 'Mañana tienes una práctica!!!!',
+            text: 'Buenas noches: Mañana tienes una práctica. Que vaya bien y haz caso al profesor, que él sabe más. ;)',
         }, function (err, info) {
             if (err) {
-                console.log('Error: ' + err);
+            console.log('Error: ' + err);
+            } else {
+            console.log('Response: ' + info);
             }
-            else {
-                console.log('Response: ' + info);
-            }
-        });
+        });*/
     });
 
+/*    //Busca las prácticas de hoy para mostrárselas al profesor
+    app.get('/mailRecordatorio', function(req, res) {
+        // fecha inicial
+        var start = new Date();
+        start.setHours(0,0,0,0);
+        start.setDate(start.getDay() +1 );
+        // fecha final
+        var end = new Date();
+        end.setHours(23,59,59,999);
+        end.setDate(end.getDay() +1 );
+        console.log(start + " start -- end " + end);
+        // buscamos en un intervalo de horas, que es el día de hoy
+        practicas.find( {startTime : {$gte: start, $lt: end}}, function(err, Todos) {
+            // si hay un error se envía. no se ejecutará nada después de res.send(err)
+            if (err)
+                res.send(err)
+            res.json(Todos);
+        });
+    });*/
 
     // el usuario envía un mail a el administrador
-    app.post('/contacto' , function(req, res) {
-        console.log(req.body);
+    app.post('/mailContacto' , function(req, res) {
         nodemailerMailgun.sendMail({
-           /* from: 'noreply@sobreruedas.com',
-            to: ['sobreruedas.dova@gmail.com', 'juan.olgo@gmail.com' , 'sobre.ruedas.autoescuela@gmail.com', 'gcatram@gmail.com'], // An array if you have multiple recipients.
-            subject: 'Este es un mail de bienvenida!!!!',
-            text: 'Aquí va un texto de prueba donde hay que poner algo, algo como que tengo la mejor compañera de proyecto (como tú dirías) del MUNDO MUNDIAL!! ;) ',
+            from: 'noreply@sobreruedas.com',
+            to: ['sobreruedas.dova@gmail.com', 'sobre.ruedas.autoescuela@gmail.com'], // An array if you have multiple recipients.
+            subject: 'Mail de contacto de ' + req.body.nombre,
+            text: ' El sr/sra ' + req.body.nombre + ' quiere ponerse en contacto con nosotros vía ' + req.body.modo + ' y quiere información sobre ' + req.body.info + ' . Su email es ' + req.body.email + ' y su teléfono ' + req.body.tel ,
         }, function (err, info) {
             if (err) {
                 console.log('Error: ' + err);
             }
             else {
                 console.log('Response: ' + info);
-            }*/
+            }
         });
+        // fecha inicial
+        res.redirect('/');
     });
+
 
 
 
@@ -142,7 +194,7 @@ module.exports = function (app, passport){
         var role = req.user.role;
         res.render('bienvenido.ejs',
             // ponemos una variable para que cambie el renderizado según el usuario
-           {landing: 'partials/'+ role + '/entrada.ejs' , botonRegistro: 'partials/'+ role + '/botonUser', nombre: req.user.nombre});
+            {landing: 'partials/'+ role + '/entrada.ejs' , botonRegistro: 'partials/'+ role + '/botonUser', nombre: req.user.nombre});
 
     });
     
@@ -157,7 +209,7 @@ module.exports = function (app, passport){
         
         console.log(role);
         res.render('contacto.ejs',
-           {botonRegistro: 'partials/'+ role + '/botonUser', nombre: nombre});
+         {botonRegistro: 'partials/'+ role + '/botonUser', nombre: nombre});
 
     });
 
@@ -180,8 +232,8 @@ module.exports = function (app, passport){
         });
     });
 
-    //Busca las prácticas de hoy para mostrarselas al profesor
-    app.get('/buscarPracticas', isLoggedIn , function(req, res) {
+    //Busca las prácticas de hoy para mostrárselas al profesor
+    app.get('/buscarPracticas' , function(req, res) {
         // fecha inicial
         var start = new Date();
         start.setHours(0,0,0,0);
@@ -196,6 +248,10 @@ module.exports = function (app, passport){
             res.json(Todos);
         });
     });
+
+
+
+
 
     // busca todas las prácticas para mostrarlas en el calendario
     app.get('/practis', isLoggedIn , function(req, res) {
@@ -240,18 +296,18 @@ module.exports = function (app, passport){
                 res.end();
             });
         // si el campo tipo es falso, el examen es práctico
-        } else {
-            delete cosas.tipo;
+    } else {
+        delete cosas.tipo;
              // actualizamos un array que tiene el objeto pagos añadiendo un objeto
-            pagos.update({'userId': useId}, {$push :  { examenPractico : cosas }}, function(err) {
+             pagos.update({'userId': useId}, {$push :  { examenPractico : cosas }}, function(err) {
                 // si hay un error se envía. no se ejecutará nada después de res.send(err)
                 if (err)
                     res.send(err)
                 console.log('salio bien teorico');
                 res.end();
             });
-        }
-    });
+         }
+     });
 
     //buscamos los datos del usuario actual
     app.get('/pagos', isLoggedIn , function(req, res) {
@@ -430,7 +486,7 @@ module.exports = function (app, passport){
             };
             res.end();
         });
-});
+    });
 
     //borra prácticas del usuario
     app.post('/borrar', function(req, res){
