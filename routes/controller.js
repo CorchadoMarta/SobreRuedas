@@ -60,43 +60,23 @@ module.exports = function (app, passport){
             console.log(arrayMails);
             usuarios.find({_id : { $all: arrayMails}},{email:1}, function(err, emails){
                 console.log(emails[0]);
+                nodemailerMailgun.sendMail({
+                    from: 'noreply@sobreruedas.com',
+                    to: ['sobreruedas.dova@gmail.com', 'sobre.ruedas.autoescuela@gmail.com'], // An array if you have multiple recipients.
+                    subject: 'Mañana tienes una práctica!!!!',
+                    text: 'Buenas noches: Mañana tienes una práctica. Que vaya bien y haz caso al profesor, que él sabe más. ;)',
+                }, function (err, info) {
+                    if (err) {
+                    console.log('Error: ' + err);
+                    } else {
+                    console.log('Response: ' + info);
+                    }
+                });
             })
             
-      /*      res.json(Todos);*/
         });
-/*        nodemailerMailgun.sendMail({
-            from: 'noreply@sobreruedas.com',
-            to: ['sobreruedas.dova@gmail.com', 'sobre.ruedas.autoescuela@gmail.com'], // An array if you have multiple recipients.
-            subject: 'Mañana tienes una práctica!!!!',
-            text: 'Buenas noches: Mañana tienes una práctica. Que vaya bien y haz caso al profesor, que él sabe más. ;)',
-        }, function (err, info) {
-            if (err) {
-            console.log('Error: ' + err);
-            } else {
-            console.log('Response: ' + info);
-            }
-        });*/
-    });
 
-/*    //Busca las prácticas de hoy para mostrárselas al profesor
-    app.get('/mailRecordatorio', function(req, res) {
-        // fecha inicial
-        var start = new Date();
-        start.setHours(0,0,0,0);
-        start.setDate(start.getDay() +1 );
-        // fecha final
-        var end = new Date();
-        end.setHours(23,59,59,999);
-        end.setDate(end.getDay() +1 );
-        console.log(start + " start -- end " + end);
-        // buscamos en un intervalo de horas, que es el día de hoy
-        practicas.find( {startTime : {$gte: start, $lt: end}}, function(err, Todos) {
-            // si hay un error se envía. no se ejecutará nada después de res.send(err)
-            if (err)
-                res.send(err)
-            res.json(Todos);
-        });
-    });*/
+    });
 
     // el usuario envía un mail a el administrador
     app.post('/mailContacto' , function(req, res) {
